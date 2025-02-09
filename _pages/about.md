@@ -15,3 +15,29 @@ Beyond research, I enjoy a good scrapbooking session and love biking and explori
 
 Please feel free to explore my academic journey and projects on my websites. Don’t hesitate to reach out! 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
