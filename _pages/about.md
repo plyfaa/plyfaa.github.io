@@ -9,7 +9,7 @@ redirect_from:
 
 Hi, I’m Plyfaa! 
 
-I’m a researcher passionate about visual cognition and neuroscience, currently applying to PhD programs for the 2025-2026 cycle in the United States and abroad. I completed my Bachelor’s degree at the University of California, Davis (UC Davis) during winter 2024. 
+I’m a researcher passionate about visual cognition and neuroscience, currently applying to PhD programs for the 2025-2026 cycle in the United States and abroad. I completed my Bachelor’s degree at the University of California, Davis (UC Davis) during March 2024. 
 
 I have been involved in research at UC Davis with David P. Corina, John M. Henderson, and George R. Mangun. During my undergraduate summers, I had the opportunity to conduct research with Kristen Pauker at the University of Hawaii - Manoa, Hawaii Pacific Neuroscience (Oahu’s main provider of neuroscience care), and Hannah Smithson at the University of Oxford. 
 
