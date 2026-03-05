@@ -1,0 +1,643 @@
+---
+import '../styles/global.css';
+---
+
+<!-- Developed by Plyfaa Suwanamalik-Murphy. Last modified: 03/5/2026 -->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Plyfaa Suwanamalik-Murphy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@300;400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet"/>
+  </head>
+
+  <body>
+
+    <!-- CUSTOM CURSOR: dot + lagging ring -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
+    <!-- NAV: Fixed top bar, background present on scroll -->
+    <nav id="nav">
+      <a href="#hero" class="nav-logo">P. Suwanamalik-Murphy</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#cursor-section">Interactive</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO: Name, Thai name, description, scroll indicator -->
+    <section id="hero">
+      <h1 class="hero-name">
+        <span class="line">Plyfaa Suwanamalik-Murphy</span>
+        <span class="line thai">พลายฟ้า สุวรรณามลิก เมอร์ฟี่</span>
+      </h1>
+      <p class="hero-desc">
+        Incoming 1st-year PhD student at UC San Diego investigating how we interact and
+        perceive the external, visual world. Research methods include a focus on
+        eye-tracking/pupillometry and computational methods.
+      </p>
+      <p class="hero-desc">
+        Excited about collaborations that utilize vision & perception research
+        to solve real-world problems. Recently working on website design, using
+        eye patterns and digital interactions to create more responsive environments.
+      </p>
+      <p class="hero-desc">
+        Creating, designing, and building efficiently. Don't hesitate to reach out!
+      </p>
+      <div class="scroll-indicator" id="scroll-indicator">
+        <span class="scroll-label">Scroll</span>
+        <div class="scroll-arrow">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT: Bio + photo -->
+    <section id="about">
+      <div class="about-left reveal">
+        <p class="section-tag">About</p>
+        <h2 class="about-name">I perceive, therefore I see...<br/><em>your eyes are windows into the mind</em></h2>
+        <p class="about-body">
+          I'm fascinated by the eyes and what they reveal about our perception.
+          I am blending vision science with technology, building robust systems
+          to understand how people see and use the interfaces around them.
+        </p>
+        <p class="about-body">
+          I'm an incoming PhD student in
+          <a href="https://bradylab.ucsd.edu" class="about-highlight" target="_blank">Dr. Timothy Brady's Visual and Memory Lab</a> at
+          <a href="https://ucsd.edu" class="about-highlight" target="_blank">UC San Diego</a>. Currently, I'm a Research Fellow at the
+          <a href="https://www.nih.gov" class="about-highlight" target="_blank">National Institutes of Health</a> in
+          <a href="https://fim.nimh.nih.gov/" class="about-highlight" target="_blank">Dr. Peter Bandettini's lab</a>, where I'm investigating how we can control
+          pupil size in real time to improve our perception. Previously, I built
+          decoding pipelines for BCIs as a
+          <a href="https://www.simonsfoundation.org" class="about-highlight" target="_blank">Simons Foundation Fellow</a> under
+          <a href="https://neuroprosthetics.science/" class="about-highlight" target="_blank">Dr. Sergey Stavisky</a>, and investigated visual perception at the
+          <a href="https://www.psy.ox.ac.uk/" class="about-highlight" target="_blank">University of Oxford</a> advised by
+          <a href="https://www.psy.ox.ac.uk/people/hannah-smithson" class="about-highlight" target="_blank">Dr. Hannah Smithson</a>.
+        </p>
+        <p class="about-body">
+          I earned my Bachelor's in Cognitive Science from
+          <a href="https://ucdavis.edu" class="about-highlight" target="_blank">UC Davis</a> in ~2 years —
+          and spent most of that time learning as much as I could about eye-tracking,
+          EEG, and visual cognition, finding my way into as many research <a href="/cv.pdf" class="about-highlight" target="_blank">research opportunities</a> as I could.
+        </p>
+      </div>
+      <div class="about-right reveal">
+        <img src="/smithsonian.jpg" alt="Plyfaa Suwanamalik-Murphy" class="about-photo"/>
+        <div class="about-photo-label">Selected NIMH/NIH Lightning Talk Speaker · September 2025</div>
+      </div>
+    </section>
+
+    <!-- RESEARCH: Numbered list of projects -->
+    <section id="research">
+      <p class="section-tag reveal">Research</p>
+      <div class="research-list">
+        <div class="research-item reveal" data-project="semantic-congruency" role="button" tabindex="0">
+          <span class="research-num">01</span>
+          <div>
+            <p class="research-meta">Visual and Memory Lab · UCSD · 2024–present</p>
+            <h3 class="research-title">Semantic Congruency Effects on Visual Attention</h3>
+            <p class="research-desc">Investigating how meaningful scene context shapes what we attend to and ultimately encode into memory using behavioral and pupillometry paradigms.</p>
+          </div>
+          <span class="research-badge">In Progress</span>
+        </div>
+        <div class="research-item reveal" data-project="bci" role="button" tabindex="0">
+          <span class="research-num">02</span>
+          <div>
+            <p class="research-meta">NIMH · NIH · [Year]</p>
+            <h3 class="research-title">Brain-Computer Interface (BCI)</h3>
+            <p class="research-desc">Description of your BCI research contribution and key findings at the National Institute of Mental Health.</p>
+          </div>
+          <span class="research-badge">Publication</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY: Grid of six photos -->
+    <section id="gallery">
+      <p class="section-tag reveal">Gallery</p>
+      <div class="gallery-grid reveal">
+        <div class="gallery-item">
+          <img src="/smithsonian.jpg" alt="NIMH Oral Presentation"/>
+          <span class="gallery-item-label">NIMH/NIH Selected Lightning Talk Speaker</span>
+        </div>
+        <div class="gallery-item">
+          <img src="/art.jpg" alt="Art and Science"/>
+          <span class="gallery-item-label">3rd Place Art Winner! "Waves of Consciousness"</span>
+        </div>
+        <div class="gallery-item">
+          <img src="/poster.jpg" alt="ASSC Presentation"/>
+          <span class="gallery-item-label">Oral presentation at NIMH/NIH</span>
+        </div>
+        <div class="gallery-item">
+          <img src="/assc.jpg" alt="Oxford"/>
+          <span class="gallery-item-label">Oral Presentation in Crete, Greece</span>
+        </div>
+        <div class="gallery-item">
+          <img src="/talk.jpg" alt="Poster Presentation"/>
+          <span class="gallery-item-label">Advocating for environmentally friendly infrastructure</span>
+        </div>
+        <div class="gallery-item">
+          <img src="/oxford.jpg" alt="Poster Presentation"/>
+          <span class="gallery-item-label">Perception of iridescence at the University of Oxford</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE: Constellation canvas tracking cursor movements of user -->
+    <section id="cursor-section">
+      <div class="cursor-wrap">
+        <div class="cursor-text reveal">
+          <p class="section-tag">Interactive</p>
+          <h2>Your movements,<br/><em>mapped.</em></h2>
+          <p>Every cursor path is a data point. Move through this website and watch how your cursor movements shape into a constellation. Every person is unique and explores this space differently!</p>
+          <br>
+          <p>***Your cursor paths are not recorded***</p>
+        </div>
+        <div>
+          <canvas id="art-canvas" width="800" height="800"></canvas>
+          <div class="canvas-footer">
+            <button id="clear-canvas">clear</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT: Email + external links -->
+    <section id="contact">
+      <div class="reveal">
+        <p class="section-tag">Contact</p>
+        <h2 class="contact-heading">Let's<br/><em>chat!</em></h2>
+        <p class="contact-body">Reach out to talk about vision and perception, collaborations, or just to schedule a coffee chat.</p>
+        <a href="mailto:plysuwana@gmail.com" class="contact-email">plysuwana@gmail.com</a>
+      </div>
+      <div class="contact-links reveal">
+        <a href="https://www.linkedin.com/in/plyfaa-murphy/" class="contact-link" target="_blank">
+          <span>LinkedIn</span><span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://github.com/plyfaa" class="contact-link" target="_blank">
+          <span>GitHub</span><span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://scholar.google.com/citations?user=TCRiqYcAAAAJ&hl=en" class="contact-link" target="_blank">
+          <span>Google Scholar</span><span class="contact-link-arrow">→</span>
+        </a>
+        <a href="/cv.pdf" class="contact-link">
+          <span>Curriculum Vitae</span><span class="contact-link-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <p class="footer-credit">
+        Loosely designed in <a href="https://figma.com" class="footer-highlight" target="_blank">Figma</a> and coded in
+        <a href="https://code.visualstudio.com" class="footer-highlight" target="_blank">Visual Studio Code</a> by yours truly. Built with
+        <a href="https://astro.build" class="footer-highlight" target="_blank">Astro</a> and CSS,
+        deployed with <a href="https://pages.github.com" class="footer-highlight" target="_blank">GitHub Pages</a>. All text is set in the
+        <a href="https://www.figma.com/fonts/inter/" class="footer-highlight" target="_blank">Inter</a>,
+        <a href="https://www.figma.com/fonts/playfair-display/" class="footer-highlight" target="_blank">Playfair Display</a>, and
+        <a href="https://www.figma.com/fonts/dm-mono/" class="footer-highlight" target="_blank">DM Mono</a> typefaces.
+      </p>
+    </footer>
+
+    <!-- RESEARCH DETAIL: Opens as full-page overlay -->
+    <div class="research-modal-overlay" id="research-modal">
+      <div class="research-modal">
+        <button class="modal-close" id="modal-close" aria-label="Close">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div class="modal-content" id="modal-content">
+          <!-- Dynamically populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <style is:global>
+      /* ── DESIGN TOKENS ("this is my color") ── */
+      :root {
+        --surface:  #0D1420;
+        --border:   rgba(74,134,184,0.15);
+        --blue:     #4A86B8;
+        --blue-dim: rgba(74,134,184,0.5);
+        --white:    #F0F4F8;
+        --mono:     'DM Mono', monospace;
+        --serif:    'Playfair Display', serif;
+        --sans:     'Inter', sans-serif;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body { font-family: var(--sans); background: #080C14; color: var(--white); overflow-x: hidden; cursor: none; }
+
+      /* ── CURSOR ── */
+      .cursor, .cursor-ring { position: fixed; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); }
+      .cursor { width: 8px; height: 8px; background: var(--blue); z-index: 9999; transition: width 0.2s, height 0.2s, opacity 0.2s; }
+      .cursor-ring { width: 32px; height: 32px; border: 1px solid var(--blue-dim); z-index: 9998; transition: width 0.2s, height 0.2s; }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 28px 64px; border-bottom: 1px solid transparent;
+        transition: border-color 0.3s, background 0.3s;
+      }
+      nav.scrolled { border-color: var(--border); background: #0A1628; backdrop-filter: blur(12px); }
+      .nav-logo { font-family: var(--serif); font-size: 20px; color: var(--white); text-decoration: none; }
+      .nav-links { display: flex; gap: 40px; list-style: none; }
+      .nav-links a { font-family: var(--mono); font-size: 15px; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); text-decoration: none; transition: color 0.2s; }
+      .nav-links a:hover { color: var(--white); }
+
+      /* ── SECTION BASE ── */
+      section { padding: 90px 64px; border-bottom: 1px solid var(--border); }
+      .section-tag { font-family: var(--mono); font-size: 15px; letter-spacing: 4px; text-transform: uppercase; color: var(--blue); margin-bottom: 48px; display: flex; align-items: center; gap: 16px; }
+      .section-tag::after { content: ''; height: 1px; width: 55px; background: var(--blue); }
+
+      /* ── HERO ── */
+      #hero { display: flex; flex-direction: column; justify-content: center; min-height: 100vh; padding-top: 160px; position: relative; overflow: hidden; }
+      .hero-name { font-family: var(--serif); font-size: 60px; line-height: 0.95; color: var(--white); margin-bottom: 25px; overflow: hidden; padding-bottom: 0.30em; position: relative; }
+      .hero-name .line { display: block; animation: slideUp 1s cubic-bezier(0.16,1,0.3,1) both; }
+      .hero-name .line:nth-child(1) { animation-delay: 0.3s; }
+      .hero-name .thai { font-size: 0.40em; color: var(--blue); letter-spacing: 2px; margin-bottom: -10px; margin-top: 20px; animation-delay: 0.45s; }
+      .hero-desc { margin-top: 25px; font-size: 16px; font-weight: 200; color: rgba(255,255,255,0.7); line-height: 1.8; max-width: 800px; animation: fadeUp 1s ease both 0.8s; opacity: 0; }
+
+      /* ── SCROLL INDICATOR ── */
+      .scroll-indicator {
+        position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+        display: flex; flex-direction: column; align-items: center; gap: 5px;
+        animation: fadeUp 1s ease both 1.2s; opacity: 0; z-index: 10;
+      }
+      .scroll-label { font-family: var(--mono); font-size: 18px; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); }
+      .scroll-arrow { color: var(--blue); animation: scrollBounce 2s ease-in-out infinite; }
+      .scroll-indicator.hidden { opacity: 0; transition: opacity 0.4s ease; pointer-events: none; }
+
+      @keyframes scrollBounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(8px); }
+      }
+
+      /* ── ABOUT ── */
+      #about { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+      .about-left { position: sticky; top: 120px; }
+      .about-name { font-family: var(--serif); font-size: 40px; line-height: 1.3; color: var(--white); margin-bottom: 32px; }
+      .about-name em { font-style: italic; color: var(--blue); }
+      .about-body { font-size: 16px; font-weight: 200; color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 24px; }
+      .about-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; border-radius: 4px; border: 1px solid var(--border); display: block; filter: grayscale(20%) brightness(0.85); transition: filter 0.5s; }
+      .about-photo:hover { filter: none; }
+      .about-photo-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); text-align: right; margin-top: 10px; }
+      .about-highlight { color: var(--blue); text-decoration: none; transition: color 0.2s; }
+      .about-highlight:hover { color: var(--white); }
+
+      /* ── RESEARCH ── */
+      .research-list { display: flex; flex-direction: column; }
+      .research-item {
+        display: grid; grid-template-columns: 80px 1fr auto; gap: 40px; align-items: start;
+        padding: 40px 0; border-bottom: 1px solid var(--border);
+        transition: background 0.2s, padding-left 0.3s; cursor: none; position: relative;
+      }
+      .research-item:first-child { border-top: 1px solid var(--border); }
+      .research-item:hover { background: rgba(74,134,184,0.03); padding-left: 5px; }
+      .research-item::after {
+        content: 'View Project →'; position: absolute; right: 0; bottom: 15px;
+        font-family: var(--mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+        color: var(--blue); opacity: 0; transform: translateX(-8px); transition: opacity 0.3s, transform 0.3s;
+      }
+      .research-item:hover::after { opacity: 1; transform: translateX(0); }
+      .research-num { font-family: var(--mono); font-size: 14px; letter-spacing: 2px; color: var(--blue); padding-top: 4px; }
+      .research-title { font-family: var(--serif); font-size: 22px; color: var(--white); margin-bottom: 10px; line-height: 1.3; }
+      .research-meta { font-family: var(--mono); font-size: 15px; letter-spacing: 2px; text-transform: uppercase; color: var(--blue-dim); margin-bottom: 14px; }
+      .research-desc { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.8; max-width: 560px; }
+      .research-badge { font-family: var(--mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border: 3px solid var(--border); color: var(--blue); padding: 6px 12px; border-radius: 2px; white-space: nowrap; }
+
+      /* ── GALLERY ── */
+      .gallery-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 280px 280px; gap: 2px; }
+      .gallery-item { background: var(--surface); border: 1px solid var(--border); overflow: hidden; position: relative; cursor: none; }
+      .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+      .gallery-item:hover img { transform: scale(1.015); }
+      .gallery-item-label { position: absolute; bottom: 16px; left: 16px; font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); background: rgba(8,12,20,0.7); padding: 4px 10px; border-radius: 2px; }
+
+      /* ── INTERACTIVE ── */
+      #cursor-section { min-height: auto; }
+      .cursor-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+      .cursor-text h2 { font-family: var(--serif); font-size: 50px; color: var(--white); line-height: 1.2; margin-bottom: 20px; }
+      .cursor-text h2 em { font-style: italic; color: var(--blue); }
+      .cursor-text p { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.8; }
+      .cursor-text p.section-tag { color: var(--blue); }
+      #art-canvas { display: block; width: 100%; aspect-ratio: 1; border-radius: 4px; border: 1px solid var(--border); background: var(--surface); cursor: none; }
+      .canvas-footer { display: flex; justify-content: flex-end; margin-top: 12px; }
+      #clear-canvas { font-family: var(--mono); font-size: 15px; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); background: transparent; border: 1px solid var(--border); padding: 6px 12px; border-radius: 2px; cursor: none; transition: color 0.2s, border-color 0.2s; }
+      #clear-canvas:hover { color: var(--white); border-color: var(--blue-dim); }
+
+      /* ── CONTACT ── */
+      #contact { min-height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+      .contact-heading { font-family: var(--serif); font-size: 50px; line-height: 1.0; color: var(--white); margin-bottom: 32px; }
+      .contact-heading em { font-style: italic; color: var(--blue); }
+      .contact-body { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 40px; max-width: 360px; }
+      .contact-email { font-family: var(--serif); font-size: 20px; color: var(--white); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 8px; display: inline-block; transition: border-color 0.2s, color 0.2s; }
+      .contact-email:hover { border-color: var(--blue); color: var(--blue); }
+      .contact-links { display: flex; flex-direction: column; padding-top: 80px; }
+      .contact-link { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: rgba(255,255,255,0.7); font-family: var(--mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s; }
+      .contact-link:hover { color: var(--blue); }
+      .contact-link-arrow { font-size: 30px; transition: transform 0.2s; }
+      .contact-link:hover .contact-link-arrow { transform: translateX(4px); }
+
+      /* ── FOOTER ── */
+      footer { padding: 48px 64px; display: flex; justify-content: space-between; align-items: start; border-top: 1px solid var(--border); }
+      .footer-credit { font-size: 14px; letter-spacing: 0.5px; color: rgba(255,255,255,0.7); line-height: 1.8; max-width: 800px; }
+      .footer-highlight { color: var(--white); }
+      a.footer-highlight { text-decoration: none; }
+      a.footer-highlight:hover { color: var(--blue); }
+
+      /* ── RESEARCH MODAL ── */
+      .research-modal-overlay {
+        position: fixed; inset: 0; z-index: 200;
+        background: rgba(8, 12, 20, 0.0); backdrop-filter: blur(0px);
+        pointer-events: none; opacity: 0; overflow-y: auto;
+        transition: background 0.4s ease, backdrop-filter 0.4s ease, opacity 0.4s ease;
+      }
+      .research-modal-overlay.open {
+        opacity: 1; pointer-events: all;
+        background: rgba(8, 12, 20, 0.92); backdrop-filter: blur(20px);
+      }
+      .research-modal {
+        max-width: 860px; margin: 0 auto; padding: 100px 64px 80px;
+        transform: translateY(40px); opacity: 0;
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+      }
+      .research-modal-overlay.open .research-modal { transform: translateY(0); opacity: 1; }
+      .modal-close {
+        position: fixed; top: 32px; right: 40px;
+        background: none; border: 2px solid var(--blue); color: var(--white);
+        width: 48px; height: 48px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        cursor: none; transition: color 0.2s, border-color 0.2s; z-index: 201;
+      }
+      .modal-close:hover { color: var(--white); border-color: var(--blue); }
+      .modal-content .modal-tag { font-family: var(--mono); font-size: 14px; letter-spacing: 4px; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+      .modal-content .modal-tag::after { content: ''; height: 1px; width: 60px; background: var(--blue); }
+      .modal-content .modal-heading { font-family: var(--serif); font-size: 35px; color: var(--white); line-height: 1.15; margin-bottom: 16px; }
+      .modal-content .modal-section-label { font-family: var(--mono); font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; margin-top: 56px; }
+      .modal-content .modal-body { font-size: 15px; font-weight: 300; color: white; line-height: 1.9; margin-bottom: 16px; max-width: 680px; }
+      .modal-content .modal-image-grid img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border: 1px solid var(--border); border-radius: 2px; display: block; filter: grayscale(15%) brightness(0.9); transition: filter 0.4s; }
+      .modal-body-grid { display: grid; grid-template-columns: 1fr 160px; gap: 48px; margin-top: 32px; }
+      .modal-body-main { min-width: 0; }
+      .modal-sidebar { border-left: 1px solid var(--border); padding-left: 24px; }
+      .modal-sidebar-item { margin-bottom: 20px; }
+      .modal-sidebar-label { display: block; font-family: var(--mono); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--blue-dim); margin-bottom: 4px; }
+      .modal-sidebar-value { display: block; font-family: var(--mono); font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 300; }
+      .modal-file-list { display: flex; flex-direction: column; }
+      .modal-file-item { display: flex; align-items: center; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--border); text-decoration: none; cursor: none; transition: background 0.2s; }
+      .modal-file-item:first-child { border-top: 1px solid var(--border); }
+      .modal-file-icon { font-size: 30px; }
+      .modal-file-name { font-family: var(--mono); font-size: 14px; letter-spacing: 1px; color: rgba(255,255,255,0.7); flex: 1; }
+      .modal-file-open { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); opacity: 0; transition: opacity 0.2s; }
+      .modal-file-item:hover .modal-file-open { opacity: 1; }
+      .modal-file-item:hover .modal-file-name { color: var(--white); }
+      body.modal-open { overflow: hidden; }
+
+      /* ── ANIMATIONS ── */
+      @keyframes slideUp { from { transform: translateY(110%); opacity: 0; } to { transform: none; opacity: 1; } }
+      @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+      .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .reveal.visible { opacity: 1; transform: none; }
+    </style>
+
+    <script>
+      // ── CUSTOM CURSOR ────────────────────────────────────────
+      const cursorDot = document.getElementById('cursor');
+      const cursorRing = document.getElementById('cursor-ring');
+      let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+      document.addEventListener('mousemove', e => {
+        mouseX = e.clientX; mouseY = e.clientY;
+        cursorDot.style.left = mouseX + 'px';
+        cursorDot.style.top  = mouseY + 'px';
+      });
+
+      (function animateRing() {
+        ringX += (mouseX - ringX) * 0.25;
+        ringY += (mouseY - ringY) * 0.25;
+        cursorRing.style.left = ringX + 'px';
+        cursorRing.style.top  = ringY + 'px';
+        requestAnimationFrame(animateRing);
+      })();
+
+      document.querySelectorAll('a, button, .gallery-item, .research-item, .modal-close').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorDot.style.width = cursorDot.style.height = '20px';
+          cursorDot.style.opacity = '0.5';
+          cursorRing.style.width = cursorRing.style.height = '50px';
+        });
+        el.addEventListener('mouseleave', () => {
+          cursorDot.style.width = cursorDot.style.height = '8px';
+          cursorDot.style.opacity = '1';
+          cursorRing.style.width = cursorRing.style.height = '32px';
+        });
+      });
+
+      // ── NAV ──────────────────────────────────────────────────
+      const nav = document.getElementById('nav');
+      window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+      // ── SCROLL INDICATOR — hide on scroll ────────────────────
+      const scrollIndicator = document.getElementById('scroll-indicator');
+      window.addEventListener('scroll', () => {
+        scrollIndicator.classList.toggle('hidden', window.scrollY > 100);
+      });
+
+      // ── SCROLL REVEAL ─────────────────────────────────────────
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (isIntersecting) {
+            target.classList.add('visible');
+            revealObserver.unobserve(target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      // ── RESEARCH DETAIL MODAL (JS) ─────────────────────────────────
+      const projectData = {
+        'semantic-congruency': {
+          tag: 'Research Project 01',
+          title: 'Semantic Congruency Effects on Visual Attention',
+          sidebar: {
+            institution: 'UC Davis',
+            advisor: 'Dr. John Henderson',
+            duration: '2022–2023',
+            funding: '$808',
+            funder: "UC Davis Provost's Undergraduate Fellowship",
+          },
+          overview: `This project investigates how meaningful scene context shapes
+            what we attend to and ultimately encode into visual memory. When objects
+            appear in semantically congruent scenes (e.g., a toaster in a kitchen),
+            do we process them differently than when they appear in incongruent
+            contexts (e.g., a toaster on a beach)?`,
+          methods: `Using a combination of behavioral paradigms, eye-tracking, and
+            pupillometry, we measure how scene-object congruency modulates fixation
+            patterns, pupil dilation responses, and subsequent memory performance.
+            Computational models help us quantify the statistical regularities
+            observers rely on.`,
+          files: [
+            // { name: 'VSS 2025 Poster', path: '/research/poster-vss-2025.pdf', type: 'pdf' },
+            // { name: 'Eye-tracking Heatmap', path: '/research/heatmap.jpg', type: 'jpg' },
+          ],
+        },
+        'bci': {
+          tag: 'Research Project 02',
+          title: 'Brain-Computer Interface (BCI)',
+          sidebar: {
+            institution: 'UC Davis / Simons Foundation',
+            advisor: 'Dr. Sergey Stavisky',
+            duration: '2023–2024',
+            funding: '$11,598',
+            funder: 'Simons Foundation Shenoy Undergraduate Research Fellowship in Neuroscience',
+          },
+          overview: `[Add your in-depth description of the BCI project here.]`,
+          methods: `[Describe the methodological approach — EEG/MEG paradigms, signal
+            processing pipelines, classification algorithms.]`,
+          files: [
+            // { name: 'NIMH Lightning Talk Slides', path: '/research/nimh-talk.pdf', type: 'pdf' },
+            { name: 'BCI Paradigm Diagram', path: 'talk.jpg', type: 'jpg' },
+          ],
+        }
+      };
+
+      const modal = document.getElementById('research-modal');
+      const modalContent = document.getElementById('modal-content');
+      const modalClose = document.getElementById('modal-close');
+
+      function openProject(projectId) {
+        const data = projectData[projectId];
+        if (!data) return;
+
+        const s = data.sidebar;
+        const sidebarItems = [
+          { label: 'Institution', value: s.institution },
+          { label: 'Advisor', value: s.advisor },
+          { label: 'Duration', value: s.duration },
+          { label: 'Funding', value: s.funding },
+          { label: 'Funder', value: s.funder },
+        ];
+
+        const sidebarHTML = sidebarItems.map(item => `
+          <div class="modal-sidebar-item">
+            <span class="modal-sidebar-label">${item.label}</span>
+            <span class="modal-sidebar-value">${item.value}</span>
+          </div>
+        `).join('');
+
+        const files = data.files?.filter(f => f.path) || [];
+        const filesHTML = files.length > 0 ? `
+          <p class="modal-section-label">Documents</p>
+          <div class="modal-file-list">
+            ${files.map(f => `
+              <a href="${f.path}" target="_blank" class="modal-file-item">
+                <span class="modal-file-icon">${f.type === 'pdf' ? '📄' : '🖼'}</span>
+                <span class="modal-file-name">${f.name}</span>
+                <span class="modal-file-open">Open →</span>
+              </a>
+            `).join('')}
+          </div>
+        ` : '';
+
+        modalContent.innerHTML = `
+          <p class="modal-tag">${data.tag}</p>
+          <h2 class="modal-heading">${data.title}</h2>
+          <div class="modal-body-grid">
+            <div class="modal-body-main">
+              <p class="modal-section-label">Overview</p>
+              <p class="modal-body">${data.overview}</p>
+              <p class="modal-section-label">Methods</p>
+              <p class="modal-body">${data.methods}</p>
+              ${filesHTML}
+            </div>
+            <div class="modal-sidebar">${sidebarHTML}</div>
+          </div>
+        `;
+
+        document.body.classList.add('modal-open');
+        modal.classList.add('open');
+      }
+
+      function closeProject() {
+        modal.classList.remove('open');
+        document.body.classList.remove('modal-open');
+      }
+
+      document.querySelectorAll('.research-item[data-project]').forEach(item => {
+        item.addEventListener('click', () => openProject(item.dataset.project));
+        item.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProject(item.dataset.project); }
+        });
+      });
+
+      modalClose.addEventListener('click', closeProject);
+      modal.addEventListener('click', e => { if (e.target === modal) closeProject(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProject(); });
+
+      // ── CONSTELLATION CANVAS ──────────────────────────────────
+      const canvas = document.getElementById('art-canvas');
+      const ctx = canvas.getContext('2d');
+      const CANVAS_SIZE = 500;
+      const CONNECTION_RADIUS = 80;
+      const MIN_MOVE = 2;
+
+      let trailPoints = [];
+      let prevX = null, prevY = null;
+
+      document.getElementById('clear-canvas').addEventListener('click', () => {
+        trailPoints = [];
+        ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+        prevX = prevY = null;
+      });
+
+      document.addEventListener('mousemove', e => {
+        const x = (e.clientX / window.innerWidth)  * CANVAS_SIZE;
+        const y = (e.clientY / window.innerHeight) * CANVAS_SIZE;
+
+        if (prevX !== null && Math.hypot(x - prevX, y - prevY) < MIN_MOVE) {
+          prevX = x; prevY = y; return;
+        }
+
+        trailPoints.push({ x, y });
+        ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+
+        for (let i = 0; i < trailPoints.length; i++) {
+          for (let j = i + 1; j < trailPoints.length; j++) {
+            const dist = Math.hypot(trailPoints[i].x - trailPoints[j].x, trailPoints[i].y - trailPoints[j].y);
+            if (dist < CONNECTION_RADIUS) {
+              ctx.beginPath();
+              ctx.moveTo(trailPoints[i].x, trailPoints[i].y);
+              ctx.lineTo(trailPoints[j].x, trailPoints[j].y);
+              ctx.strokeStyle = `rgba(74,134,184,${(1 - dist / CONNECTION_RADIUS) * 0.4})`;
+              ctx.lineWidth = 0.7;
+              ctx.stroke();
+            }
+          }
+        }
+
+        trailPoints.forEach((point, i) => {
+          const age = (i + 1) / trailPoints.length;
+          ctx.beginPath();
+          ctx.arc(point.x, point.y, age * 2.5 + 0.3, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(74,134,184,${age * 0.8 + 0.1})`;
+          ctx.fill();
+        });
+
+        prevX = x; prevY = y;
+      });
+    </script> 
+
+  </body> 
+</html>

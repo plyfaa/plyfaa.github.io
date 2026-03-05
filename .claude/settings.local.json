@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init)",
+      "Bash(git add astro.config.mjs .github/workflows/deploy.yml .gitignore README.md package.json package-lock.json tsconfig.json public src)"
+    ]
+  }
+}
