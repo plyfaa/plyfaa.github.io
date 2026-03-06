@@ -438,13 +438,14 @@ import '../styles/global.css';
 
         /* Nav: shrink gap and logo size to prevent overlap */
         .nav-logo { font-size: 12px; }
-        .nav-links { gap: 10px; }
+        /* Nav: right-align wrapped links */
+        .nav-links { gap: 8px 16px; flex-wrap: wrap; justify-content: flex-end; }
         .nav-links a { font-size: 10px; letter-spacing: 1px; }
       }
 
       /* ── RESPONSIVE: VERY SMALL PHONES ── */
       @media (max-width: 400px) {
-        .nav-links { flex-wrap: wrap; gap: 8px 12px; }
+        .nav-links { flex-wrap: wrap; gap: 8px 12px; justify-content: flex-end; }
         .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
       }
     </style>
