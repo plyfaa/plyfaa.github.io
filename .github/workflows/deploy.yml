@@ -19,7 +19,7 @@ jobs:
       - name: Install, build, and upload
         uses: withastro/action@v5
 
-  deploy:
+  deploy: 
     needs: build
     runs-on: ubuntu-latest 
     environment:
