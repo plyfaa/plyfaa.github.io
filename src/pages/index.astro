@@ -436,8 +436,10 @@ import '../styles/global.css';
         .modal-body-grid { grid-template-columns: 1fr; }
         .modal-sidebar { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 24px; display: flex; flex-wrap: wrap; gap: 12px 24px; }
 
-        /* Nav: shrink gap further */
-        .nav-links { gap: 12px; }
+        /* Nav: shrink gap and logo size to prevent overlap */
+        .nav-logo { font-size: 12px; }
+        .nav-links { gap: 10px; }
+        .nav-links a { font-size: 10px; letter-spacing: 1px; }
       }
 
       /* ── RESPONSIVE: VERY SMALL PHONES ── */
@@ -507,11 +509,7 @@ import '../styles/global.css';
         'semantic-congruency': {
           tag: 'Research Project 01 ',
           title: 'Semantic Congruency Effects on Visual Attention',
-          sidebar: { 
-            advisor: 'Drs. Catherine Walsh, Sharif Kronemer, Daniel A. Handwerker, Chris Baker',
-            duration: 'Under Review',
-            funding: 'Fingers crossed!',
-          },
+          sidebar: {},
           overview: `Visual search is an everyday activity where humans effectively integrate
           multiple sources of information to find relevant objects. Recent evidence
           shows that semantic congruency, how well an object fits within its scene
@@ -548,7 +546,7 @@ import '../styles/global.css';
           { label: 'Funder', value: s.funder },
         ];
 
-        const sidebarHTML = sidebarItems.map(item => `
+        const sidebarHTML = sidebarItems.filter(item => item.value).map(item => `
           <div class="modal-sidebar-item">
             <span class="modal-sidebar-label">${item.label}</span>
             <span class="modal-sidebar-value">${item.value}</span>
