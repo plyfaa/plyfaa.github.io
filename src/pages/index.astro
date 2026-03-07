@@ -579,7 +579,7 @@ import '../styles/global.css';
               <p class="modal-body">${data.methods}</p>
               ${filesHTML}
             </div>
-            <div class="modal-sidebar">${sidebarHTML}</div>
+            ${sidebarHTML ? `<div class="modal-sidebar">${sidebarHTML}</div>` : ''}
           </div>
         `;
 
