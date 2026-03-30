@@ -458,9 +458,10 @@ import '../styles/global.css';
         /* Gallery: 2 columns on phone */
         .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, clamp(120px, 30vw, 200px)); }
 
-        /* Research/Project items: drop the number column */
-        .research-item { grid-template-columns: 1fr auto; }
+        /* Research items: stack on mobile */
+        .research-item { grid-template-columns: 1fr; }
         .research-num { display: none; }
+        .project-badges { align-items: flex-start; }
 
         /* Modal sidebar stacks */
         .modal-body-grid { grid-template-columns: 1fr; }
