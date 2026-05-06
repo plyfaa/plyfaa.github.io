@@ -21,7 +21,7 @@ import '../styles/global.css';
 
     <!-- NAV: Fixed top bar, background present on scroll -->
     <nav id="nav">
-      <a href="#about" class="nav-logo">P. Suwanamalik-Murphy</a>
+      <a href="#about" class="nav-logo">Plyfaa Suwanamalik-Murphy</a>
       <ul class="nav-links">
         <li><a href="#research">Research</a></li>
         <li><a href="#gallery">Gallery</a></li>
@@ -224,13 +224,13 @@ import '../styles/global.css';
       nav {
         position: fixed; top: 0; left: 0; right: 0; z-index: 100;
         display: flex; justify-content: space-between; align-items: center;
-        padding: 28px clamp(20px, 5vw, 64px); border-bottom: 1px solid transparent;
-        transition: border-color 0.3s, background 0.3s;
+        padding: 28px clamp(20px, 5vw, 64px); border-bottom: 1px solid var(--white);
+        transition: background 0.3s;
       }
-      nav.scrolled { border-color: var(--border); background: #0A1628; backdrop-filter: blur(12px); }
-      .nav-logo { font-family: var(--serif); font-size: clamp(14px, 1.4vw, 20px); color: var(--white); text-decoration: none; white-space: nowrap; }
-      .nav-links { display: flex; gap: clamp(16px, 3vw, 40px); list-style: none; }
-      .nav-links a { font-family: var(--mono); font-size: clamp(10px, 1.1vw, 15px); letter-spacing: 2px; text-transform: uppercase; color: var(--blue); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+      nav.scrolled { background: #0A1628; backdrop-filter: blur(12px); }
+      .nav-logo { font-family: var(--sans); font-size: clamp(11px, 1.1vw, 16px); color: var(--white); text-decoration: none; white-space: nowrap; }
+      .nav-links { display: flex; gap: clamp(12px, 2.4vw, 32px); list-style: none; }
+      .nav-links a { font-family: var(--sans); font-size: clamp(8px, 0.85vw, 12px); letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
       .nav-links a:hover { color: var(--white); }
 
       /* ── SECTION BASE ── */
