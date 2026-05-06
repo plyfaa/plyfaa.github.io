@@ -57,6 +57,9 @@ import '../styles/global.css';
           EEG, and visual cognition, finding my way into as many research <a href="/cv.pdf" class="about-highlight" target="_blank">research opportunities</a> as I could.
         </p>
       </div>
+      <svg class="about-curve" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M 0 0 Q 500 200 1000 0" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+      </svg>
     </section>
 
     <!-- RESEARCH: Numbered list of projects -->
@@ -237,7 +240,8 @@ import '../styles/global.css';
       .section-tag::after { display: none; }
 
       /* ── ABOUT ── */
-      #about { padding-top: clamp(120px, 14vw, 180px); }
+      #about { padding-top: clamp(120px, 14vw, 180px); border-bottom: none; }
+      .about-curve { display: block; width: 100vw; height: clamp(60px, 8vw, 110px); margin: clamp(60px, 8vw, 120px) calc(50% - 50vw) 0; }
       .about-text { max-width: 1100px; margin: 0 auto; display: flow-root; }
       .about-name { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); line-height: 1.3; color: var(--white); margin-bottom: 32px; }
       .about-name em { font-style: italic; color: var(--blue); }
