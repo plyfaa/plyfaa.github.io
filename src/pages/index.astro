@@ -21,7 +21,7 @@ import '../styles/global.css';
 
     <!-- NAV: Fixed top bar, background present on scroll -->
     <nav id="nav">
-      <a href="#hero" class="nav-logo">P. Suwanamalik-Murphy</a>
+      <a href="#about" class="nav-logo">P. Suwanamalik-Murphy</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#research">Research</a></li>
@@ -31,33 +31,6 @@ import '../styles/global.css';
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-
-    <!-- HERO: Name, Thai name, description, scroll indicator -->
-    <section id="hero">
-      <h1 class="hero-name"> 
-        <span class="line">Plyfaa Suwanamalik-Murphy</span>
-        <span class="line thai">พลายฟ้า สุวรรณามลิก เมอร์ฟี่</span>
-      </h1>
-      <p class="hero-desc">
-        Incoming 1st-year PhD student at UC San Diego investigating how we interact and
-        perceive the external, visual world. Research methods include a focus on
-        eye-tracking/pupillometry and computational methods.
-      </p>
-      <p class="hero-desc">
-        Excited about collaborations that utilize vision & perception research
-        to solve real-world problems. Currently building <a href="https://try-nudge.com" class="hero-highlight" target="_blank"><strong>Nudge</strong></a>
-      </p>
-      <p class="hero-desc">
-        Creating, designing, and building efficiently. Don't hesitate to reach out!
-      </p>
-      <div class="scroll-indicator" id="scroll-indicator">
-        <div class="scroll-arrow">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </div>
-      </div>
-    </section>
 
     <!-- ABOUT: Bio + photo -->
     <section id="about">
@@ -271,33 +244,8 @@ import '../styles/global.css';
       /* removed the decorative blue line next to section headers */
       .section-tag::after { display: none; }
 
-      /* ── HERO ── */
-      #hero { display: flex; flex-direction: column; justify-content: center; min-height: 100vh; padding-top: clamp(100px, 12vw, 160px); position: relative; overflow: hidden; }
-      .hero-name { font-family: var(--serif); font-size: clamp(28px, 4.5vw, 60px); line-height: 0.95; color: var(--white); margin-bottom: 25px; overflow: hidden; padding-bottom: 0.30em; position: relative; }
-      .hero-name .line { display: block; animation: slideUp 1s cubic-bezier(0.16,1,0.3,1) both; }
-      .hero-name .line:nth-child(1) { animation-delay: 0.3s; }
-      .hero-name .thai { font-size: 0.40em; color: var(--blue); letter-spacing: 2px; margin-bottom: 20px; margin-top: 20px; animation-delay: 0.45s; }
-      .hero-desc { margin-top: 25px; font-size: clamp(13px, 1.2vw, 16px); font-weight: 200; color: rgba(255,255,255,0.7); line-height: 1.8; max-width: 800px; animation: fadeUp 1s ease both 0.8s; opacity: 0; }
-      .hero-highlight { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
-      .hero-highlight:hover { opacity: 0.8; }
-
-      /* ── SCROLL INDICATOR ── */
-      .scroll-indicator {
-        position: absolute; bottom: 40px; left: 0; right: 0;
-        display: flex; flex-direction: column; align-items: center; gap: 5px;
-        animation: fadeUp 1s ease both 1.2s; opacity: 0; z-index: 10;
-      }
-      .scroll-label { font-family: var(--mono); font-size: clamp(13px, 1.3vw, 18px); letter-spacing: 3px; text-transform: uppercase; color: var(--blue); }
-      .scroll-arrow { color: var(--blue); animation: scrollBounce 2s ease-in-out infinite; }
-      .scroll-indicator.hidden { opacity: 0; transition: opacity 0.4s ease; pointer-events: none; }
-
-      @keyframes scrollBounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(8px); }
-      }
-
       /* ── ABOUT ── */
-      #about { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
+      #about { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: start; padding-top: clamp(120px, 14vw, 180px); }
       .about-left { position: sticky; top: 120px; }
       .about-name { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); line-height: 1.3; color: var(--white); margin-bottom: 32px; }
       .about-name em { font-style: italic; color: var(--blue); }
@@ -426,8 +374,6 @@ import '../styles/global.css';
       body.modal-open { overflow: hidden; }
 
       /* ── ANIMATIONS ── */
-      @keyframes slideUp { from { transform: translateY(110%); opacity: 0; } to { transform: none; opacity: 1; } }
-      @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
       .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
       .reveal.visible { opacity: 1; transform: none; }
 
@@ -517,12 +463,6 @@ import '../styles/global.css';
       // ── NAV ──────────────────────────────────────────────────
       const nav = document.getElementById('nav');
       window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
-
-      // ── SCROLL INDICATOR — hide on scroll ────────────────────
-      const scrollIndicator = document.getElementById('scroll-indicator');
-      window.addEventListener('scroll', () => {
-        scrollIndicator.classList.toggle('hidden', window.scrollY > 100);
-      });
 
       // ── SCROLL REVEAL ─────────────────────────────────────────
       const revealObserver = new IntersectionObserver(entries => {
