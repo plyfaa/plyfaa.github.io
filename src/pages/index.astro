@@ -15,10 +15,6 @@ import '../styles/global.css';
 
   <body>
 
-    <!-- CUSTOM CURSOR: dot + lagging ring -->
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-ring" id="cursor-ring"></div>
-
     <!-- NAV: Fixed top bar, background present on scroll -->
     <nav id="nav">
       <a href="#about" class="nav-logo">Plyfaa Suwanamalik-Murphy</a>
@@ -189,18 +185,20 @@ import '../styles/global.css';
 
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       html { scroll-behavior: smooth; }
-      body { font-family: var(--sans); background: var(--bg); color: var(--text); overflow-x: hidden; cursor: none; }
+      body { font-family: var(--sans); background: var(--bg); color: var(--text); overflow-x: hidden; }
 
-      /* ── CURSOR ── */
-      .cursor, .cursor-ring { position: fixed; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); }
-      .cursor { width: 8px; height: 8px; background: var(--blue); z-index: 9999; transition: width 0.2s, height 0.2s, opacity 0.2s; }
-      .cursor-ring { display: none; }
+      /* ── CURSOR PIXELS ── */
+      .cursor-pixel { position: fixed; width: 4px; height: 4px; background: #FFFFFF; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); animation: pixelRise 0.9s ease-out forwards; }
+      @keyframes pixelRise {
+        from { opacity: 1; }
+        to { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% - 36px)); }
+      }
 
       /* ── NAV ── */
       nav {
         position: fixed; top: 0; left: 0; right: 0; z-index: 100;
         display: flex; justify-content: space-between; align-items: center;
-        padding: 28px clamp(20px, 5vw, 64px); border-bottom: 1px solid var(--text);
+        padding: 28px clamp(20px, 5vw, 64px); border-bottom: 1px solid #FFFFFF;
         transition: background 0.3s;
       }
       nav.scrolled { background: rgba(212,194,180,0.85); backdrop-filter: blur(12px); }
@@ -234,7 +232,7 @@ import '../styles/global.css';
       .research-item {
         display: grid; grid-template-columns: 1fr auto; gap: clamp(16px, 3vw, 40px); align-items: start;
         padding: clamp(24px, 3vw, 40px) 0; border-bottom: 1px solid var(--border);
-        transition: background 0.2s, padding-left 0.3s; cursor: none; position: relative;
+        transition: background 0.2s, padding-left 0.3s; position: relative;
       }
       .research-item:first-child { border-top: 1px solid var(--border); }
       .research-item:hover { background: rgba(255,255,255,0.08); padding-left: 5px; }
@@ -247,7 +245,7 @@ import '../styles/global.css';
       /* ── PROJECTS ── */
       .project-card {
         display: block; text-decoration: none; color: inherit; border-radius: 4px;
-        overflow: hidden; transition: transform 0.3s; cursor: none;
+        overflow: hidden; transition: transform 0.3s;
         max-width: 480px;
       }
       .project-card:hover { transform: translateY(-4px); }
@@ -261,7 +259,7 @@ import '../styles/global.css';
 
       /* ── GALLERY ── */
       .gallery-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: clamp(140px, 20vw, 280px) clamp(140px, 20vw, 280px); gap: 2px; }
-      .gallery-item { background: var(--surface); border: 1px solid var(--border); overflow: hidden; position: relative; cursor: none; }
+      .gallery-item { background: var(--surface); border: 1px solid var(--border); overflow: hidden; position: relative; }
       .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
       .gallery-item:hover img { transform: scale(1.015); }
       .gallery-item-label { position: absolute; bottom: 16px; left: 16px; font-family: var(--mono); font-size: clamp(7px, 0.8vw, 10px); letter-spacing: 2px; text-transform: uppercase; color: #FFFFFF; background: rgba(0,0,0,0.55); padding: 4px 10px; border-radius: 2px; }
@@ -325,7 +323,7 @@ import '../styles/global.css';
       .modal-sidebar-label { display: block; font-family: var(--mono); font-size: clamp(10px, 1vw, 14px); letter-spacing: 2px; text-transform: uppercase; color: var(--blue-dim); margin-bottom: 4px; }
       .modal-sidebar-value { display: block; font-family: var(--mono); font-size: clamp(10px, 0.95vw, 13px); color: rgba(0,0,0,0.75); font-weight: 300; }
       .modal-file-list { display: flex; flex-direction: column; }
-      .modal-file-item { display: flex; align-items: center; gap: 10px; padding: 14px 0; text-decoration: none; cursor: none; transition: background 0.2s; }
+      .modal-file-item { display: flex; align-items: center; gap: 10px; padding: 14px 0; text-decoration: none; transition: background 0.2s; }
       .modal-file-icon { font-size: 30px; }
       .modal-file-name { font-family: var(--mono); font-size: clamp(11px, 1vw, 14px); letter-spacing: 1px; color: rgba(0,0,0,0.75); flex: 1; }
       .modal-file-open { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); opacity: 0; transition: opacity 0.2s; }
@@ -347,9 +345,7 @@ import '../styles/global.css';
       /* ── RESPONSIVE: PHONES ── */
       @media (max-width: 600px) {
         /* Disable custom cursor on touch devices */
-        body { cursor: auto; }
         .cursor, .cursor-ring { display: none; }
-        .research-item, .gallery-item, .modal-close, .contact-link { cursor: auto; }
 
         /* Photo above text on phones — no float wrap */
         .about-photo { float: none; shape-outside: none; width: 60%; margin: 0 auto 24px; display: block; }
@@ -384,36 +380,19 @@ import '../styles/global.css';
     </style>
 
     <script>
-      // ── CUSTOM CURSOR ────────────────────────────────────────
-      const cursorDot = document.getElementById('cursor');
-      const cursorRing = document.getElementById('cursor-ring');
-      let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
+      // ── CURSOR PIXEL TRAIL ───────────────────────────────────
+      let lastPixelSpawn = 0;
       document.addEventListener('mousemove', e => {
-        mouseX = e.clientX; mouseY = e.clientY;
-        cursorDot.style.left = mouseX + 'px';
-        cursorDot.style.top  = mouseY + 'px';
-      });
-
-      (function animateRing() {
-        ringX += (mouseX - ringX) * 0.25;
-        ringY += (mouseY - ringY) * 0.25;
-        cursorRing.style.left = ringX + 'px';
-        cursorRing.style.top  = ringY + 'px';
-        requestAnimationFrame(animateRing);
-      })();
-
-      document.querySelectorAll('a, button, .gallery-item, .research-item, .modal-close').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          cursorDot.style.width = cursorDot.style.height = '20px';
-          cursorDot.style.opacity = '0.5';
-          cursorRing.style.width = cursorRing.style.height = '50px';
-        });
-        el.addEventListener('mouseleave', () => {
-          cursorDot.style.width = cursorDot.style.height = '8px';
-          cursorDot.style.opacity = '1';
-          cursorRing.style.width = cursorRing.style.height = '32px';
-        });
+        const now = performance.now();
+        if (now - lastPixelSpawn < 28) return;
+        lastPixelSpawn = now;
+        const pixel = document.createElement('div');
+        pixel.className = 'cursor-pixel';
+        pixel.style.left = e.clientX + 'px';
+        pixel.style.top = e.clientY + 'px';
+        pixel.style.setProperty('--dx', (Math.random() * 16 - 8).toFixed(1) + 'px');
+        document.body.appendChild(pixel);
+        setTimeout(() => pixel.remove(), 900);
       });
 
       // ── NAV ──────────────────────────────────────────────────
