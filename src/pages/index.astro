@@ -10,7 +10,7 @@ import '../styles/global.css';
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Plyfaa Suwanamalik-Murphy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@300;400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
   </head>
 
   <body>
@@ -26,7 +26,6 @@ import '../styles/global.css';
         <li><a href="#research">Research</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#projects">Projects</a></li>
-        <li class="nav-interactive"><a href="#cursor-section">Interactive</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -58,7 +57,7 @@ import '../styles/global.css';
         </p>
       </div>
       <svg class="about-curve" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M 0 0 Q 500 200 1000 0" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+        <path d="M 0 0 Q 500 200 1000 0" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
       </svg>
     </section>
 
@@ -126,27 +125,6 @@ import '../styles/global.css';
       </a>
     </section>
 
-    <!-- INTERACTIVE: Constellation canvas tracking cursor movements of user -->
-    <section id="cursor-section">
-      <div class="cursor-wrap">
-        <div class="cursor-text reveal">
-          <p class="section-tag">Interactive</p>
-          <h2>Your movements,<br/><em>mapped.</em></h2>
-          <p>Every cursor path is a data point. Move through this website and watch how your cursor movements shape into a constellation. Every person is unique and explores this space differently!</p>
-          <br>
-          <p>*** Your cursor paths are not recorded ***</p>
-          <br>
-          <p>*** Does not visualize on mobile devices ***</p>
-        </div>
-        <div>
-          <canvas id="art-canvas" width="800" height="800"></canvas>
-          <div class="canvas-footer">
-            <button id="clear-canvas">clear</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- CONTACT: Email + external links -->
     <section id="contact">
       <div class="reveal">
@@ -201,19 +179,20 @@ import '../styles/global.css';
     <style is:global>
       /* ── DESIGN TOKENS ("this is my color") ── */
       :root {
-        --surface:  #0D1420;
-        --border:   rgba(74,134,184,0.15);
-        --blue:     #4A86B8;
-        --blue-dim: rgba(74,134,184,0.5);
-        --white:    #F0F4F8;
-        --mono:     'DM Mono', monospace;
-        --serif:    'Playfair Display', serif;
-        --sans:     'Inter', sans-serif;
+        --bg:       #D4C2B4;
+        --surface:  #E0E6EE;
+        --border:   rgba(255,255,255,0.5);
+        --blue:     #FFFFFF;
+        --blue-dim: rgba(255,255,255,0.5);
+        --text:     #000000;
+        --mono:     'Roboto Slab', serif;
+        --serif:    'Roboto Slab', serif;
+        --sans:     'Roboto Slab', serif;
       }
 
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       html { scroll-behavior: smooth; }
-      body { font-family: var(--sans); background: #141C2B; color: var(--white); overflow-x: hidden; cursor: none; }
+      body { font-family: var(--sans); background: var(--bg); color: var(--text); overflow-x: hidden; cursor: none; }
 
       /* ── CURSOR ── */
       .cursor, .cursor-ring { position: fixed; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); }
@@ -224,14 +203,14 @@ import '../styles/global.css';
       nav {
         position: fixed; top: 0; left: 0; right: 0; z-index: 100;
         display: flex; justify-content: space-between; align-items: center;
-        padding: 28px clamp(20px, 5vw, 64px); border-bottom: 1px solid var(--white);
+        padding: 28px clamp(20px, 5vw, 64px); border-bottom: 1px solid var(--text);
         transition: background 0.3s;
       }
-      nav.scrolled { background: #0A1628; backdrop-filter: blur(12px); }
-      .nav-logo { font-family: var(--sans); font-size: clamp(11px, 1.1vw, 16px); color: var(--white); text-decoration: none; white-space: nowrap; }
+      nav.scrolled { background: rgba(212,194,180,0.85); backdrop-filter: blur(12px); }
+      .nav-logo { font-family: var(--sans); font-size: clamp(11px, 1.1vw, 16px); color: var(--text); text-decoration: none; white-space: nowrap; }
       .nav-links { display: flex; gap: clamp(12px, 2.4vw, 32px); list-style: none; }
       .nav-links a { font-family: var(--sans); font-size: clamp(8px, 0.85vw, 12px); letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
-      .nav-links a:hover { color: var(--white); }
+      .nav-links a:hover { color: var(--text); }
 
       /* ── SECTION BASE ── */
       section { padding: clamp(48px, 7vw, 90px) clamp(20px, 5vw, 64px); border-bottom: 1px solid var(--border); }
@@ -243,14 +222,14 @@ import '../styles/global.css';
       #about { padding-top: clamp(120px, 14vw, 180px); border-bottom: none; }
       .about-curve { display: block; width: 100vw; height: clamp(60px, 8vw, 110px); margin: clamp(60px, 8vw, 120px) calc(50% - 50vw) 0; }
       .about-text { max-width: 1100px; margin: 0 auto; display: flow-root; }
-      .about-name { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); line-height: 1.3; color: var(--white); margin-bottom: 32px; }
+      .about-name { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); line-height: 1.3; color: var(--text); margin-bottom: 32px; }
       .about-name em { font-style: italic; color: var(--blue); }
-      .about-body { font-size: clamp(13px, 1.2vw, 16px); font-weight: 200; color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 24px; }
+      .about-body { font-size: clamp(13px, 1.2vw, 16px); font-weight: 200; color: rgba(0,0,0,0.75); line-height: 1.8; margin-bottom: 24px; }
       .about-photo { float: left; width: clamp(180px, 28vw, 320px); aspect-ratio: 3/5; object-fit: cover; object-position: top; border-radius: 50%; border: 1px solid var(--border); margin: 6px clamp(28px, 4vw, 56px) 16px 0; shape-outside: ellipse(50% 50%); shape-margin: 12px; filter: grayscale(20%) brightness(0.65); transition: filter 0.5s; }
       .about-photo:hover { filter: none; }
-      .about-photo-label { font-family: var(--mono); font-size: clamp(8px, 0.8vw, 10px); letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); text-align: right; margin-top: 10px; }
+      .about-photo-label { font-family: var(--mono); font-size: clamp(8px, 0.8vw, 10px); letter-spacing: 2px; text-transform: uppercase; color: rgba(0,0,0,0.6); text-align: right; margin-top: 10px; }
       .about-highlight { color: var(--blue); text-decoration: none; transition: color 0.2s; }
-      .about-highlight:hover { color: var(--white); }
+      .about-highlight:hover { color: var(--text); }
 
       /* ── RESEARCH ── */
       .research-list { display: flex; flex-direction: column; }
@@ -260,11 +239,11 @@ import '../styles/global.css';
         transition: background 0.2s, padding-left 0.3s; cursor: none; position: relative;
       }
       .research-item:first-child { border-top: 1px solid var(--border); }
-      .research-item:hover { background: rgba(74,134,184,0.03); padding-left: 5px; }
+      .research-item:hover { background: rgba(255,255,255,0.08); padding-left: 5px; }
       .research-num { font-family: var(--mono); font-size: clamp(11px, 1vw, 14px); letter-spacing: 2px; color: var(--blue); padding-top: 4px; }
-      .research-title { font-family: var(--serif); font-size: clamp(16px, 1.7vw, 22px); color: var(--white); margin-bottom: 10px; line-height: 1.3; }
+      .research-title { font-family: var(--serif); font-size: clamp(16px, 1.7vw, 22px); color: var(--text); margin-bottom: 10px; line-height: 1.3; }
       .research-meta { font-family: var(--mono); font-size: clamp(10px, 1.1vw, 15px); letter-spacing: 2px; text-transform: uppercase; color: var(--blue-dim); margin-bottom: 14px; }
-      .research-desc { font-size: clamp(13px, 1.1vw, 15px); font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.8; max-width: 560px; }
+      .research-desc { font-size: clamp(13px, 1.1vw, 15px); font-weight: 300; color: rgba(0,0,0,0.75); line-height: 1.8; max-width: 560px; }
       .research-badge { font-family: var(--mono); font-size: clamp(9px, 0.9vw, 12px); letter-spacing: 2px; text-transform: uppercase; border: 3px solid var(--border); color: var(--blue); padding: 6px 12px; border-radius: 2px; white-space: nowrap; }
 
       /* ── PROJECTS ── */
@@ -280,57 +259,45 @@ import '../styles/global.css';
       .project-card-body .research-title { margin-bottom: 10px; }
       .project-card-body .research-desc { margin-bottom: 20px; }
       .project-view { display: inline-block; font-family: var(--mono); font-size: clamp(9px, 0.9vw, 12px); letter-spacing: 2px; text-transform: uppercase; border: 3px solid var(--blue); color: var(--blue); padding: 6px 12px; border-radius: 2px; white-space: nowrap; transition: background 0.2s, color 0.2s; }
-      .project-card:hover .project-view, .research-item:hover .project-view { background: var(--blue); color: var(--white); }
+      .project-card:hover .project-view, .research-item:hover .project-view { background: var(--blue); color: var(--text); }
 
       /* ── GALLERY ── */
       .gallery-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: clamp(140px, 20vw, 280px) clamp(140px, 20vw, 280px); gap: 2px; }
       .gallery-item { background: var(--surface); border: 1px solid var(--border); overflow: hidden; position: relative; cursor: none; }
       .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
       .gallery-item:hover img { transform: scale(1.015); }
-      .gallery-item-label { position: absolute; bottom: 16px; left: 16px; font-family: var(--mono); font-size: clamp(7px, 0.8vw, 10px); letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); background: rgba(8,12,20,0.7); padding: 4px 10px; border-radius: 2px; }
-
-      /* ── INTERACTIVE ── */
-      #cursor-section { min-height: auto; }
-      .cursor-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
-      .cursor-text h2 { font-family: var(--serif); font-size: clamp(28px, 3.8vw, 50px); color: var(--white); line-height: 1.2; margin-bottom: 20px; }
-      .cursor-text h2 em { font-style: italic; color: var(--blue); }
-      .cursor-text p { font-size: clamp(13px, 1.2vw, 16px); font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.8; }
-      .cursor-text p.section-tag { color: var(--blue); }
-      #art-canvas { display: block; width: 100%; aspect-ratio: 1; border-radius: 4px; border: 1px solid var(--border); background: var(--surface); cursor: none; }
-      .canvas-footer { display: flex; justify-content: flex-end; margin-top: 12px; }
-      #clear-canvas { font-family: var(--mono); font-size: clamp(11px, 1.1vw, 15px); letter-spacing: 2px; text-transform: uppercase; color: var(--blue); background: transparent; border: 1px solid var(--border); padding: 6px 12px; border-radius: 2px; cursor: none; transition: color 0.2s, border-color 0.2s; }
-      #clear-canvas:hover { color: var(--white); border-color: var(--blue-dim); }
+      .gallery-item-label { position: absolute; bottom: 16px; left: 16px; font-family: var(--mono); font-size: clamp(7px, 0.8vw, 10px); letter-spacing: 2px; text-transform: uppercase; color: rgba(0,0,0,0.75); background: rgba(8,12,20,0.7); padding: 4px 10px; border-radius: 2px; }
 
       /* ── CONTACT ── */
       #contact { min-height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
-      .contact-heading { font-family: var(--serif); font-size: clamp(28px, 3.8vw, 50px); line-height: 1.0; color: var(--white); margin-bottom: 32px; }
+      .contact-heading { font-family: var(--serif); font-size: clamp(28px, 3.8vw, 50px); line-height: 1.0; color: var(--text); margin-bottom: 32px; }
       .contact-heading em { font-style: italic; color: var(--blue); }
-      .contact-body { font-size: clamp(13px, 1.2vw, 16px); font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 40px; max-width: 360px; }
-      .contact-email { font-family: var(--serif); font-size: clamp(14px, 1.5vw, 20px); color: var(--white); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 8px; display: inline-block; transition: border-color 0.2s, color 0.2s; }
+      .contact-body { font-size: clamp(13px, 1.2vw, 16px); font-weight: 300; color: rgba(0,0,0,0.75); line-height: 1.8; margin-bottom: 40px; max-width: 360px; }
+      .contact-email { font-family: var(--serif); font-size: clamp(14px, 1.5vw, 20px); color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 8px; display: inline-block; transition: border-color 0.2s, color 0.2s; }
       .contact-email:hover { border-color: var(--blue); color: var(--blue); }
       .contact-links { display: flex; flex-direction: column; padding-top: clamp(32px, 6vw, 80px); }
-      .contact-link { display: flex; justify-content: space-between; align-items: center; padding: clamp(12px, 1.5vw, 20px) 0; border-bottom: 1px solid var(--border); text-decoration: none; color: rgba(255,255,255,0.7); font-family: var(--mono); font-size: clamp(10px, 0.9vw, 12px); letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s; }
+      .contact-link { display: flex; justify-content: space-between; align-items: center; padding: clamp(12px, 1.5vw, 20px) 0; border-bottom: 1px solid var(--border); text-decoration: none; color: rgba(0,0,0,0.75); font-family: var(--mono); font-size: clamp(10px, 0.9vw, 12px); letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s; }
       .contact-link:hover { color: var(--blue); }
       .contact-link-arrow { font-size: clamp(20px, 2.2vw, 30px); transition: transform 0.2s; }
       .contact-link:hover .contact-link-arrow { transform: translateX(4px); }
 
       /* ── FOOTER ── */
       footer { padding: clamp(24px, 3.5vw, 48px) clamp(20px, 5vw, 64px); display: flex; justify-content: space-between; align-items: start; border-top: 1px solid var(--border); }
-      .footer-credit { font-size: clamp(11px, 1vw, 14px); letter-spacing: 0.5px; color: rgba(255,255,255,0.7); line-height: 1.8; max-width: 800px; }
-      .footer-highlight { color: var(--white); }
+      .footer-credit { font-size: clamp(11px, 1vw, 14px); letter-spacing: 0.5px; color: rgba(0,0,0,0.75); line-height: 1.8; max-width: 800px; }
+      .footer-highlight { color: var(--text); }
       a.footer-highlight { text-decoration: none; }
       a.footer-highlight:hover { color: var(--blue); }
 
       /* ── RESEARCH MODAL ── */
       .research-modal-overlay {
         position: fixed; inset: 0; z-index: 200;
-        background: rgba(8, 12, 20, 0.0); backdrop-filter: blur(0px);
+        background: rgba(212, 194, 180, 0.0); backdrop-filter: blur(0px);
         pointer-events: none; opacity: 0; overflow-y: auto;
         transition: background 0.4s ease, backdrop-filter 0.4s ease, opacity 0.4s ease;
       }
       .research-modal-overlay.open {
         opacity: 1; pointer-events: all;
-        background: rgba(8, 12, 20, 0.92); backdrop-filter: blur(20px);
+        background: rgba(212, 194, 180, 0.92); backdrop-filter: blur(20px);
       }
       .research-modal {
         max-width: 860px; margin: 0 auto; padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 64px) clamp(40px, 6vw, 80px);
@@ -340,33 +307,33 @@ import '../styles/global.css';
       .research-modal-overlay.open .research-modal { transform: translateY(0); opacity: 1; }
       .modal-close {
         position: fixed; top: 32px; right: 40px;
-        background: none; border: 2px solid var(--blue); color: var(--white);
+        background: none; border: 2px solid var(--blue); color: var(--text);
         width: 48px; height: 48px; border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
         cursor: none; transition: color 0.2s, border-color 0.2s; z-index: 201;
       }
-      .modal-close:hover { color: var(--white); border-color: var(--blue); }
+      .modal-close:hover { color: var(--text); border-color: var(--blue); }
       .modal-content .modal-tag { font-family: var(--mono); font-size: clamp(10px, 1vw, 14px); letter-spacing: 4px; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
       /* hide line adjacent to modal tag */
       .modal-content .modal-tag::after { display: none; }
-      .modal-content .modal-heading { font-family: var(--serif); font-size: clamp(22px, 2.7vw, 35px); color: var(--white); line-height: 1.15; margin-bottom: 16px; }
+      .modal-content .modal-heading { font-family: var(--serif); font-size: clamp(22px, 2.7vw, 35px); color: var(--text); line-height: 1.15; margin-bottom: 16px; }
       .modal-content .modal-section-label { font-family: var(--mono); font-size: clamp(10px, 1vw, 14px); letter-spacing: 3px; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; margin-top: 56px; }
-      .modal-content .modal-body { font-size: clamp(13px, 1.1vw, 15px); font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.9; margin-bottom: 16px; max-width: 680px; }
+      .modal-content .modal-body { font-size: clamp(13px, 1.1vw, 15px); font-weight: 300; color: rgba(0,0,0,0.75); line-height: 1.9; margin-bottom: 16px; max-width: 680px; }
       .modal-content .modal-image-grid img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border: 1px solid var(--border); border-radius: 2px; display: block; filter: grayscale(15%) brightness(0.9); transition: filter 0.4s; }
       .modal-body-grid { display: grid; grid-template-columns: 1fr 160px; gap: clamp(24px, 3.5vw, 48px); margin-top: 32px; }
       .modal-body-main { min-width: 0; }
       .modal-sidebar { border-left: 1px solid var(--border); padding-left: 24px; }
       .modal-sidebar-item { margin-bottom: 20px; }
       .modal-sidebar-label { display: block; font-family: var(--mono); font-size: clamp(10px, 1vw, 14px); letter-spacing: 2px; text-transform: uppercase; color: var(--blue-dim); margin-bottom: 4px; }
-      .modal-sidebar-value { display: block; font-family: var(--mono); font-size: clamp(10px, 0.95vw, 13px); color: rgba(255,255,255,0.7); font-weight: 300; }
+      .modal-sidebar-value { display: block; font-family: var(--mono); font-size: clamp(10px, 0.95vw, 13px); color: rgba(0,0,0,0.75); font-weight: 300; }
       .modal-file-list { display: flex; flex-direction: column; }
       .modal-file-item { display: flex; align-items: center; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--border); text-decoration: none; cursor: none; transition: background 0.2s; }
       .modal-file-item:first-child { border-top: 1px solid var(--border); }
       .modal-file-icon { font-size: 30px; }
-      .modal-file-name { font-family: var(--mono); font-size: clamp(11px, 1vw, 14px); letter-spacing: 1px; color: rgba(255,255,255,0.7); flex: 1; }
+      .modal-file-name { font-family: var(--mono); font-size: clamp(11px, 1vw, 14px); letter-spacing: 1px; color: rgba(0,0,0,0.75); flex: 1; }
       .modal-file-open { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); opacity: 0; transition: opacity 0.2s; }
       .modal-file-item:hover .modal-file-open { opacity: 1; }
-      .modal-file-item:hover .modal-file-name { color: var(--white); }
+      .modal-file-item:hover .modal-file-name { color: var(--text); }
       body.modal-open { overflow: hidden; }
 
       /* ── ANIMATIONS ── */
@@ -385,13 +352,10 @@ import '../styles/global.css';
         /* Disable custom cursor on touch devices */
         body { cursor: auto; }
         .cursor, .cursor-ring { display: none; }
-        .research-item, .gallery-item, #clear-canvas, .modal-close, .contact-link { cursor: auto; }
+        .research-item, .gallery-item, .modal-close, .contact-link { cursor: auto; }
 
         /* Photo above text on phones — no float wrap */
         .about-photo { float: none; shape-outside: none; width: 60%; margin: 0 auto 24px; display: block; }
-
-        #cursor-section { display: none; }
-        .nav-interactive { display: none; }
 
         #contact { grid-template-columns: 1fr; }
         .contact-links { padding-top: 0; }
@@ -568,72 +532,7 @@ import '../styles/global.css';
       modalClose.addEventListener('click', closeProject);
       modal.addEventListener('click', e => { if (e.target === modal) closeProject(); });
       document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProject(); });
-
-      // ── CONSTELLATION CANVAS ──────────────────────────────────
-      const canvas = document.getElementById('art-canvas');
-      const ctx = canvas.getContext('2d');
-      const CONNECTION_RADIUS = 80;
-      const MIN_MOVE = 2;
-
-      let trailPoints = [];
-      let prevX = null, prevY = null;
-
-      // Resize canvas to match its displayed size for crisp rendering
-      function resizeCanvas() {
-        const rect = canvas.getBoundingClientRect();
-        canvas.width = rect.width * window.devicePixelRatio;
-        canvas.height = rect.height * window.devicePixelRatio;
-        ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
-      }
-      resizeCanvas();
-      window.addEventListener('resize', resizeCanvas);
-
-      document.getElementById('clear-canvas').addEventListener('click', () => {
-        trailPoints = [];
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        prevX = prevY = null;
-      });
-
-      document.addEventListener('mousemove', e => {
-        const rect = canvas.getBoundingClientRect();
-        const canvasW = rect.width;
-        const canvasH = rect.height;
-
-        const x = (e.clientX / window.innerWidth)  * canvasW;
-        const y = (e.clientY / window.innerHeight) * canvasH;
-
-        if (prevX !== null && Math.hypot(x - prevX, y - prevY) < MIN_MOVE) {
-          prevX = x; prevY = y; return;
-        }
-
-        trailPoints.push({ x, y });
-        ctx.clearRect(0, 0, canvasW, canvasH);
-
-        for (let i = 0; i < trailPoints.length; i++) {
-          for (let j = i + 1; j < trailPoints.length; j++) {
-            const dist = Math.hypot(trailPoints[i].x - trailPoints[j].x, trailPoints[i].y - trailPoints[j].y);
-            if (dist < CONNECTION_RADIUS) {
-              ctx.beginPath();
-              ctx.moveTo(trailPoints[i].x, trailPoints[i].y);
-              ctx.lineTo(trailPoints[j].x, trailPoints[j].y);
-              ctx.strokeStyle = `rgba(74,134,184,${(1 - dist / CONNECTION_RADIUS) * 0.4})`;
-              ctx.lineWidth = 0.7;
-              ctx.stroke();
-            }
-          }
-        }
-
-        trailPoints.forEach((point, i) => {
-          const age = (i + 1) / trailPoints.length;
-          ctx.beginPath();
-          ctx.arc(point.x, point.y, age * 2.5 + 0.3, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(74,134,184,${age * 0.8 + 0.1})`;
-          ctx.fill();
-        });
-
-        prevX = x; prevY = y;
-      });
-    </script> 
+    </script>
 
   </body> 
 </html>
