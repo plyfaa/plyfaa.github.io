@@ -302,11 +302,11 @@ import '../styles/global.css';
       }
       .research-modal-overlay.open .research-modal { transform: translateY(0); opacity: 1; }
       .modal-close {
-        position: fixed; top: 32px; right: 40px;
+        position: fixed; top: clamp(16px, 2.5vw, 32px); right: clamp(20px, 3vw, 40px);
         background: none; border: none; color: var(--text);
-        width: 48px; height: 48px;
+        width: clamp(36px, 5vw, 48px); height: clamp(36px, 5vw, 48px);
         display: flex; align-items: center; justify-content: center;
-        cursor: none; transition: color 0.2s; z-index: 201;
+        transition: color 0.2s; z-index: 201;
       }
       .modal-close:hover { color: var(--blue); }
       .modal-content .modal-tag { font-family: var(--mono); font-size: clamp(10px, 1vw, 14px); letter-spacing: 4px; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
