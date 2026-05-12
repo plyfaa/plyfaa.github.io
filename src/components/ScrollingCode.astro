@@ -42,8 +42,6 @@ conditions = [<span class="str">'dilate'</span>, <span class="str">'constrict'</
     gap: clamp(0.5rem, 1.5vw, 1.5rem);
     overflow: hidden;
     font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%);
-            mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%);
   }
 
   .code-viz--section {
@@ -58,9 +56,9 @@ conditions = [<span class="str">'dilate'</span>, <span class="str">'constrict'</
   .code-viz--backdrop {
     position: absolute;
     top: clamp(60px, 7vw, 90px);
-    right: 0;
     bottom: 0;
-    left: 0;
+    left: calc(50% - 50vw);
+    width: 50vw;
     z-index: 0;
     opacity: 1;
     pointer-events: none;
@@ -109,6 +107,8 @@ conditions = [<span class="str">'dilate'</span>, <span class="str">'constrict'</
   @media (max-width: 768px) {
     .code-viz--backdrop {
       top: clamp(50px, 12vw, 70px);
+      left: calc(50% - 50vw);
+      width: 50vw;
       opacity: 1;
     }
   }
