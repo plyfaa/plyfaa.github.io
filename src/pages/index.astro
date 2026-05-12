@@ -47,27 +47,29 @@ const row2 = galleryPhotos;
         <div class="bio-photo-wrapper">
           <img src="/smithsonian.jpg" alt="Plyfaa Suwanamalik-Murphy" class="about-photo bio-photo"/>
         </div>
-        <p class="about-body">
-          I'm fascinated by the eyes and what they reveal about our perception.
-        </p>
-        <p class="about-body">
-          I'm an incoming PhD student in
-          <a href="https://bradylab.ucsd.edu" class="about-highlight" target="_blank">Dr. Timothy Brady's Visual and Memory Lab</a> at
-          <a href="https://ucsd.edu" class="about-highlight" target="_blank">UC San Diego</a>. Currently, I'm a Research Fellow at the
-          <a href="https://www.nih.gov" class="about-highlight" target="_blank">National Institutes of Health</a> in
-          <a href="https://fim.nimh.nih.gov/" class="about-highlight" target="_blank">Dr. Peter Bandettini's lab</a>, where I'm investigating how we can control
-          pupil size in real time to improve our perception. Previously, I built
-          decoding pipelines for BCIs as a
-          <a href="https://www.simonsfoundation.org" class="about-highlight" target="_blank">Simons Foundation Fellow</a> under
-          <a href="https://neuroprosthetics.science/" class="about-highlight" target="_blank">Dr. Sergey Stavisky</a>, and investigated visual perception at the
-          <a href="https://www.psy.ox.ac.uk/" class="about-highlight" target="_blank">University of Oxford</a> advised by
-          <a href="https://www.psy.ox.ac.uk/people/hannah-smithson" class="about-highlight" target="_blank">Dr. Hannah Smithson</a>.
-        </p>
-        <p class="about-body">
-          I completed my Bachelor's in Cognitive Science from
-          <a href="https://ucdavis.edu" class="about-highlight" target="_blank">UC Davis</a> in 2 years. And spent most of that time learning as much as I could about eye-tracking,
-          EEG, and visual cognition, finding my way into as many research <a href="/cv.pdf" class="about-highlight" target="_blank">research opportunities</a> as I could.
-        </p>
+        <div class="about-text-body">
+          <p class="about-body">
+            I'm fascinated by the eyes and what they reveal about our perception.
+          </p>
+          <p class="about-body">
+            I'm an incoming PhD student in
+            <a href="https://bradylab.ucsd.edu" class="about-highlight" target="_blank">Dr. Timothy Brady's Visual and Memory Lab</a> at
+            <a href="https://ucsd.edu" class="about-highlight" target="_blank">UC San Diego</a>. Currently, I'm a Research Fellow at the
+            <a href="https://www.nih.gov" class="about-highlight" target="_blank">National Institutes of Health</a> in
+            <a href="https://fim.nimh.nih.gov/" class="about-highlight" target="_blank">Dr. Peter Bandettini's lab</a>, where I'm investigating how we can control
+            pupil size in real time to improve our perception. Previously, I built
+            decoding pipelines for BCIs as a
+            <a href="https://www.simonsfoundation.org" class="about-highlight" target="_blank">Simons Foundation Fellow</a> under
+            <a href="https://neuroprosthetics.science/" class="about-highlight" target="_blank">Dr. Sergey Stavisky</a>, and investigated visual perception at the
+            <a href="https://www.psy.ox.ac.uk/" class="about-highlight" target="_blank">University of Oxford</a> advised by
+            <a href="https://www.psy.ox.ac.uk/people/hannah-smithson" class="about-highlight" target="_blank">Dr. Hannah Smithson</a>.
+          </p>
+          <p class="about-body">
+            I completed my Bachelor's in Cognitive Science from
+            <a href="https://ucdavis.edu" class="about-highlight" target="_blank">UC Davis</a> in 2 years. And spent most of that time learning as much as I could about eye-tracking,
+            EEG, and visual cognition, finding my way into as many research <a href="/cv.pdf" class="about-highlight" target="_blank">research opportunities</a> as I could.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -81,6 +83,7 @@ const row2 = galleryPhotos;
           <div class="orbit-item" style="--angle: 270deg"></div>
         </div>
         <span class="orbit-center">Projects</span>
+        <span class="orbit-note">In progress! (May 2026)</span>
       </div>
     </section>
 
@@ -204,14 +207,15 @@ const row2 = galleryPhotos;
       .section-tag::after { display: none; }
 
       /* ── ABOUT ── */
-      #about { padding-top: clamp(120px, 14vw, 180px); border-bottom: none; }
+      #about { padding-top: clamp(140px, 16vw, 220px); padding-bottom: clamp(80px, 10vw, 160px); border-bottom: none; }
       #experiences, #gallery { border-bottom: none; }
-      .about-text { max-width: 1100px; margin: 0 auto; display: flow-root; position: relative; z-index: 1; }
+      .about-text { max-width: 860px; margin: 0 auto; display: flex; gap: clamp(20px, 4vw, 56px); align-items: flex-start; position: relative; z-index: 1; }
+      .about-text-body { flex: 1; min-width: 0; }
       .about-name { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); line-height: 1.3; color: var(--text); margin-bottom: clamp(20px, 3vw, 32px); }
       .about-name em { font-style: italic; color: var(--blue); }
       .about-body { font-size: clamp(11px, 0.95vw, 14px); font-weight: 200; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: clamp(14px, 2vw, 24px); }
-      .bio-photo-wrapper { position: relative; float: left; width: clamp(180px, 28vw, 320px); aspect-ratio: 1/1; margin: 0 clamp(28px, 4vw, 56px) clamp(12px, 1.5vw, 20px) 0; }
-      .about-photo { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 0; display: block; filter: grayscale(15%) brightness(0.9); transition: filter 0.5s; }
+      .bio-photo-wrapper { position: relative; flex-shrink: 0; width: clamp(200px, 28vw, 340px); aspect-ratio: 1/1; overflow: hidden; }
+      .about-photo { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; object-position: center 65%; border-radius: 0; display: block; transform: scale(1.5); transform-origin: center 65%; filter: grayscale(15%) brightness(0.9); transition: filter 0.5s, transform 0.5s; }
       .about-photo:hover { filter: none; }
       .about-photo-label { font-family: var(--mono); font-size: clamp(8px, 0.8vw, 10px); letter-spacing: 2px; color: rgba(255,255,255,0.6); text-align: right; margin-top: 10px; }
       .about-highlight { color: var(--blue); text-decoration: none; transition: color 0.2s; }
@@ -222,6 +226,7 @@ const row2 = galleryPhotos;
       .orbit-wrap { padding: clamp(16px, 2.5vw, 36px) 0; display: flex; justify-content: center; width: 100%; position: relative; perspective: 1400px; perspective-origin: center; }
       .orbit { position: relative; width: clamp(420px, 70vw, 820px); height: clamp(420px, 70vw, 820px); will-change: transform; }
       .orbit-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--sans); font-size: clamp(28px, 4vw, 56px); color: var(--text); letter-spacing: 2px; pointer-events: none; }
+      .orbit-note { position: absolute; top: calc(50% + clamp(28px, 4vw, 50px)); left: 50%; transform: translate(-50%, 0); font-family: var(--mono); font-size: clamp(11px, 1.1vw, 14px); color: rgba(255,255,255,0.6); letter-spacing: 1px; pointer-events: none; white-space: nowrap; }
       .orbit-item {
         position: absolute; top: 50%; left: 50%;
         width: clamp(110px, 15vw, 180px); height: clamp(110px, 15vw, 180px);
@@ -260,7 +265,7 @@ const row2 = galleryPhotos;
       #contact .contact-body { color: rgba(0,0,0,0.7); }
       #contact .contact-email { color: #000000; }
       #contact .contact-link { color: rgba(0,0,0,0.7); }
-      #contact .contact-email:hover, #contact .contact-link:hover { color: var(--blue); }
+      #contact .contact-email:hover, #contact .contact-link:hover { color: #A8D8FF; }
       #contact .section-tag { justify-content: center; }
       .contact-body { font-size: clamp(13px, 1.2vw, 16px); font-weight: 300; color: rgba(255,255,255,0.75); line-height: 1.7; max-width: 480px; margin: 0; }
       .contact-email { font-family: var(--mono); font-size: clamp(11px, 1.05vw, 15px); letter-spacing: 1.6px; color: var(--text); text-decoration: none; display: inline-block; transition: color 0.25s ease, transform 0.25s ease; transform-origin: center; }
@@ -340,8 +345,9 @@ const row2 = galleryPhotos;
         /* Disable custom cursor on touch devices */
         .cursor, .cursor-ring { display: none; }
 
-        /* Photo above text on phones — no float wrap */
-        .bio-photo-wrapper { float: none; width: clamp(160px, 55vw, 280px); margin: 0 auto clamp(16px, 4vw, 28px); aspect-ratio: 1/1; display: block; }
+        /* Photo above text on phones */
+        .about-text { flex-direction: column; align-items: center; }
+        .bio-photo-wrapper { width: clamp(160px, 55vw, 240px); aspect-ratio: 1/1; }
 
         .contact-links { padding-top: 0; }
 
