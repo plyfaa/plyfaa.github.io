@@ -10,7 +10,7 @@ import '../styles/global.css';
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Plyfaa Suwanamalik-Murphy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
   </head>
 
   <body>
@@ -178,9 +178,9 @@ import '../styles/global.css';
         --blue:     #FFFFFF;
         --blue-dim: rgba(255,255,255,0.5);
         --text:     #000000;
-        --mono:     'Roboto Slab', serif;
-        --serif:    'Roboto Slab', serif;
-        --sans:     'Roboto Slab', serif;
+        --mono:     'Roboto', sans-serif;
+        --serif:    'Roboto', sans-serif;
+        --sans:     'Roboto', sans-serif;
       }
 
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -222,7 +222,7 @@ import '../styles/global.css';
       .about-name em { font-style: italic; color: var(--blue); }
       .about-body { font-size: clamp(13px, 1.2vw, 16px); font-weight: 200; color: rgba(0,0,0,0.75); line-height: 1.8; margin-bottom: clamp(14px, 2vw, 24px); }
       .about-photo { margin-top: clamp(80px, 11vw, 160px); }
-      .about-photo { float: left; width: clamp(180px, 28vw, 320px); aspect-ratio: 3/5; object-fit: cover; object-position: top; border-radius: 50%; margin: 6px clamp(28px, 4vw, 56px) 16px 0; shape-outside: ellipse(50% 50%); shape-margin: 12px; filter: grayscale(20%) brightness(0.65); transition: filter 0.5s; }
+      .about-photo { float: left; width: clamp(180px, 28vw, 320px); aspect-ratio: 1/1; object-fit: cover; object-position: top; border-radius: 4px; margin: 6px clamp(28px, 4vw, 56px) 16px 0; shape-outside: none; filter: grayscale(20%) brightness(0.65); transition: filter 0.5s; }
       .about-photo:hover { filter: none; }
       .about-photo-label { font-family: var(--mono); font-size: clamp(8px, 0.8vw, 10px); letter-spacing: 2px; text-transform: uppercase; color: rgba(0,0,0,0.6); text-align: right; margin-top: 10px; }
       .about-highlight { color: var(--blue); text-decoration: none; transition: color 0.2s; }
