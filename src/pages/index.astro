@@ -211,7 +211,18 @@ const row2 = galleryPhotos;
       #experiences, #gallery { border-bottom: none; }
       #gallery { padding-bottom: clamp(8px, 1vw, 16px); }
       .about-text { max-width: 860px; margin: 0 auto; display: flex; gap: clamp(20px, 4vw, 56px); align-items: flex-start; position: relative; z-index: 1; }
-      .about-text-body { flex: 1; min-width: 0; }
+      .about-text-body { flex: 1; min-width: 0; perspective: 1000px; }
+      .about-text-body .about-body { transform-origin: top; opacity: 0; animation: heroFlipIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+      .about-text-body .about-body:nth-of-type(1) { animation-delay: 0.4s; }
+      .about-text-body .about-body:nth-of-type(2) { animation-delay: 0.9s; }
+      .about-text-body .about-body:nth-of-type(3) { animation-delay: 1.4s; }
+      @keyframes heroFlipIn {
+        from { opacity: 0; transform: rotateX(-90deg); }
+        to   { opacity: 1; transform: rotateX(0); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .about-text-body .about-body { opacity: 1; animation: none; }
+      }
       .about-name { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); line-height: 1.3; color: var(--text); margin-bottom: clamp(20px, 3vw, 32px); }
       .about-name em { font-style: italic; color: var(--blue); }
       .about-body { font-size: clamp(11px, 0.95vw, 14px); font-weight: 200; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: clamp(14px, 2vw, 24px); }
