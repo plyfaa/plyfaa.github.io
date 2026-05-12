@@ -39,7 +39,7 @@ conditions = [<span class="str">'dilate'</span>, <span class="str">'constrict'</
     display: grid;
     grid-template-columns: minmax(0, max-content);
     grid-template-rows: 1fr;
-    gap: 1rem;
+    gap: clamp(0.5rem, 1.5vw, 1.5rem);
     overflow: hidden;
     font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%);
@@ -81,7 +81,7 @@ conditions = [<span class="str">'dilate'</span>, <span class="str">'constrict'</
 
   .snippet {
     margin: 0;
-    font-size: 10.5px;
+    font-size: clamp(7.5px, 0.85vw, 12px);
     line-height: 1.7;
     color: #2A2A28;
     white-space: pre;

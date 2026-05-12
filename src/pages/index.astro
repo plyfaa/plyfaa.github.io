@@ -1,6 +1,19 @@
 ---
 import '../styles/global.css';
 import ScrollingCode from '../components/ScrollingCode.astro';
+
+const galleryPhotos = [
+  { src: '/smithsonian.jpg', alt: 'NIMH Oral Presentation', label: 'NIMH/NIH Selected Lightning Talk Speaker' },
+  { src: '/art.jpg', alt: 'Art and Science', label: '3rd Place Art Winner! "Waves of Consciousness"' },
+  { src: '/poster.jpg', alt: 'ASSC Presentation', label: 'Oral presentation at NIMH/NIH' },
+  { src: '/assc.jpg', alt: 'Oxford', label: 'Oral Presentation in Crete, Greece' },
+  { src: '/talk.jpg', alt: 'Poster Presentation', label: 'Advocating for environmentally friendly infrastructure' },
+  { src: '/oxford.jpg', alt: 'Poster Presentation', label: 'Perception of iridescence at the University of Oxford' },
+];
+
+const row1 = galleryPhotos;
+const row2 = [galleryPhotos[1], galleryPhotos[5], galleryPhotos[0], galleryPhotos[4], galleryPhotos[2], galleryPhotos[3]];
+const row3 = [galleryPhotos[2], galleryPhotos[4], galleryPhotos[5], galleryPhotos[0], galleryPhotos[1], galleryPhotos[3]];
 ---
 
 <!-- Developed by Plyfaa Suwanamalik-Murphy. Last modified: 03/5/2026 -->
@@ -21,7 +34,7 @@ import ScrollingCode from '../components/ScrollingCode.astro';
       <a href="#about" class="nav-logo">Plyfaa Suwanamalik-Murphy</a>
       <ul class="nav-links">
         <li><a href="#research">Research</a></li>
-        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#gallery">From the Lab</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -77,31 +90,37 @@ import ScrollingCode from '../components/ScrollingCode.astro';
 
     <!-- GALLERY: Grid of six photos -->
     <section id="gallery">
-      <p class="section-tag reveal">Gallery</p>
-      <div class="gallery-grid reveal">
-        <div class="gallery-item">
-          <img src="/smithsonian.jpg" alt="NIMH Oral Presentation"/>
-          <span class="gallery-item-label">NIMH/NIH Selected Lightning Talk Speaker</span>
+      <p class="section-tag reveal gallery-tag"><span class="slide-from-left">From the Lab</span></p>
+      <div class="gallery-marquee reveal">
+        <div class="gallery-row">
+          <div class="gallery-track gallery-track-left slow">
+            {[...row1, ...row1].map(p => (
+              <div class="gallery-item">
+                <img src={p.src} alt={p.alt} />
+                <span class="gallery-item-label">{p.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
-        <div class="gallery-item">
-          <img src="/art.jpg" alt="Art and Science"/>
-          <span class="gallery-item-label">3rd Place Art Winner! "Waves of Consciousness"</span>
+        <div class="gallery-row">
+          <div class="gallery-track gallery-track-right medium">
+            {[...row2, ...row2].map(p => (
+              <div class="gallery-item">
+                <img src={p.src} alt={p.alt} />
+                <span class="gallery-item-label">{p.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
-        <div class="gallery-item">
-          <img src="/poster.jpg" alt="ASSC Presentation"/>
-          <span class="gallery-item-label">Oral presentation at NIMH/NIH</span>
-        </div>
-        <div class="gallery-item">
-          <img src="/assc.jpg" alt="Oxford"/>
-          <span class="gallery-item-label">Oral Presentation in Crete, Greece</span>
-        </div>
-        <div class="gallery-item">
-          <img src="/talk.jpg" alt="Poster Presentation"/>
-          <span class="gallery-item-label">Advocating for environmentally friendly infrastructure</span>
-        </div>
-        <div class="gallery-item">
-          <img src="/oxford.jpg" alt="Poster Presentation"/>
-          <span class="gallery-item-label">Perception of iridescence at the University of Oxford</span>
+        <div class="gallery-row">
+          <div class="gallery-track gallery-track-left fast">
+            {[...row3, ...row3].map(p => (
+              <div class="gallery-item">
+                <img src={p.src} alt={p.alt} />
+                <span class="gallery-item-label">{p.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -189,7 +208,7 @@ import ScrollingCode from '../components/ScrollingCode.astro';
       body { font-family: var(--sans); background: var(--bg); color: var(--text); overflow-x: hidden; }
 
       /* ── CURSOR PIXELS ── */
-      .cursor-pixel { position: fixed; width: clamp(8px, 0.9vw, 14px); height: clamp(8px, 0.9vw, 14px); background: #A8D8FF; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); animation: pixelRise 1s ease-out forwards; }
+      .cursor-pixel { position: fixed; width: clamp(8px, 0.9vw, 14px); height: clamp(8px, 0.9vw, 14px); background: #A8D8FF; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); animation: pixelRise 2.4s ease-out forwards; }
       @keyframes pixelRise {
         from { opacity: 1; }
         to { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% - 48px)); }
@@ -215,14 +234,13 @@ import ScrollingCode from '../components/ScrollingCode.astro';
       .section-tag::after { display: none; }
 
       /* ── ABOUT ── */
-      #about { padding-top: clamp(120px, 14vw, 180px); border-bottom: none; min-height: 100vh; position: sticky; top: 0; z-index: 1; }
-      #research, #gallery, #projects, #contact, footer { position: relative; z-index: 2; }
+      #about { padding-top: clamp(120px, 14vw, 180px); border-bottom: none; min-height: 100vh; }
       #research, #gallery, #projects { border-bottom: none; }
       .about-text { max-width: 1100px; margin: 0 auto; display: flow-root; position: relative; z-index: 1; }
       .about-name { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); line-height: 1.3; color: var(--text); margin-bottom: clamp(20px, 3vw, 32px); }
       .about-name em { font-style: italic; color: var(--blue); }
-      .about-body { font-size: clamp(13px, 1.2vw, 16px); font-weight: 200; color: rgba(255,255,255,0.75); line-height: 1.8; margin-bottom: clamp(14px, 2vw, 24px); }
-      .bio-photo-wrapper { position: relative; float: left; width: clamp(180px, 28vw, 320px); aspect-ratio: 1/1; margin: 0 clamp(28px, 4vw, 56px) 16px 0; }
+      .about-body { font-size: clamp(11px, 0.95vw, 14px); font-weight: 200; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: clamp(14px, 2vw, 24px); }
+      .bio-photo-wrapper { position: relative; float: left; width: clamp(180px, 28vw, 320px); aspect-ratio: 1/1; margin: 0 clamp(28px, 4vw, 56px) clamp(12px, 1.5vw, 20px) 0; }
       .about-photo { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 0; display: block; filter: grayscale(15%) brightness(0.9); transition: filter 0.5s; }
       .about-photo:hover { filter: none; }
       .about-photo-label { font-family: var(--mono); font-size: clamp(8px, 0.8vw, 10px); letter-spacing: 2px; color: rgba(255,255,255,0.6); text-align: right; margin-top: 10px; }
@@ -269,11 +287,23 @@ import ScrollingCode from '../components/ScrollingCode.astro';
       .project-card:hover .project-view, .research-item:hover .project-view { background: var(--blue); color: var(--text); }
 
       /* ── GALLERY ── */
-      .gallery-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: clamp(140px, 20vw, 280px) clamp(140px, 20vw, 280px); gap: 2px; }
-      .gallery-item { background: var(--surface); overflow: hidden; position: relative; }
-      .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
-      .gallery-item:hover img { transform: scale(1.015); }
+      #gallery .section-tag { justify-content: center; text-align: center; overflow: hidden; }
+      #gallery .section-tag.reveal { opacity: 1; transform: none; }
+      #gallery .section-tag .slide-from-left { display: inline-block; will-change: transform; }
+      .gallery-marquee { display: flex; flex-direction: column; gap: clamp(8px, 1vw, 16px); width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
+      .gallery-row { overflow: hidden; }
+      .gallery-track { display: flex; gap: clamp(8px, 1vw, 16px); width: max-content; will-change: transform; }
+      .gallery-track-left  { animation: gallery-scroll-left  linear infinite; }
+      .gallery-track-right { animation: gallery-scroll-right linear infinite; }
+      .gallery-track.slow   { animation-duration: 90s; }
+      .gallery-track.medium { animation-duration: 70s; }
+      .gallery-track.fast   { animation-duration: 55s; }
+      .gallery-item { flex-shrink: 0; width: clamp(200px, 26vw, 360px); aspect-ratio: 4/3; background: var(--surface); overflow: hidden; position: relative; }
+      .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
       .gallery-item-label { position: absolute; bottom: 16px; left: 16px; font-family: var(--mono); font-size: clamp(7px, 0.8vw, 10px); letter-spacing: 2px; color: #FFFFFF; background: rgba(0,0,0,0.55); padding: 4px 10px; border-radius: 2px; }
+      @keyframes gallery-scroll-left  { from { transform: translateX(0); }     to { transform: translateX(-50%); } }
+      @keyframes gallery-scroll-right { from { transform: translateX(-50%); }  to { transform: translateX(0); }    }
+      @media (prefers-reduced-motion: reduce) { .gallery-track { animation: none; } }
 
       /* ── CONTACT ── */
       #contact { min-height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
@@ -359,13 +389,10 @@ import ScrollingCode from '../components/ScrollingCode.astro';
         .cursor, .cursor-ring { display: none; }
 
         /* Photo above text on phones — no float wrap */
-        .bio-photo-wrapper { float: none; width: 60%; margin: 0 auto 24px; aspect-ratio: 1/1; display: block; }
+        .bio-photo-wrapper { float: none; width: clamp(160px, 55vw, 280px); margin: 0 auto clamp(16px, 4vw, 28px); aspect-ratio: 1/1; display: block; }
 
         #contact { grid-template-columns: 1fr; }
         .contact-links { padding-top: 0; }
-
-        /* Gallery: 2 columns on phone */
-        .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, clamp(120px, 30vw, 200px)); }
 
         /* Research items: stack on mobile */
         .research-item { grid-template-columns: 1fr; }
@@ -386,7 +413,6 @@ import ScrollingCode from '../components/ScrollingCode.astro';
       /* ── RESPONSIVE: VERY SMALL PHONES ── */
       @media (max-width: 400px) {
         .nav-links { flex-wrap: wrap; gap: 8px 12px; justify-content: flex-end; }
-        .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
       }
     </style>
 
@@ -395,7 +421,7 @@ import ScrollingCode from '../components/ScrollingCode.astro';
       let lastPixelSpawn = 0;
       document.addEventListener('mousemove', e => {
         const now = performance.now();
-        if (now - lastPixelSpawn < 28) return;
+        if (now - lastPixelSpawn < 90) return;
         lastPixelSpawn = now;
         const pixel = document.createElement('div');
         pixel.className = 'cursor-pixel';
@@ -403,12 +429,29 @@ import ScrollingCode from '../components/ScrollingCode.astro';
         pixel.style.top = e.clientY + 'px';
         pixel.style.setProperty('--dx', (Math.random() * 16 - 8).toFixed(1) + 'px');
         document.body.appendChild(pixel);
-        setTimeout(() => pixel.remove(), 900);
+        setTimeout(() => pixel.remove(), 2400);
       });
 
       // ── NAV ──────────────────────────────────────────────────
       const nav = document.getElementById('nav');
       window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+      // ── GALLERY TAG: scroll-driven slide ─────────────────────
+      const gallerySlide = document.querySelector('#gallery .slide-from-left');
+      if (gallerySlide) {
+        const parentTag = gallerySlide.parentElement;
+        const updateGallerySlide = () => {
+          const rect = parentTag.getBoundingClientRect();
+          const vh = window.innerHeight;
+          const progress = (vh - rect.top) / (vh + rect.height);
+          const clamped = Math.max(0, Math.min(1, progress));
+          const tx = (clamped - 0.5) * 80; // -40vw to +40vw — keeps text on screen while section is visible
+          gallerySlide.style.transform = `translateX(${tx}vw)`;
+        };
+        window.addEventListener('scroll', updateGallerySlide, { passive: true });
+        window.addEventListener('resize', updateGallerySlide);
+        updateGallerySlide();
+      }
 
       // ── SCROLL REVEAL ─────────────────────────────────────────
       const revealObserver = new IntersectionObserver(entries => {
