@@ -43,7 +43,7 @@ const row2 = galleryPhotos;
     <!-- ABOUT: Bio + photo -->
     <section id="about">
       <ScrollingCode variant="backdrop" />
-      <div class="about-text-body reveal">
+      <div class="about-text-body">
           <p class="about-body">
             I'm fascinated by the eyes and what they reveal about our perception.
           </p>
@@ -210,9 +210,7 @@ const row2 = galleryPhotos;
       #about { padding-top: clamp(100px, 12vw, 160px); padding-bottom: clamp(80px, 10vw, 160px); border-bottom: none; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; }
       #experiences, #gallery { border-bottom: none; }
       #gallery { padding-bottom: clamp(8px, 1vw, 16px); }
-      .about-text-body { position: absolute; top: clamp(90px, 12vw, 150px); right: clamp(60px, 10vw, 140px); width: clamp(280px, 42vw, 520px); perspective: 1000px; border: 1px solid rgba(255,255,255,0.7); border-radius: 4px; padding: clamp(12px, 2vw, 22px); background: transparent; z-index: 1; }
-      .about-text-body::before { content: ''; position: absolute; left: -14px; bottom: 0; width: 0; height: 0; border-top: 14px solid transparent; border-bottom: 14px solid transparent; border-right: 14px solid rgba(255,255,255,0.7); }
-      .about-text-body::after { content: ''; position: absolute; left: -12px; bottom: 2px; width: 0; height: 0; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 12px solid var(--bg); }
+      .about-text-body { position: absolute; top: 50%; right: clamp(20px, 5vw, 64px); transform: translateY(-50%); width: min(560px, calc(100% - clamp(40px, 10vw, 128px))); max-width: 560px; perspective: 1000px; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; padding: clamp(20px, 3vw, 32px); background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); z-index: 1; }
       .bio-stack { position: absolute; left: clamp(80px, 18vw, 280px); bottom: clamp(20px, 4vw, 60px); display: flex; flex-direction: column; align-items: center; gap: clamp(10px, 1.5vw, 18px); z-index: 2; }
       .speech-bubble { background: #FFFFFF; color: #000; padding: clamp(10px, 1.5vw, 16px) clamp(14px, 2.5vw, 22px); border-radius: 18px; position: relative; max-width: 320px; font-family: var(--sans); font-size: clamp(13px, 1.3vw, 18px); }
       .speech-bubble::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #FFFFFF; }
@@ -356,13 +354,13 @@ const row2 = galleryPhotos;
       /* ── RESPONSIVE: SMALL LAPTOPS / TABLETS ── */
       @media (max-width: 900px) {
         /* Stack hero on tablets so photo + text box don't collide */
-        .about-text-body { position: static; width: 100%; max-width: 600px; margin: 0 auto; }
+        .about-text-body { position: static; transform: none; width: 100%; max-width: 600px; margin: 0 auto; }
         .bio-stack { position: static; align-items: center; margin-top: clamp(24px, 4vw, 40px); }
         .bio-photo-wrapper { width: clamp(180px, 32vw, 280px); aspect-ratio: 1/1; }
 
-        /* Tail at bottom-center pointing down */
-        .about-text-body::before { left: 50%; right: auto; top: auto; bottom: -14px; transform: translateX(-50%); border-left: 14px solid transparent; border-right: 14px solid transparent; border-top: 14px solid rgba(255,255,255,0.7); border-bottom: none; }
-        .about-text-body::after { left: 50%; right: auto; top: auto; bottom: -12px; transform: translateX(-50%); border-left: 13px solid transparent; border-right: 13px solid transparent; border-top: 13px solid var(--bg); border-bottom: none; }
+        /* Tail at bottom-center pointing down (mobile/tablet only) */
+        .about-text-body::before { content: ''; position: absolute; left: 50%; right: auto; top: auto; bottom: -14px; width: 0; height: 0; transform: translateX(-50%); border-left: 14px solid transparent; border-right: 14px solid transparent; border-top: 14px solid rgba(255,255,255,0.2); border-bottom: none; }
+        .about-text-body::after { content: ''; position: absolute; left: 50%; right: auto; top: auto; bottom: -10px; width: 0; height: 0; transform: translateX(-50%); border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 12px solid rgba(0,0,0,0.55); border-bottom: none; }
 
         .modal-body-grid { grid-template-columns: 1fr; }
         .modal-sidebar { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; }
