@@ -1,0 +1,112 @@
+---
+interface Props {
+  variant?: 'section' | 'backdrop';
+  copies?: number;
+}
+const { variant = 'section', copies = 8 } = Astro.props;
+
+const snippet = `<span class="cm"># pupil feedback loop</span>
+<span class="cm"># real-time eyelink stream</span>
+
+<span class="kw">import</span> pylink
+<span class="kw">from</span> psychopy <span class="kw">import</span> visual, core
+
+tracker = pylink.<span class="fn">EyeLink</span>()
+tracker.<span class="fn">openDataFile</span>(<span class="str">'pupil.edf'</span>)
+
+<span class="kw">def</span> <span class="fn">get_pupil_size</span>():
+    s = tracker.<span class="fn">getNewestSample</span>()
+    <span class="kw">if</span> s <span class="kw">is not</span> <span class="kw">None</span>:
+        <span class="kw">return</span> s.<span class="fn">getRightEye</span>().<span class="fn">getPupilSize</span>()
+    <span class="kw">return</span> <span class="kw">None</span>
+
+conditions = [<span class="str">'dilate'</span>, <span class="str">'constrict'</span>, <span class="str">'rest'</span>]
+`;
+---
+
+<div class={`code-viz code-viz--${variant}`} aria-hidden="true">
+  <div class="code-col">
+    <div class="code-track slow">
+      {Array.from({ length: copies }).map((_, i) => (
+        <pre class="snippet" aria-hidden={i > 0 ? 'true' : undefined} set:html={snippet}></pre>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .code-viz {
+    display: grid;
+    grid-template-columns: minmax(0, max-content);
+    grid-template-rows: 1fr;
+    gap: 1rem;
+    overflow: hidden;
+    font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  }
+
+  .code-viz--section {
+    height: 440px;
+    padding: 2rem 1.5rem;
+    margin: 4rem 0;
+    background: #FAFAF7;
+    border: 0.5px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+  }
+
+  .code-viz--backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 1;
+    pointer-events: none;
+    background: transparent;
+    border: none;
+  }
+
+  .code-col { overflow: hidden; height: 100%; }
+
+  .code-track {
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+    animation-name: scroll;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  .code-track.slow   { animation-duration: 180s; }
+  .code-track.medium { animation-duration: 140s; }
+  .code-track.fast   { animation-duration: 100s; }
+
+  .snippet {
+    margin: 0;
+    font-size: 10.5px;
+    line-height: 1.7;
+    color: #2A2A28;
+    white-space: pre;
+    font-family: inherit;
+  }
+
+  .snippet :global(.kw)  { color: #7A4E7F; }
+  .snippet :global(.fn)  { color: #3D5A80; }
+  .snippet :global(.str) { color: #6B7F4A; }
+  .snippet :global(.num) { color: #A0633C; }
+  .snippet :global(.cm)  { color: #9B968D; }
+
+  @keyframes scroll {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .code-track { animation: none; }
+  }
+
+  @media (max-width: 768px) {
+    .code-viz--backdrop {
+      inset: 0;
+      opacity: 1;
+    }
+  }
+</style>
