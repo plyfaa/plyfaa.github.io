@@ -6,14 +6,15 @@ const galleryPhotos = [
   { src: '/smithsonian.jpg', alt: 'NIMH Oral Presentation', label: 'NIMH/NIH Selected Lightning Talk Speaker' },
   { src: '/art.jpg', alt: 'Art and Science', label: '3rd Place Art Winner! "Waves of Consciousness"' },
   { src: '/poster.jpg', alt: 'ASSC Presentation', label: 'Oral presentation at NIMH/NIH' },
-  { src: '/assc.jpg', alt: 'Oxford', label: 'Oral Presentation in Crete, Greece' },
+  { src: '/assc.jpg', alt: 'Crete', label: 'Oral Presentation in Crete, Greece' },
   { src: '/talk.jpg', alt: 'Poster Presentation', label: 'Advocating for environmentally friendly infrastructure' },
-  { src: '/oxford.jpg', alt: 'Poster Presentation', label: 'Perception of iridescence at the University of Oxford' },
+  { src: '/oxford.jpg', alt: 'Oxford', label: 'Perception of iridescence at the University of Oxford' },
+  { src: '/narcan.jpg', alt: 'Narcan', label: '' },
+  { src: '/test.jpg', alt: 'Test', label: '' },
 ];
 
 const row1 = galleryPhotos;
-const row2 = [galleryPhotos[1], galleryPhotos[5], galleryPhotos[0], galleryPhotos[4], galleryPhotos[2], galleryPhotos[3]];
-const row3 = [galleryPhotos[2], galleryPhotos[4], galleryPhotos[5], galleryPhotos[0], galleryPhotos[1], galleryPhotos[3]];
+const row2 = galleryPhotos;
 ---
 
 <!-- Developed by Plyfaa Suwanamalik-Murphy. Last modified: 03/5/2026 -->
@@ -33,9 +34,8 @@ const row3 = [galleryPhotos[2], galleryPhotos[4], galleryPhotos[5], galleryPhoto
     <nav id="nav">
       <a href="#about" class="nav-logo">Plyfaa Suwanamalik-Murphy</a>
       <ul class="nav-links">
-        <li><a href="#research">Research</a></li>
+        <li><a href="#experiences">Projects</a></li>
         <li><a href="#gallery">From the Lab</a></li>
-        <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -71,20 +71,16 @@ const row3 = [galleryPhotos[2], galleryPhotos[4], galleryPhotos[5], galleryPhoto
       </div>
     </section>
 
-    <!-- RESEARCH: Numbered list of projects -->
-    <section id="research">
-      <p class="section-tag reveal">Research</p>
-      <div class="research-list">
-        <div class="research-item reveal" data-project="semantic-congruency" role="button" tabindex="0">
-          <div>
-            <p class="research-meta">NSF GRFP Research Proposal · Honourable Mention · 2025 - 2026</p>
-            <h3 class="research-title">Neural and Behavioral Dynamics of Semantic Congruency in Visual Search</h3>
-            <p class="research-desc">Visual search is an everyday activity where humans effectively integrate multiple sources of information to find relevant objects. Recent evidence demonstrates that semantic congruency, how well an object fits within its scene context, drives overt visual attention. Read more about my proposal here!</p>
-          </div>
-          <div class="project-badges">
-            <span class="project-view">View Project</span>
-          </div>
+    <!-- EXPERIENCES: Radial orbit of research + side projects -->
+    <section id="experiences">
+      <div class="orbit-wrap reveal">
+        <div class="orbit" id="orbit">
+          <div class="orbit-item" style="--angle: 0deg"></div>
+          <div class="orbit-item" style="--angle: 90deg"></div>
+          <div class="orbit-item" style="--angle: 180deg"></div>
+          <div class="orbit-item" style="--angle: 270deg"></div>
         </div>
+        <span class="orbit-center">Projects</span>
       </div>
     </section>
 
@@ -103,18 +99,8 @@ const row3 = [galleryPhotos[2], galleryPhotos[4], galleryPhotos[5], galleryPhoto
           </div>
         </div>
         <div class="gallery-row">
-          <div class="gallery-track gallery-track-right medium">
+          <div class="gallery-track gallery-track-right slow">
             {[...row2, ...row2].map(p => (
-              <div class="gallery-item">
-                <img src={p.src} alt={p.alt} />
-                <span class="gallery-item-label">{p.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div class="gallery-row">
-          <div class="gallery-track gallery-track-left fast">
-            {[...row3, ...row3].map(p => (
               <div class="gallery-item">
                 <img src={p.src} alt={p.alt} />
                 <span class="gallery-item-label">{p.label}</span>
@@ -125,23 +111,10 @@ const row3 = [galleryPhotos[2], galleryPhotos[4], galleryPhotos[5], galleryPhoto
       </div>
     </section>
 
-    <!-- PROJECTS: Current side projects -->
-    <section id="projects">
-      <p class="section-tag reveal">Side Projects</p>
-      <a href="https://try-nudge.com/" target="_blank" rel="noopener" class="project-card reveal">
-        <img src="/nudge.png" alt="Nudge — focus tracking web app" class="project-preview" />
-        <div class="project-card-body">
-          <p class="research-meta">Web App · In Development · 2026</p>
-          <h3 class="research-title">Focus tracking, study tools, and smarter breaks</h3>
-          <p class="research-desc">A web app designed to help you stay focused, study more effectively, and take smarter breaks.</p>
-          <span class="project-view">View Project</span>
-        </div>
-      </a>
-    </section>
 
     <!-- CONTACT: Email + external links -->
     <section id="contact">
-      <p class="section-tag reveal">Contact</p>
+      <p class="section-tag reveal contact-tag"><span class="slide-from-right">Contact</span></p>
       <div class="contact-links reveal">
         <a href="mailto:plysuwana@gmail.com" class="contact-email">plysuwana@gmail.com</a>
         <a href="https://www.linkedin.com/in/plyfaa-murphy/" class="contact-link" target="_blank">
@@ -231,8 +204,8 @@ const row3 = [galleryPhotos[2], galleryPhotos[4], galleryPhotos[5], galleryPhoto
       .section-tag::after { display: none; }
 
       /* ── ABOUT ── */
-      #about { padding-top: clamp(120px, 14vw, 180px); border-bottom: none; min-height: 100vh; }
-      #research, #gallery, #projects { border-bottom: none; }
+      #about { padding-top: clamp(120px, 14vw, 180px); border-bottom: none; }
+      #experiences, #gallery { border-bottom: none; }
       .about-text { max-width: 1100px; margin: 0 auto; display: flow-root; position: relative; z-index: 1; }
       .about-name { font-family: var(--serif); font-size: clamp(24px, 3vw, 40px); line-height: 1.3; color: var(--text); margin-bottom: clamp(20px, 3vw, 32px); }
       .about-name em { font-style: italic; color: var(--blue); }
@@ -244,47 +217,23 @@ const row3 = [galleryPhotos[2], galleryPhotos[4], galleryPhotos[5], galleryPhoto
       .about-highlight { color: var(--blue); text-decoration: none; transition: color 0.2s; }
       .about-highlight:hover { color: var(--text); }
 
-      /* ── RESEARCH ── */
-      #research { background: #A8D8FF; position: relative; z-index: 0; color: #000000; }
-      #research::before { content: ''; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw; background: #A8D8FF; }
-      #research .section-tag { color: #000000; }
-      #research .research-title { color: #000000; }
-      #research .research-meta { color: rgba(0,0,0,0.55); }
-      #research .research-desc { color: rgba(0,0,0,0.75); }
-      #research .research-item { border-bottom-color: rgba(0,0,0,0.2); }
-      #research .research-item:first-child { border-top-color: rgba(0,0,0,0.2); }
-      #research .project-view { color: #000000; border-color: #000000; }
-      #research .research-item:hover .project-view { background: #000000; color: #FFFFFF; }
-      .research-list { display: flex; flex-direction: column; }
-      .research-item {
-        display: grid; grid-template-columns: 1fr auto; gap: clamp(16px, 3vw, 40px); align-items: start;
-        padding: clamp(24px, 3vw, 40px) 0; border-bottom: 1px solid var(--border);
-        position: relative;
+      /* ── EXPERIENCES (ORBIT) ── */
+      #experiences { display: flex; flex-direction: column; align-items: center; }
+      .orbit-wrap { padding: clamp(16px, 2.5vw, 36px) 0; display: flex; justify-content: center; width: 100%; position: relative; perspective: 1400px; perspective-origin: center; }
+      .orbit { position: relative; width: clamp(420px, 70vw, 820px); height: clamp(420px, 70vw, 820px); will-change: transform; }
+      .orbit-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--sans); font-size: clamp(28px, 4vw, 56px); color: var(--text); letter-spacing: 2px; pointer-events: none; }
+      .orbit-item {
+        position: absolute; top: 50%; left: 50%;
+        width: clamp(110px, 15vw, 180px); height: clamp(110px, 15vw, 180px);
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.35);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(calc(-1 * clamp(190px, 32vw, 360px))) rotate(calc(-1 * var(--angle)));
       }
-      .research-item:first-child { border-top: 1px solid var(--border); }
-      .research-num { font-family: var(--mono); font-size: clamp(11px, 1vw, 14px); letter-spacing: 2px; color: var(--blue); padding-top: 4px; }
-      .research-title { font-family: var(--serif); font-size: clamp(16px, 1.7vw, 22px); color: var(--text); margin-bottom: clamp(8px, 0.9vw, 12px); line-height: 1.3; }
-      .research-meta { font-family: var(--mono); font-size: clamp(10px, 1.1vw, 15px); letter-spacing: 2px; color: var(--blue-dim); margin-bottom: clamp(10px, 1.4vw, 16px); }
-      .research-desc { font-size: clamp(13px, 1.1vw, 15px); font-weight: 300; color: rgba(255,255,255,0.75); line-height: 1.8; max-width: 560px; }
-      .research-badge { font-family: var(--mono); font-size: clamp(9px, 0.9vw, 12px); letter-spacing: 2px; border: 3px solid var(--border); color: var(--blue); padding: 6px 12px; border-radius: 2px; white-space: nowrap; }
-
-      /* ── PROJECTS ── */
-      .project-card {
-        display: block; text-decoration: none; color: inherit; border-radius: 4px;
-        overflow: hidden; transition: transform 0.3s;
-        max-width: clamp(280px, 40vw, 480px);
-      }
-      .project-card:hover { transform: translateY(-4px); }
-      .project-preview { width: 100%; display: block; }
-      .project-card-body { padding: clamp(20px, 3vw, 40px); }
-      .project-card-body .research-meta { margin-bottom: 14px; }
-      .project-card-body .research-title { margin-bottom: 10px; }
-      .project-card-body .research-desc { margin-bottom: 20px; }
-      .project-view { display: inline-block; font-family: var(--mono); font-size: clamp(9px, 0.9vw, 12px); letter-spacing: 2px; border: 3px solid var(--blue); color: var(--blue); padding: 6px 12px; border-radius: 2px; white-space: nowrap; transition: background 0.2s, color 0.2s; }
-      .project-card:hover .project-view, .research-item:hover .project-view { background: var(--blue); color: var(--text); }
+      @media (prefers-reduced-motion: reduce) { .orbit { transform: none !important; } }
 
       /* ── GALLERY ── */
-      #gallery .section-tag { justify-content: center; text-align: center; overflow: hidden; font-size: clamp(40px, 8vw, 110px); letter-spacing: 2px; color: #A8D8FF; }
+      #gallery .section-tag { justify-content: center; text-align: center; font-size: clamp(32px, 6vw, 80px); letter-spacing: 2px; color: #FFFFFF; }
       #gallery .section-tag.reveal { opacity: 1; transform: none; }
       #gallery .section-tag .slide-from-left { display: inline-block; will-change: transform; }
       .gallery-marquee { display: flex; flex-direction: column; gap: clamp(8px, 1vw, 16px); width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
@@ -305,7 +254,9 @@ const row3 = [galleryPhotos[2], galleryPhotos[4], galleryPhotos[5], galleryPhoto
       /* ── CONTACT ── */
       #contact { min-height: auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(20px, 3vw, 40px); background: #FFFFFF; color: #000000; position: relative; z-index: 0; }
       #contact::before { content: ''; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw; background: #FFFFFF; }
-      #contact .section-tag { color: #000000; font-size: clamp(32px, 6vw, 80px); letter-spacing: 2px; margin-bottom: 0; }
+      #contact .section-tag { color: #000000; font-size: clamp(32px, 6vw, 80px); letter-spacing: 2px; margin-bottom: 0; justify-content: center; text-align: center; }
+      #contact .section-tag.reveal { opacity: 1; transform: none; }
+      #contact .section-tag .slide-from-right { display: inline-block; will-change: transform; }
       #contact .contact-body { color: rgba(0,0,0,0.7); }
       #contact .contact-email { color: #000000; }
       #contact .contact-link { color: rgba(0,0,0,0.7); }
@@ -394,11 +345,6 @@ const row3 = [galleryPhotos[2], galleryPhotos[4], galleryPhotos[5], galleryPhoto
 
         .contact-links { padding-top: 0; }
 
-        /* Research items: stack on mobile */
-        .research-item { grid-template-columns: 1fr; }
-        .research-num { display: none; }
-        .project-badges { align-items: flex-start; }
-
         /* Modal sidebar stacks */
         .modal-body-grid { grid-template-columns: 1fr; }
         .modal-sidebar { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 24px; display: flex; flex-wrap: wrap; gap: 12px 24px; }
@@ -436,22 +382,47 @@ const row3 = [galleryPhotos[2], galleryPhotos[4], galleryPhotos[5], galleryPhoto
       const nav = document.getElementById('nav');
       window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 
-      // ── GALLERY TAG: scroll-driven slide ─────────────────────
-      const gallerySlide = document.querySelector('#gallery .slide-from-left');
-      if (gallerySlide) {
-        const parentTag = gallerySlide.parentElement;
-        const updateGallerySlide = () => {
+      // ── EXPERIENCES ORBIT: scroll-driven rotation + tilt ─────
+      const orbit = document.getElementById('orbit');
+      if (orbit) {
+        const orbitContainer = orbit.parentElement;
+        const updateOrbit = () => {
+          const rect = orbitContainer.getBoundingClientRect();
+          const vh = window.innerHeight;
+          const progress = (vh - rect.top) / (vh + rect.height);
+          const clamped = Math.max(0, Math.min(1, progress));
+          // Z spin: 120° across full visible range (slower than before)
+          const zRot = clamped * 120;
+          // X tilt: starts at 70° (angled), eases to 0° by mid-scroll, stays facing
+          const xRot = clamped < 0.5 ? 70 * (1 - clamped * 2) : 0;
+          orbit.style.transform = `rotateX(${xRot}deg) rotate(${zRot}deg)`;
+        };
+        window.addEventListener('scroll', updateOrbit, { passive: true });
+        window.addEventListener('resize', updateOrbit);
+        updateOrbit();
+      }
+
+      // ── GALLERY + CONTACT TAGS: scroll-driven slide ─────────
+      const setupSlide = (selector, direction, stopAtCenter) => {
+        const el = document.querySelector(selector);
+        if (!el) return;
+        const parentTag = el.parentElement;
+        const update = () => {
           const rect = parentTag.getBoundingClientRect();
           const vh = window.innerHeight;
           const progress = (vh - rect.top) / (vh + rect.height);
           const clamped = Math.max(0, Math.min(1, progress));
-          const tx = (clamped - 0.5) * 80; // -40vw to +40vw — keeps text on screen while section is visible
-          gallerySlide.style.transform = `translateX(${tx}vw)`;
+          const tx = stopAtCenter && clamped > 0.5
+            ? 0
+            : (clamped - 0.5) * 220 * direction;
+          el.style.transform = `translateX(${tx}vw)`;
         };
-        window.addEventListener('scroll', updateGallerySlide, { passive: true });
-        window.addEventListener('resize', updateGallerySlide);
-        updateGallerySlide();
-      }
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        update();
+      };
+      setupSlide('#gallery .slide-from-left', 1, false);
+      setupSlide('#contact .slide-from-right', -1, true);
 
       // ── SCROLL REVEAL ─────────────────────────────────────────
       const revealObserver = new IntersectionObserver(entries => {

@@ -57,7 +57,10 @@ conditions = [<span class="str">'dilate'</span>, <span class="str">'constrict'</
 
   .code-viz--backdrop {
     position: absolute;
-    inset: 0;
+    top: clamp(60px, 7vw, 90px);
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: 0;
     opacity: 1;
     pointer-events: none;
@@ -105,7 +108,7 @@ conditions = [<span class="str">'dilate'</span>, <span class="str">'constrict'</
 
   @media (max-width: 768px) {
     .code-viz--backdrop {
-      inset: 0;
+      top: clamp(50px, 12vw, 70px);
       opacity: 1;
     }
   }
