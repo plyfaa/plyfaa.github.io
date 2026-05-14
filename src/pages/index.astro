@@ -199,18 +199,18 @@ const row2 = [
 
       /* ── NAV ── */
       nav {
-        position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+        position: static; z-index: 100;
         display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;
         gap: clamp(6px, 0.8vw, 12px);
         padding: clamp(12px, 2vw, 24px) clamp(60px, 12vw, 180px); border-bottom: none;
         background: transparent;
       }
       nav.scrolled { background: transparent; }
-      .nav-status { font-family: var(--mono); font-size: clamp(9px, 0.85vw, 12px); color: rgba(26,26,24,0.7); letter-spacing: 1px; }
+      .nav-status { font-family: var(--mono); font-size: clamp(9px, 0.85vw, 12px); color: rgba(255,255,255,0.7); letter-spacing: 1px; }
       .nav-status em { font-style: italic; }
-      .nav-logo { font-family: var(--sans); font-size: clamp(11px, 1.1vw, 16px); color: #1A1A18; text-decoration: none; white-space: nowrap; }
+      .nav-logo { font-family: var(--sans); font-size: clamp(11px, 1.1vw, 16px); color: var(--text); text-decoration: none; white-space: nowrap; }
       .nav-links { display: flex; gap: clamp(12px, 2.4vw, 32px); list-style: none; }
-      .nav-links a { font-family: var(--sans); font-size: clamp(8px, 0.85vw, 12px); letter-spacing: 1.5px; color: #1A1A18; text-decoration: underline; text-underline-offset: 4px; transition: color 0.2s; white-space: nowrap; }
+      .nav-links a { font-family: var(--sans); font-size: clamp(8px, 0.85vw, 12px); letter-spacing: 1.5px; color: var(--text); text-decoration: underline; text-underline-offset: 4px; transition: color 0.2s; white-space: nowrap; }
       .nav-links a:hover { color: var(--blue); }
 
       /* ── SECTION BASE ── */
@@ -496,7 +496,7 @@ const row2 = [
         update();
       };
       setupSlide('#gallery .slide-from-left', 1, { holdStart: 0.5, holdEnd: 0.9 });
-      setupSlide('#contact .slide-from-right', -1, { stopAtCenter: true });
+      setupSlide('#contact .slide-from-right', -1, { holdStart: 0.55, holdEnd: 1.0 });
 
       // ── GALLERY MARQUEE: auto-scroll + manual drag/wheel + click-to-enlarge ──────
       const setupMarquee = (trackSelector, direction) => {
