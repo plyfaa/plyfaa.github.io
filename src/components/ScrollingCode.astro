@@ -2,8 +2,9 @@
 interface Props {
   variant?: 'section' | 'backdrop';
   copies?: number;
+  side?: 'left' | 'right';
 }
-const { variant = 'section', copies = 8 } = Astro.props;
+const { variant = 'section', copies = 8, side = 'left' } = Astro.props;
 
 const snippet = `<span class="cm"># pupil feedback loop</span>
 <span class="cm"># real-time eyelink stream</span>
@@ -24,7 +25,7 @@ conditions = [<span class="str">'dilate'</span>, <span class="str">'constrict'</
 `;
 ---
 
-<div class={`code-viz code-viz--${variant}`} aria-hidden="true">
+<div class={`code-viz code-viz--${variant} code-viz--${side}`} aria-hidden="true">
   <div class="code-col">
     <div class="code-track slow">
       {Array.from({ length: copies }).map((_, i) => (
@@ -55,16 +56,17 @@ conditions = [<span class="str">'dilate'</span>, <span class="str">'constrict'</
 
   .code-viz--backdrop {
     position: absolute;
-    top: clamp(60px, 7vw, 90px);
+    top: 0;
     bottom: 0;
-    left: calc(50% - 50vw);
     width: 50vw;
-    z-index: 0;
+    z-index: -1;
     opacity: 1;
     pointer-events: none;
     background: transparent;
     border: none;
   }
+  .code-viz--backdrop.code-viz--left  { left:  calc(50% - 50vw); right: auto; }
+  .code-viz--backdrop.code-viz--right { left: 65%; right: auto; width: 50vw; }
 
   .code-col { overflow: hidden; height: 100%; }
 
@@ -105,11 +107,6 @@ conditions = [<span class="str">'dilate'</span>, <span class="str">'constrict'</
   }
 
   @media (max-width: 768px) {
-    .code-viz--backdrop {
-      top: clamp(50px, 12vw, 70px);
-      left: calc(50% - 50vw);
-      width: 50vw;
-      opacity: 1;
-    }
+    .code-viz--backdrop { top: 0; width: 50vw; opacity: 1; }
   }
 </style>
