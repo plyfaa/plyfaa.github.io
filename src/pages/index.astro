@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import ScrollingCode from '../components/ScrollingCode.astro';
 
-const galleryPhotos = [
+const row1 = [
   { src: '/smithsonian.jpg', alt: 'NIMH Oral Presentation', label: 'NIMH/NIH Selected Lightning Talk Speaker' },
   { src: '/art.jpg', alt: 'Art and Science', label: '3rd Place Art Winner! "Waves of Consciousness"' },
   { src: '/poster.jpg', alt: 'ASSC Presentation', label: 'Oral presentation at NIMH/NIH' },
@@ -10,11 +10,15 @@ const galleryPhotos = [
   { src: '/talk.jpg', alt: 'Poster Presentation', label: 'Advocating for environmentally friendly infrastructure' },
   { src: '/oxford.jpg', alt: 'Oxford', label: 'Perception of iridescence at the University of Oxford' },
   { src: '/narcan.jpg', alt: 'Narcan', label: '' },
-  { src: '/test.jpg', alt: 'Test', label: '' },
 ];
 
-const row1 = galleryPhotos;
-const row2 = galleryPhotos;
+const row2 = [
+  { src: '/Hawaii Pacific Neuroscience summer cohort.jpg', alt: 'Hawaii Pacific Neuroscience summer cohort', label: 'Hawaii Pacific Neuroscience summer cohort' },
+  { src: '/SFIM lab dinner.jpeg', alt: 'SFIM lab dinner', label: 'SFIM lab dinner' },
+  { src: '/Summer internship social in Oahu.jpg', alt: 'Summer internship social in Oahu', label: 'Summer internship social in Oahu' },
+  { src: '/Summer_internship_in_Oahu.jpg', alt: 'Summer internship in Oahu', label: 'Summer internship in Oahu' },
+  { src: '/graduation.jpeg', alt: 'Graduation', label: 'Graduation' },
+];
 ---
 
 <!-- Developed by Plyfaa Suwanamalik-Murphy. Last modified: 03/5/2026 -->
@@ -93,8 +97,8 @@ const row2 = galleryPhotos;
       <div class="gallery-marquee reveal">
         <div class="gallery-row">
           <div class="gallery-track gallery-track-left slow">
-            {[...row1, ...row1].map(p => (
-              <div class="gallery-item">
+            {[...row1, ...row1].map((p, i) => (
+              <div class={`gallery-item ${(i % row1.length) % 2 === 0 ? 'shift-up' : 'shift-down'}`}>
                 <img src={p.src} alt={p.alt} />
                 <span class="gallery-item-label">{p.label}</span>
               </div>
@@ -103,8 +107,8 @@ const row2 = galleryPhotos;
         </div>
         <div class="gallery-row">
           <div class="gallery-track gallery-track-right slow">
-            {[...row2, ...row2].map(p => (
-              <div class="gallery-item">
+            {[...row2, ...row2].map((p, i) => (
+              <div class={`gallery-item ${(i % row2.length) % 2 === 0 ? 'shift-up' : 'shift-down'}`}>
                 <img src={p.src} alt={p.alt} />
                 <span class="gallery-item-label">{p.label}</span>
               </div>
@@ -260,19 +264,19 @@ const row2 = galleryPhotos;
       #gallery .section-tag.reveal { opacity: 1; transform: none; }
       #gallery .section-tag .slide-from-left { display: inline-block; will-change: transform; }
       .gallery-marquee { display: flex; flex-direction: column; gap: clamp(8px, 1vw, 16px); width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
-      .gallery-row { overflow: hidden; }
-      .gallery-track { display: flex; gap: clamp(8px, 1vw, 16px); width: max-content; will-change: transform; }
-      .gallery-track-left  { animation: gallery-scroll-left  linear infinite; }
-      .gallery-track-right { animation: gallery-scroll-right linear infinite; }
-      .gallery-track.slow   { animation-duration: 90s; }
-      .gallery-track.medium { animation-duration: 70s; }
-      .gallery-track.fast   { animation-duration: 55s; }
+      .gallery-row { overflow: hidden; cursor: grab; touch-action: pan-y; padding: clamp(16px, 2.5vw, 32px) 0; }
+      .gallery-row.dragging { cursor: grabbing; }
+      .gallery-track { display: flex; align-items: center; gap: clamp(8px, 1vw, 16px); width: max-content; will-change: transform; user-select: none; }
+      .gallery-track img { -webkit-user-drag: none; user-drag: none; pointer-events: none; }
+      .gallery-item { --shift: 0px; --scale: 1; transform: translateY(var(--shift)) scale(var(--scale)); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); transform-origin: center center; }
+      .gallery-item.shift-up   { --shift: clamp(-32px, -2.5vw, -16px); }
+      .gallery-item.shift-down { --shift: clamp(16px, 2.5vw, 32px); }
+      .gallery-item:hover { --scale: 1.35; z-index: 5; }
       .gallery-item { flex-shrink: 0; width: clamp(200px, 26vw, 360px); aspect-ratio: 4/3; background: var(--surface); overflow: hidden; position: relative; }
       .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
       .gallery-item-label { position: absolute; bottom: 16px; left: 16px; font-family: var(--mono); font-size: clamp(7px, 0.8vw, 10px); letter-spacing: 2px; color: #FFFFFF; background: rgba(0,0,0,0.55); padding: 4px 10px; border-radius: 2px; }
-      @keyframes gallery-scroll-left  { from { transform: translateX(0); }     to { transform: translateX(-50%); } }
-      @keyframes gallery-scroll-right { from { transform: translateX(-50%); }  to { transform: translateX(0); }    }
       @media (prefers-reduced-motion: reduce) { .gallery-track { animation: none; } }
+
 
       /* ── CONTACT ── */
       #contact { min-height: auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(20px, 3vw, 40px); background: #FFFFFF; color: #000000; position: relative; z-index: 0; padding-bottom: clamp(48px, 7vw, 90px); }
@@ -464,8 +468,99 @@ const row2 = galleryPhotos;
         window.addEventListener('resize', update);
         update();
       };
-      setupSlide('#gallery .slide-from-left', 1, { holdStart: 0.3, holdEnd: 0.85 });
+      setupSlide('#gallery .slide-from-left', 1, { holdStart: 0.5, holdEnd: 0.9 });
       setupSlide('#contact .slide-from-right', -1, { stopAtCenter: true });
+
+      // ── GALLERY MARQUEE: auto-scroll + manual drag/wheel + click-to-enlarge ──────
+      const setupMarquee = (trackSelector, direction) => {
+        const track = document.querySelector(trackSelector);
+        if (!track) return null;
+        const row = track.parentElement;
+        let offset = 0;
+        let trackWidth = 0;
+        let isDragging = false;
+        let lastX = 0;
+        let totalDragDist = 0;
+        let downTarget = null;
+        let velocity = 0;
+        let paused = false;
+        const autoSpeed = 0.4;
+
+        const measure = () => { trackWidth = track.scrollWidth / 2; };
+        measure();
+        track.querySelectorAll('img').forEach(img => {
+          if (!img.complete) img.addEventListener('load', measure, { once: true });
+        });
+        window.addEventListener('resize', measure);
+
+        const wrap = () => {
+          if (trackWidth <= 0) return;
+          while (offset <= -trackWidth) offset += trackWidth;
+          while (offset > 0) offset -= trackWidth;
+        };
+
+        const tick = () => {
+          if (!isDragging && !paused) {
+            offset += autoSpeed * direction + velocity;
+            velocity *= 0.93;
+            if (Math.abs(velocity) < 0.02) velocity = 0;
+          }
+          wrap();
+          track.style.transform = `translateX(${offset}px)`;
+          requestAnimationFrame(tick);
+        };
+
+        row.addEventListener('wheel', (e) => {
+          if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+          e.preventDefault();
+          velocity -= e.deltaX * 0.15;
+        }, { passive: false });
+
+        const onDown = (clientX, target) => {
+          isDragging = true;
+          lastX = clientX;
+          totalDragDist = 0;
+          downTarget = target;
+          velocity = 0;
+          row.classList.add('dragging');
+        };
+        const onMove = (clientX) => {
+          if (!isDragging) return;
+          const dx = clientX - lastX;
+          offset += dx;
+          velocity = dx;
+          totalDragDist += Math.abs(dx);
+          wrap();
+          track.style.transform = `translateX(${offset}px)`;
+          lastX = clientX;
+        };
+        const onUp = () => {
+          if (!isDragging) return;
+          isDragging = false;
+          row.classList.remove('dragging');
+          downTarget = null;
+        };
+
+        row.addEventListener('mousedown', (e) => { e.preventDefault(); onDown(e.clientX, e.target); });
+        window.addEventListener('mousemove', (e) => onMove(e.clientX));
+        window.addEventListener('mouseup', onUp);
+        row.addEventListener('touchstart', (e) => onDown(e.touches[0].clientX, e.target), { passive: true });
+        row.addEventListener('touchmove', (e) => onMove(e.touches[0].clientX), { passive: true });
+        row.addEventListener('touchend', onUp);
+        row.addEventListener('touchcancel', onUp);
+
+        const api = {
+          pause: () => { paused = true; },
+          resume: () => { paused = false; velocity = 0; },
+        };
+        // pause on hover over a photo, resume when leaving the row
+        row.addEventListener('mouseenter', () => api.pause());
+        row.addEventListener('mouseleave', () => api.resume());
+        requestAnimationFrame(tick);
+        return api;
+      };
+      setupMarquee('.gallery-track-left', -1);
+      setupMarquee('.gallery-track-right', 1);
 
       // ── SCROLL REVEAL ─────────────────────────────────────────
       const revealObserver = new IntersectionObserver(entries => {
