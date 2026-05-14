@@ -438,7 +438,8 @@ const row2 = galleryPhotos;
       }
 
       // ── GALLERY + CONTACT TAGS: scroll-driven slide ─────────
-      const setupSlide = (selector, direction, stopAtCenter) => {
+      const setupSlide = (selector, direction, opts = {}) => {
+        const { stopAtCenter = false, holdStart = 0.5, holdEnd = 0.5 } = opts;
         const el = document.querySelector(selector);
         if (!el) return;
         const parentTag = el.parentElement;
@@ -447,17 +448,24 @@ const row2 = galleryPhotos;
           const vh = window.innerHeight;
           const progress = (vh - rect.top) / (vh + rect.height);
           const clamped = Math.max(0, Math.min(1, progress));
-          const tx = stopAtCenter && clamped > 0.5
-            ? 0
-            : (clamped - 0.5) * 220 * direction;
+          let tx;
+          if (stopAtCenter && clamped > 0.5) {
+            tx = 0;
+          } else if (clamped < holdStart) {
+            tx = (clamped / holdStart - 1) * 110 * direction;
+          } else if (clamped > holdEnd) {
+            tx = ((clamped - holdEnd) / (1 - holdEnd)) * 110 * direction;
+          } else {
+            tx = 0;
+          }
           el.style.transform = `translateX(${tx}vw)`;
         };
         window.addEventListener('scroll', update, { passive: true });
         window.addEventListener('resize', update);
         update();
       };
-      setupSlide('#gallery .slide-from-left', 1, false);
-      setupSlide('#contact .slide-from-right', -1, true);
+      setupSlide('#gallery .slide-from-left', 1, { holdStart: 0.3, holdEnd: 0.85 });
+      setupSlide('#contact .slide-from-right', -1, { stopAtCenter: true });
 
       // ── SCROLL REVEAL ─────────────────────────────────────────
       const revealObserver = new IntersectionObserver(entries => {
