@@ -36,8 +36,9 @@ const row2 = [
 
     <!-- NAV: Fixed top bar, background present on scroll -->
     <nav id="nav">
-      <a href="#about" class="nav-logo">Plyfaa Suwanamalik-Murphy</a>
-      <span class="nav-status"><em>website build in progress!</em></span>
+      <div class="nav-left">
+        <a href="#about" class="nav-logo">Plyfaa Suwanamalik-Murphy</a>
+      </div>
       <ul class="nav-links">
         <li><a href="#gallery">From the Lab</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -76,7 +77,7 @@ const row2 = [
           <div class="bio-photo-wrapper">
             <img src="/hero_pic.jpeg" alt="Plyfaa Suwanamalik-Murphy" class="about-photo bio-photo"/>
           </div>
-          <span class="bio-photo-caption"><span class="bio-pin">📍</span>Crete, Greece</span>
+          <span class="bio-photo-caption">NIMH IRP Fellows’ Scientific Training Day 2025</span>
         </div>
       </div>
     </section>
@@ -99,6 +100,7 @@ const row2 = [
     <!-- GALLERY: Grid of six photos -->
     <section id="gallery">
       <p class="section-tag reveal gallery-tag"><span class="slide-from-left">From the Lab</span></p>
+      <p class="gallery-hint reveal">← drag or scroll →</p>
       <div class="gallery-marquee reveal">
         <div class="gallery-row">
           <div class="gallery-track gallery-track-left slow">
@@ -193,17 +195,18 @@ const row2 = [
       /* ── NAV ── */
       nav {
         position: static; z-index: 100;
-        display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;
-        gap: clamp(6px, 0.8vw, 12px);
+        display: flex; flex-direction: row; justify-content: space-between; align-items: flex-start;
+        gap: clamp(12px, 2vw, 24px);
         padding: clamp(12px, 2vw, 24px) clamp(60px, 12vw, 180px); border-bottom: none;
         background: transparent;
       }
       nav.scrolled { background: transparent; }
+      .nav-left { display: flex; flex-direction: column; align-items: flex-start; gap: clamp(6px, 0.8vw, 12px); }
       .nav-status { font-family: var(--mono); font-size: clamp(9px, 0.85vw, 12px); color: rgba(255,255,255,0.7); letter-spacing: 1px; }
       .nav-status em { font-style: italic; }
-      .nav-logo { font-family: var(--sans); font-size: clamp(11px, 1.1vw, 16px); color: var(--text); text-decoration: none; white-space: nowrap; }
-      .nav-links { display: flex; gap: clamp(12px, 2.4vw, 32px); list-style: none; }
-      .nav-links a { font-family: var(--sans); font-size: clamp(8px, 0.85vw, 12px); letter-spacing: 1.5px; color: var(--text); text-decoration: underline; text-underline-offset: 4px; transition: color 0.2s; white-space: nowrap; }
+      .nav-logo { font-family: var(--sans); font-size: clamp(13px, 1.3vw, 18px); letter-spacing: 2px; color: var(--text); text-decoration: none; white-space: nowrap; }
+      .nav-links { display: flex; gap: clamp(12px, 2.4vw, 32px); list-style: none; align-items: center; }
+      .nav-links a { font-family: var(--sans); font-size: clamp(13px, 1.3vw, 18px); letter-spacing: 2px; color: var(--text); text-decoration: underline; text-underline-offset: 4px; transition: color 0.2s; white-space: nowrap; }
       .nav-links a:hover { color: var(--blue); }
 
       /* ── SECTION BASE ── */
@@ -214,10 +217,10 @@ const row2 = [
 
       /* ── ABOUT ── */
       #about {
-        padding-top: clamp(80px, 10vw, 130px); padding-bottom: clamp(120px, 18vw, 240px);
+        padding-top: clamp(20px, 3vw, 48px); padding-bottom: clamp(120px, 18vw, 240px);
         padding-left: clamp(60px, 12vw, 180px); padding-right: clamp(260px, 22vw, 380px);
         border-bottom: none; min-height: 100vh; position: relative; color: #1A1A18;
-        display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+        display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;
         max-width: none;
       }
       #about::before {
@@ -278,10 +281,11 @@ const row2 = [
       @media (prefers-reduced-motion: reduce) { .orbit { transform: none !important; } }
 
       /* ── GALLERY ── */
-      #gallery .section-tag { justify-content: center; text-align: center; font-size: clamp(22px, 3.8vw, 48px); letter-spacing: 2px; color: #FFFFFF; }
+      #gallery .section-tag { justify-content: center; text-align: center; font-size: clamp(13px, 1.3vw, 18px); letter-spacing: 2px; color: #FFFFFF; }
       #gallery .section-tag.reveal { opacity: 1; transform: none; }
       #gallery .section-tag .slide-from-left { display: inline-block; will-change: transform, opacity; opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
       #gallery .section-tag .slide-from-left.risen { opacity: 1; transform: translateY(0); }
+      .gallery-hint { text-align: center; font-family: var(--mono); font-size: clamp(10px, 0.95vw, 13px); letter-spacing: 3px; color: rgba(255,255,255,0.55); margin-top: clamp(-12px, -1.5vw, -20px); margin-bottom: clamp(16px, 2vw, 28px); }
       .gallery-marquee { display: flex; flex-direction: column; gap: clamp(8px, 1vw, 16px); width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
       .gallery-row { overflow: hidden; cursor: grab; touch-action: pan-y; padding: clamp(16px, 2.5vw, 32px) 0; }
       .gallery-row.dragging { cursor: grabbing; }
@@ -304,7 +308,7 @@ const row2 = [
           linear-gradient(125deg, #F7F2E7 0%, #FBF7EC 45%, #ECE3CF 100%);
       }
       #contact::after { content: ''; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw; pointer-events: none; background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.18) 38%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0.18) 62%, transparent 100%); }
-      #contact .section-tag { color: #000000; font-size: clamp(22px, 3.8vw, 48px); letter-spacing: 2px; margin-bottom: 0; justify-content: center; text-align: center; }
+      #contact .section-tag { color: #000000; font-size: clamp(13px, 1.3vw, 18px); letter-spacing: 2px; margin-bottom: 0; justify-content: center; text-align: center; }
       #contact .section-tag.reveal { opacity: 1; transform: none; }
       #contact .section-tag .slide-from-right { display: inline-block; will-change: transform, opacity; opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
       #contact .section-tag .slide-from-right.risen { opacity: 1; transform: translateY(0); }
@@ -471,7 +475,7 @@ const row2 = [
         let totalDragDist = 0;
         let velocity = 0;
         let paused = false;
-        const autoSpeed = 0.4;
+        const autoSpeed = 0.15;
 
         const measure = () => { trackWidth = track.scrollWidth / 2; };
         measure();
