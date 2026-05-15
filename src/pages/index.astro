@@ -190,13 +190,6 @@ const row2 = [
       body { font-family: var(--sans); background: var(--bg); color: var(--text); overflow-x: hidden; }
       @media (min-width: 1024px) { html { zoom: 0.85; } }
 
-      /* ── CURSOR PIXELS ── */
-      .cursor-pixel { position: fixed; width: clamp(8px, 0.9vw, 14px); height: clamp(8px, 0.9vw, 14px); background: #5B9BD5; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); animation: pixelRise 2.4s ease-out forwards; }
-      @keyframes pixelRise {
-        from { opacity: 1; }
-        to { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% - 48px)); }
-      }
-
       /* ── NAV ── */
       nav {
         position: static; z-index: 100;
@@ -431,21 +424,6 @@ const row2 = [
     </style>
 
     <script>
-      // ── CURSOR PIXEL TRAIL ───────────────────────────────────
-      let lastPixelSpawn = 0;
-      document.addEventListener('mousemove', e => {
-        const now = performance.now();
-        if (now - lastPixelSpawn < 90) return;
-        lastPixelSpawn = now;
-        const pixel = document.createElement('div');
-        pixel.className = 'cursor-pixel';
-        pixel.style.left = e.clientX + 'px';
-        pixel.style.top = e.clientY + 'px';
-        pixel.style.setProperty('--dx', (Math.random() * 16 - 8).toFixed(1) + 'px');
-        document.body.appendChild(pixel);
-        setTimeout(() => pixel.remove(), 2400);
-      });
-
       // ── NAV ──────────────────────────────────────────────────
       const nav = document.getElementById('nav');
       window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
