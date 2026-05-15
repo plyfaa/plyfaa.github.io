@@ -287,7 +287,8 @@ const row2 = [
       /* ── GALLERY ── */
       #gallery .section-tag { justify-content: center; text-align: center; font-size: clamp(22px, 3.8vw, 48px); letter-spacing: 2px; color: #FFFFFF; }
       #gallery .section-tag.reveal { opacity: 1; transform: none; }
-      #gallery .section-tag .slide-from-left { display: inline-block; will-change: transform; }
+      #gallery .section-tag .slide-from-left { display: inline-block; will-change: transform, opacity; opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+      #gallery .section-tag .slide-from-left.risen { opacity: 1; transform: translateY(0); }
       .gallery-marquee { display: flex; flex-direction: column; gap: clamp(8px, 1vw, 16px); width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
       .gallery-row { overflow: hidden; cursor: grab; touch-action: pan-y; padding: clamp(16px, 2.5vw, 32px) 0; }
       .gallery-row.dragging { cursor: grabbing; }
@@ -312,7 +313,8 @@ const row2 = [
       #contact::after { content: ''; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw; pointer-events: none; background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.18) 38%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0.18) 62%, transparent 100%); }
       #contact .section-tag { color: #000000; font-size: clamp(22px, 3.8vw, 48px); letter-spacing: 2px; margin-bottom: 0; justify-content: center; text-align: center; }
       #contact .section-tag.reveal { opacity: 1; transform: none; }
-      #contact .section-tag .slide-from-right { display: inline-block; will-change: transform; }
+      #contact .section-tag .slide-from-right { display: inline-block; will-change: transform, opacity; opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+      #contact .section-tag .slide-from-right.risen { opacity: 1; transform: translateY(0); }
       #contact .contact-body { color: rgba(0,0,0,0.7); }
       #contact .contact-email { color: #000000; }
       #contact .contact-link { color: rgba(0,0,0,0.7); }
@@ -468,35 +470,16 @@ const row2 = [
         updateOrbit();
       }
 
-      // ── GALLERY + CONTACT TAGS: scroll-driven slide ─────────
-      const setupSlide = (selector, direction, opts = {}) => {
-        const { stopAtCenter = false, holdStart = 0.5, holdEnd = 0.5 } = opts;
-        const el = document.querySelector(selector);
-        if (!el) return;
-        const parentTag = el.parentElement;
-        const update = () => {
-          const rect = parentTag.getBoundingClientRect();
-          const vh = window.innerHeight;
-          const progress = (vh - rect.top) / (vh + rect.height);
-          const clamped = Math.max(0, Math.min(1, progress));
-          let tx;
-          if (stopAtCenter && clamped > 0.5) {
-            tx = 0;
-          } else if (clamped < holdStart) {
-            tx = (clamped / holdStart - 1) * 110 * direction;
-          } else if (clamped > holdEnd) {
-            tx = ((clamped - holdEnd) / (1 - holdEnd)) * 110 * direction;
-          } else {
-            tx = 0;
+      // ── GALLERY + CONTACT TAGS: one-time rise-up on enter ───
+      const riseObserver = new IntersectionObserver(entries => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (isIntersecting) {
+            target.classList.add('risen');
+            riseObserver.unobserve(target);
           }
-          el.style.transform = `translateX(${tx}vw)`;
-        };
-        window.addEventListener('scroll', update, { passive: true });
-        window.addEventListener('resize', update);
-        update();
-      };
-      setupSlide('#gallery .slide-from-left', 1, { holdStart: 0.5, holdEnd: 0.9 });
-      setupSlide('#contact .slide-from-right', -1, { holdStart: 0.55, holdEnd: 1.0 });
+        });
+      }, { threshold: 0.2 });
+      document.querySelectorAll('#gallery .slide-from-left, #contact .slide-from-right').forEach(el => riseObserver.observe(el));
 
       // ── GALLERY MARQUEE: auto-scroll + manual drag/wheel + click-to-enlarge ──────
       const setupMarquee = (trackSelector, direction) => {
@@ -508,7 +491,6 @@ const row2 = [
         let isDragging = false;
         let lastX = 0;
         let totalDragDist = 0;
-        let downTarget = null;
         let velocity = 0;
         let paused = false;
         const autoSpeed = 0.4;
@@ -543,11 +525,10 @@ const row2 = [
           velocity -= e.deltaX * 0.15;
         }, { passive: false });
 
-        const onDown = (clientX, target) => {
+        const onDown = (clientX) => {
           isDragging = true;
           lastX = clientX;
           totalDragDist = 0;
-          downTarget = target;
           velocity = 0;
           row.classList.add('dragging');
         };
@@ -565,13 +546,12 @@ const row2 = [
           if (!isDragging) return;
           isDragging = false;
           row.classList.remove('dragging');
-          downTarget = null;
         };
 
-        row.addEventListener('mousedown', (e) => { e.preventDefault(); onDown(e.clientX, e.target); });
+        row.addEventListener('mousedown', (e) => { e.preventDefault(); onDown(e.clientX); });
         window.addEventListener('mousemove', (e) => onMove(e.clientX));
         window.addEventListener('mouseup', onUp);
-        row.addEventListener('touchstart', (e) => onDown(e.touches[0].clientX, e.target), { passive: true });
+        row.addEventListener('touchstart', (e) => onDown(e.touches[0].clientX), { passive: true });
         row.addEventListener('touchmove', (e) => onMove(e.touches[0].clientX), { passive: true });
         row.addEventListener('touchend', onUp);
         row.addEventListener('touchcancel', onUp);
