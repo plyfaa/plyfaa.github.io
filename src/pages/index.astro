@@ -2,23 +2,24 @@
 import '../styles/global.css';
 import ScrollingCode from '../components/ScrollingCode.astro';
 
-const row1 = [
-  { src: '/smithsonian.jpg', alt: 'NIMH Oral Presentation', label: 'NIMH/NIH Selected Lightning Talk Speaker' },
-  { src: '/art.jpg', alt: 'Art and Science', label: '3rd Place Art Winner! "Waves of Consciousness"' },
-  { src: '/poster.jpg', alt: 'ASSC Presentation', label: 'Oral presentation at NIMH/NIH' },
-  { src: '/assc.jpg', alt: 'Crete', label: 'Oral Presentation in Crete, Greece' },
-  { src: '/talk.jpg', alt: 'Poster Presentation', label: 'Advocating for environmentally friendly infrastructure' },
-  { src: '/oxford.jpg', alt: 'Oxford', label: 'Perception of iridescence at the University of Oxford' },
-  { src: '/narcan.jpg', alt: 'Narcan', label: '' },
-];
+// Gallery data — commented out while gallery section is disabled
+// const row1 = [
+//   { src: '/smithsonian.jpg', alt: 'NIMH Oral Presentation', label: 'NIMH/NIH Selected Lightning Talk Speaker' },
+//   { src: '/art.jpg', alt: 'Art and Science', label: '3rd Place Art Winner! "Waves of Consciousness"' },
+//   { src: '/poster.jpg', alt: 'ASSC Presentation', label: 'Oral presentation at NIMH/NIH' },
+//   { src: '/assc.jpg', alt: 'Crete', label: 'Oral Presentation in Crete, Greece' },
+//   { src: '/talk.jpg', alt: 'Poster Presentation', label: 'Advocating for environmentally friendly infrastructure' },
+//   { src: '/oxford.jpg', alt: 'Oxford', label: 'Perception of iridescence at the University of Oxford' },
+//   { src: '/narcan.jpg', alt: 'Narcan', label: '' },
+// ];
 
-const row2 = [
-  { src: '/Hawaii Pacific Neuroscience summer cohort.jpg', alt: 'Hawaii Pacific Neuroscience summer cohort', label: 'Hawaii Pacific Neuroscience summer cohort' },
-  { src: '/SFIM lab dinner.jpeg', alt: 'SFIM lab dinner', label: 'SFIM lab dinner' },
-  { src: '/Summer internship social in Oahu.jpg', alt: 'Summer internship social in Oahu', label: 'Summer internship social in Oahu' },
-  { src: '/Summer_internship_in_Oahu.jpg', alt: 'Summer internship in Oahu', label: 'Summer internship in Oahu' },
-  { src: '/graduation.jpeg', alt: 'Graduation', label: 'Graduation' },
-];
+// const row2 = [
+//   { src: '/Hawaii Pacific Neuroscience summer cohort.jpg', alt: 'Hawaii Pacific Neuroscience summer cohort', label: 'Hawaii Pacific Neuroscience summer cohort' },
+//   { src: '/SFIM lab dinner.jpeg', alt: 'SFIM lab dinner', label: 'SFIM lab dinner' },
+//   { src: '/Summer internship social in Oahu.jpg', alt: 'Summer internship social in Oahu', label: 'Summer internship social in Oahu' },
+//   { src: '/Summer_internship_in_Oahu.jpg', alt: 'Summer internship in Oahu', label: 'Summer internship in Oahu' },
+//   { src: '/graduation.jpeg', alt: 'Graduation', label: 'Graduation' },
+// ];
 ---
 
 <!-- Developed by Plyfaa Suwanamalik-Murphy. Last modified: 03/5/2026 -->
@@ -39,16 +40,25 @@ const row2 = [
       <div class="nav-left">
         <a href="#about" class="nav-logo">Plyfaa Suwanamalik-Murphy</a>
       </div>
-      <ul class="nav-links">
-        <li><a href="#gallery">From the Lab</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <div class="nav-links">
+        <a href="mailto:plysuwana@gmail.com">email</a>
+        <span class="dot" aria-hidden="true">·</span>
+        <a href="https://www.linkedin.com/in/plyfaa-murphy/" target="_blank" rel="noopener">linkedin</a>
+        <span class="dot" aria-hidden="true">·</span>
+        <a href="https://github.com/plyfaa" target="_blank" rel="noopener">github</a>
+        <span class="dot" aria-hidden="true">·</span>
+        <a href="https://scholar.google.com/citations?user=TCRiqYcAAAAJ&hl=en" target="_blank" rel="noopener">scholar</a>
+        <span class="dot" aria-hidden="true">·</span>
+        <a href="/cv.pdf" target="_blank">CV</a>
+      </div>
     </nav>
+
+    <!-- ABOUT + CONTACT wrapper so the scrolling code backdrop spans both -->
+    <div class="code-backdrop-wrap">
+      <ScrollingCode variant="backdrop" side="right" />
 
     <!-- ABOUT: Bio + photo -->
     <section id="about">
-      <ScrollingCode variant="backdrop" side="right" />
-      <div class="hero-design-bg" aria-hidden="true"></div>
 <div class="about-text-body">
           <p class="about-body">
             I'm fascinated by the eyes and what they reveal about our perception.
@@ -97,7 +107,7 @@ const row2 = [
     </section>
     */}
 
-    <!-- GALLERY: Grid of six photos -->
+    {/* GALLERY: Grid of six photos — commented out for now
     <section id="gallery">
       <p class="section-tag reveal gallery-tag"><span class="slide-from-left">From the Lab</span></p>
       <p class="gallery-hint reveal">← drag or scroll →</p>
@@ -124,9 +134,12 @@ const row2 = [
         </div>
       </div>
     </section>
+    */}
 
 
-    <!-- CONTACT: Email + external links -->
+    </div>
+
+    {/* CONTACT moved to its own page at /contact
     <section id="contact">
       <p class="section-tag reveal contact-tag"><span class="slide-from-right">Contact</span></p>
       <div class="contact-links reveal">
@@ -145,18 +158,8 @@ const row2 = [
         </a>
       </div>
     </section>
+    */}
 
-    <footer>
-      <p class="footer-credit">
-        Loosely designed in <a href="https://figma.com" class="footer-highlight" target="_blank">Figma</a> and coded in
-        <a href="https://code.visualstudio.com" class="footer-highlight" target="_blank">Visual Studio Code</a> by yours truly. Built with
-        <a href="https://astro.build" class="footer-highlight" target="_blank">Astro</a> and CSS,
-        deployed with <a href="https://pages.github.com" class="footer-highlight" target="_blank">GitHub Pages</a>. All text is set in the
-        <a href="https://www.figma.com/fonts/inter/" class="footer-highlight" target="_blank">Inter</a>,
-        <a href="https://www.figma.com/fonts/playfair-display/" class="footer-highlight" target="_blank">Playfair Display</a>, and
-        <a href="https://www.figma.com/fonts/dm-mono/" class="footer-highlight" target="_blank">DM Mono</a> typefaces.
-      </p>
-    </footer>
 
     <!-- RESEARCH DETAIL: Opens as full-page overlay -->
     <div class="research-modal-overlay" id="research-modal">
@@ -205,9 +208,12 @@ const row2 = [
       .nav-status { font-family: var(--mono); font-size: clamp(9px, 0.85vw, 12px); color: rgba(255,255,255,0.7); letter-spacing: 1px; }
       .nav-status em { font-style: italic; }
       .nav-logo { font-family: var(--sans); font-size: clamp(13px, 1.3vw, 18px); letter-spacing: 2px; color: var(--text); text-decoration: none; white-space: nowrap; }
-      .nav-links { display: flex; gap: clamp(12px, 2.4vw, 32px); list-style: none; align-items: center; }
-      .nav-links a { font-family: var(--sans); font-size: clamp(13px, 1.3vw, 18px); letter-spacing: 2px; color: var(--text); text-decoration: underline; text-underline-offset: 4px; transition: color 0.2s; white-space: nowrap; }
+      .nav-links { display: flex; flex-wrap: wrap; gap: clamp(6px, 0.8vw, 12px); align-items: baseline; }
+      .nav-links a { font-family: var(--sans); font-size: clamp(13px, 1.3vw, 18px); letter-spacing: 2px; text-transform: capitalize; color: var(--text); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
       .nav-links a:hover { color: var(--blue); }
+      .nav-links .dot { color: var(--text); }
+
+      .code-backdrop-wrap { position: relative; }
 
       /* ── SECTION BASE ── */
       section { max-width: 1200px; margin-left: auto; margin-right: auto; padding: clamp(48px, 7vw, 90px) clamp(20px, 5vw, 64px); border-bottom: 1px solid var(--border); }
@@ -217,10 +223,10 @@ const row2 = [
 
       /* ── ABOUT ── */
       #about {
-        padding-top: clamp(20px, 3vw, 48px); padding-bottom: clamp(120px, 18vw, 240px);
+        padding-top: clamp(20px, 3vw, 48px); padding-bottom: clamp(20px, 3vw, 48px);
         padding-left: clamp(60px, 12vw, 180px); padding-right: clamp(260px, 22vw, 380px);
         border-bottom: none; min-height: 100vh; position: relative; color: #1A1A18;
-        display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;
+        display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
         max-width: none;
       }
       #about::before {
@@ -301,20 +307,15 @@ const row2 = [
 
 
       /* ── CONTACT ── */
-      #contact { min-height: auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(20px, 3vw, 40px); color: #1A1A18; position: relative; z-index: 0; padding-bottom: clamp(48px, 7vw, 90px); }
-      #contact::before { content: ''; position: absolute; z-index: -2; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw;
-        background:
-          radial-gradient(ellipse 60% 65% at 50% 30%, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 70%),
-          linear-gradient(125deg, #F7F2E7 0%, #FBF7EC 45%, #ECE3CF 100%);
-      }
-      #contact::after { content: ''; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw; pointer-events: none; background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.18) 38%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0.18) 62%, transparent 100%); }
+      #contact { min-height: auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(20px, 3vw, 40px); color: #1A1A18; position: relative; padding-bottom: clamp(48px, 7vw, 90px); }
+      #contact::before { content: ''; position: absolute; z-index: -2; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw; background: #F7F2E7; }
       #contact .section-tag { color: #000000; font-size: clamp(13px, 1.3vw, 18px); letter-spacing: 2px; margin-bottom: 0; justify-content: center; text-align: center; }
       #contact .section-tag.reveal { opacity: 1; transform: none; }
-      #contact .section-tag .slide-from-right { display: inline-block; will-change: transform, opacity; opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+      #contact .section-tag .slide-from-right { display: inline-block; will-change: transform, opacity; opacity: 0; transform: translateY(80px); transition: opacity 2.2s cubic-bezier(0.16, 1, 0.3, 1), transform 2.2s cubic-bezier(0.16, 1, 0.3, 1); }
       #contact .section-tag .slide-from-right.risen { opacity: 1; transform: translateY(0); }
       #contact .contact-body { color: rgba(0,0,0,0.7); }
       #contact .contact-email { color: #000000; }
-      #contact .contact-link { color: rgba(0,0,0,0.7); }
+      #contact .contact-link { color: #000000; }
       #contact .contact-email:hover, #contact .contact-link:hover { color: #A8D8FF; }
       #contact .section-tag { justify-content: center; }
       .contact-body { font-size: clamp(13px, 1.2vw, 16px); font-weight: 300; color: rgba(255,255,255,0.75); line-height: 1.7; max-width: 480px; margin: 0; }
@@ -326,11 +327,6 @@ const row2 = [
       .contact-link-arrow { display: none; }
 
       /* ── FOOTER ── */
-      footer { max-width: 1200px; margin: 0 auto; padding: clamp(24px, 3.5vw, 48px) clamp(20px, 5vw, 64px); display: flex; justify-content: space-between; align-items: start; border-top: 1px solid var(--border); }
-      .footer-credit { font-size: clamp(11px, 1vw, 14px); letter-spacing: 0.5px; color: rgba(255,255,255,0.75); line-height: 1.8; max-width: 800px; }
-      .footer-highlight { color: var(--blue); }
-      a.footer-highlight { text-decoration: none; }
-      a.footer-highlight:hover { color: var(--text); }
 
       /* ── RESEARCH MODAL ── */
       .research-modal-overlay {
