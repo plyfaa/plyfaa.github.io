@@ -61,7 +61,7 @@ import ScrollingCode from '../components/ScrollingCode.astro';
     <section id="about">
 <div class="about-text-body">
           <p class="about-body">
-            I'm fascinated by the eyes and what they reveal about our perception.
+            I'm fascinated by the eyes and what they reveal about our perception!
           </p>
           <p class="about-body">
             I'm an incoming PhD student in
@@ -78,8 +78,8 @@ import ScrollingCode from '../components/ScrollingCode.astro';
           </p>
           <p class="about-body">
             I completed my Bachelor's in Cognitive Science from
-            <a href="https://ucdavis.edu" class="about-highlight" target="_blank">UC Davis</a> in 2 years. And spent most of that time learning as much as I could about eye-tracking,
-            EEG, and visual cognition, finding my way into as many research <a href="/cv.pdf" class="about-highlight" target="_blank">research opportunities</a> as I could.
+            <a href="https://ucdavis.edu" class="about-highlight" target="_blank">UC Davis</a> in 2 years. And spent most of that time in
+            <a href="/cv.pdf" class="about-highlight" target="_blank">research labs</a>, learning as much as I could about eye-tracking, EEG, and visual cognition.
           </p>
       </div>
       <div class="bio-stack">
@@ -87,7 +87,7 @@ import ScrollingCode from '../components/ScrollingCode.astro';
           <div class="bio-photo-wrapper">
             <img src="/hero_pic.jpeg" alt="Plyfaa Suwanamalik-Murphy" class="about-photo bio-photo"/>
           </div>
-          <span class="bio-photo-caption">NIMH IRP Fellows’ Scientific Training Day 2025</span>
+          <span class="bio-photo-caption">NIH/NIMH IRP Fellows’ Scientific Training Day 2025</span>
         </div>
       </div>
     </section>
@@ -381,10 +381,27 @@ import ScrollingCode from '../components/ScrollingCode.astro';
 
       /* ── RESPONSIVE: SMALL LAPTOPS / TABLETS ── */
       @media (max-width: 900px) {
-        /* Stack hero on tablets so photo + text box don't collide */
-        .about-text-body { position: static; transform: none; width: 100%; max-width: 600px; margin: 0 auto; }
-        .bio-stack { position: static; align-items: center; margin-top: clamp(24px, 4vw, 40px); }
-        .bio-photo-wrapper { width: clamp(220px, 60vw, 360px); aspect-ratio: auto; }
+        /* Hide the scrolling code backdrop on smaller devices */
+        .code-viz--backdrop { display: none; }
+
+        /* Pull in heavy side padding from the about section */
+        #about {
+          padding-left: clamp(24px, 5vw, 48px);
+          padding-right: clamp(24px, 5vw, 48px);
+          padding-top: clamp(32px, 6vw, 56px);
+          padding-bottom: clamp(32px, 6vw, 56px);
+          align-items: center;
+          min-height: auto;
+        }
+        /* Trim nav side padding so it doesn't crowd content */
+        nav { padding: clamp(12px, 2vw, 20px) clamp(20px, 4vw, 40px); }
+
+        /* Stack hero so photo + text don't collide */
+        .about-text-body { position: static; transform: none; width: 100%; max-width: 640px; margin: 0 auto; }
+        .bio-stack { position: static; align-items: center; margin-top: clamp(24px, 4vw, 40px); width: 100%; }
+        .bio-photo-block { align-items: center; width: clamp(220px, 60vw, 360px); }
+        .bio-photo-wrapper { width: 100%; aspect-ratio: auto; }
+        .bio-photo-caption { text-align: center; }
 
         .about-text-body::before, .about-text-body::after { display: none; }
 
@@ -397,11 +414,29 @@ import ScrollingCode from '../components/ScrollingCode.astro';
         /* Disable custom cursor on touch devices */
         .cursor, .cursor-ring { display: none; }
 
-        /* Mobile: stack normally — text on top, photo at bottom */
-        .about-text-body { position: static; width: 100%; max-width: 100%; }
-        .bio-stack { position: static; align-items: center; margin-top: clamp(20px, 4vw, 40px); }
-        .bio-photo-wrapper { width: clamp(200px, 80vw, 320px); aspect-ratio: auto; }
-        .about-text-body .about-body { background: #FFFFFF; color: rgba(0,0,0,0.85); padding: clamp(6px, 1.5vw, 10px) clamp(8px, 2vw, 14px); border-radius: 2px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+        /* Hide the scrolling code backdrop — it overlaps content on narrow screens */
+        .code-viz--backdrop { display: none; }
+
+        /* Tighten about-section padding for phone widths and center everything */
+        #about {
+          padding-left: clamp(16px, 5vw, 28px);
+          padding-right: clamp(16px, 5vw, 28px);
+          padding-top: clamp(24px, 6vw, 40px);
+          padding-bottom: clamp(32px, 7vw, 48px);
+          align-items: center;
+          text-align: center;
+        }
+
+        /* Photo first on phones, then text body — both centered */
+        .about-text-body { position: static; width: 100%; max-width: 480px; order: 2; margin: clamp(20px, 4vw, 32px) auto 0; text-align: center; }
+        .bio-stack { position: static; align-items: center; margin: 0 auto; order: 1; width: 100%; }
+        .bio-photo-block { align-items: center; width: min(70vw, 280px); margin: 0 auto; }
+        .bio-photo-wrapper { width: 100%; aspect-ratio: auto; }
+        .bio-photo-caption { text-align: center; }
+
+        /* Body text sized for phones */
+        .about-body { font-size: clamp(11px, 2.8vw, 13px); line-height: 1.6; margin-bottom: clamp(10px, 2.5vw, 14px); text-align: center; }
+        .about-text-body .about-body { background: transparent; color: #1A1A18; padding: 0; border-radius: 0; }
         .about-text-body .about-highlight { color: var(--blue); }
 
         .contact-links { padding-top: 0; }
@@ -410,16 +445,24 @@ import ScrollingCode from '../components/ScrollingCode.astro';
         .modal-body-grid { grid-template-columns: 1fr; }
         .modal-sidebar { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 24px; display: flex; flex-wrap: wrap; gap: 12px 24px; }
 
-        /* Nav: shrink gap and logo size to prevent overlap */
-        .nav-logo { font-size: 12px; }
-        /* Nav: right-align wrapped links */
-        .nav-links { gap: 8px 16px; flex-wrap: wrap; justify-content: flex-end; }
-        .nav-links a { font-size: 10px; letter-spacing: 1px; }
+        /* Nav: stack logo above links so a long name doesn't collide */
+        nav {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+          padding: 12px clamp(16px, 5vw, 24px);
+        }
+        .nav-logo { font-size: 13px; letter-spacing: 1.5px; white-space: normal; }
+        .nav-links { gap: 6px 12px; flex-wrap: wrap; justify-content: flex-start; width: 100%; }
+        .nav-links a { font-size: 11px; letter-spacing: 1px; }
+        .nav-links .dot { opacity: 0.5; }
       }
 
       /* ── RESPONSIVE: VERY SMALL PHONES ── */
       @media (max-width: 400px) {
-        .nav-links { flex-wrap: wrap; gap: 8px 12px; justify-content: flex-end; }
+        .nav-logo { font-size: 12px; letter-spacing: 1px; }
+        .nav-links a { font-size: 10px; letter-spacing: 0.5px; }
+        .nav-links { gap: 4px 8px; }
       }
     </style>
 
