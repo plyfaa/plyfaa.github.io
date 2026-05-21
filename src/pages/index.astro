@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ScrollingCode from '../components/ScrollingCode.astro';
 
 const row1 = [
   { src: '/smithsonian.jpg', alt: 'NIMH Oral Presentation', label: 'NIMH/NIH Selected Lightning Talk Speaker' },
@@ -59,9 +60,8 @@ const row1 = [
       </ul> */}
     </nav>
 
-    <!-- ABOUT + CONTACT wrapper so the scrolling code backdrop spans both -->
+    <!-- ABOUT + CONTACT wrapper -->
     <div class="code-backdrop-wrap">
-      <ScrollingCode variant="backdrop" side="right" />
 
     <!-- ABOUT: Bio + photo -->
     <section id="about">
@@ -264,13 +264,6 @@ const row1 = [
       .speech-bubble { background: #FFFFFF; color: #000; padding: clamp(10px, 1.5vw, 16px) clamp(14px, 2.5vw, 22px); border-radius: 18px; position: relative; max-width: 320px; font-family: var(--sans); font-size: clamp(13px, 1.3vw, 18px); }
       .speech-bubble::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #FFFFFF; }
       .about-text-body .about-body:last-child { margin-bottom: 0; }
-      @keyframes heroFlipIn {
-        from { opacity: 0; transform: rotateX(-90deg); }
-        to   { opacity: 1; transform: rotateX(0); }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .about-text-body .about-body { opacity: 1; animation: none; }
-      }
       .about-name { font-family: var(--serif); font-size: var(--heading-display); font-weight: 400; line-height: var(--leading-tight); letter-spacing: 0; color: var(--text); margin-bottom: var(--space-4); }
       .about-name em { font-style: italic; color: var(--accent); }
       .about-body { font-family: var(--serif-body); font-size: var(--text-base); font-weight: 400; color: var(--text); line-height: var(--leading-body); letter-spacing: 0; margin-bottom: var(--space-3); max-width: var(--maxw); }
@@ -503,12 +496,9 @@ const row1 = [
             target.classList.add('risen');
             riseObserver.unobserve(target);
           }
-          el.style.transform = `translateX(${tx}vw)`;
-        };
-        window.addEventListener('scroll', update, { passive: true });
-        window.addEventListener('resize', update);
-        update();
-      };
+        });
+      }, { threshold: 0.2 });
+      document.querySelectorAll('.gallery-tag, .contact-tag').forEach(el => riseObserver.observe(el));
 
 // ── SCROLL REVEAL ─────────────────────────────────────────
       const revealObserver = new IntersectionObserver(entries => {
