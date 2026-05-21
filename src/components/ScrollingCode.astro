@@ -6,22 +6,37 @@ interface Props {
 }
 const { variant = 'section', copies = 8, side = 'left' } = Astro.props;
 
-const snippet = `<span class="cm"># pupil feedback loop</span>
-<span class="cm"># real-time eyelink stream</span>
+const snippet = `<span class="cm"># closed-loop pupil control, pilot v3</span>
+<span class="cm"># goal: hold pupil at target by nudging patch luminance</span>
 
 <span class="kw">import</span> pylink
+<span class="kw">import</span> numpy <span class="kw">as</span> np
 <span class="kw">from</span> psychopy <span class="kw">import</span> visual, core
 
+target_mm = <span class="num">4.5</span>      <span class="cm"># from pilot, feels comfortable</span>
+lum_step  = <span class="num">0.02</span>
+
 tracker = pylink.<span class="fn">EyeLink</span>()
-tracker.<span class="fn">openDataFile</span>(<span class="str">'pupil.edf'</span>)
+tracker.<span class="fn">openDataFile</span>(<span class="str">'plyfaa_pilot.edf'</span>)
 
-<span class="kw">def</span> <span class="fn">get_pupil_size</span>():
-    s = tracker.<span class="fn">getNewestSample</span>()
-    <span class="kw">if</span> s <span class="kw">is not</span> <span class="kw">None</span>:
-        <span class="kw">return</span> s.<span class="fn">getRightEye</span>().<span class="fn">getPupilSize</span>()
-    <span class="kw">return</span> <span class="kw">None</span>
+<span class="kw">def</span> <span class="fn">current_pupil</span>():
+    sample = tracker.<span class="fn">getNewestSample</span>()
+    <span class="kw">if</span> sample <span class="kw">is</span> <span class="kw">None</span>:
+        <span class="kw">return</span> <span class="kw">None</span>
+    <span class="kw">return</span> sample.<span class="fn">getRightEye</span>().<span class="fn">getPupilSize</span>()
 
-conditions = [<span class="str">'dilate'</span>, <span class="str">'constrict'</span>, <span class="str">'rest'</span>]
+<span class="kw">def</span> <span class="fn">nudge</span>(now, target):
+    <span class="cm"># pupil too big → brighten the patch, and vice versa</span>
+    <span class="kw">return</span> -np.<span class="fn">sign</span>(now - target) * lum_step
+
+<span class="cm"># main loop, TODO: smooth this, way too jumpy right now</span>
+<span class="kw">while</span> core.<span class="fn">getTime</span>() < <span class="num">300</span>:
+    p = <span class="fn">current_pupil</span>()
+    <span class="kw">if</span> p <span class="kw">is not</span> <span class="kw">None</span>:
+        patch.opacity += <span class="fn">nudge</span>(p, target_mm)
+    core.<span class="fn">wait</span>(<span class="num">0.05</span>)
+
+<span class="cm"># note to self: re-check sign convention before friday</span>
 `;
 ---
 
@@ -64,9 +79,10 @@ conditions = [<span class="str">'dilate'</span>, <span class="str">'constrict'</
     pointer-events: none;
     background: transparent;
     border: none;
+    mix-blend-mode: multiply;
   }
   .code-viz--backdrop.code-viz--left  { left:  calc(50% - 50vw); right: auto; }
-  .code-viz--backdrop.code-viz--right { left: 60%; right: auto; width: 50vw; }
+  .code-viz--backdrop.code-viz--right { left: 75%; right: auto; width: 50vw; }
 
   .code-col { overflow: hidden; height: 100%; }
 
@@ -78,7 +94,7 @@ conditions = [<span class="str">'dilate'</span>, <span class="str">'constrict'</
     animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
-  .code-track.slow   { animation-duration: 110s; }
+  .code-track.slow   { animation-duration: 220s; }
   .code-track.medium { animation-duration: 85s; }
   .code-track.fast   { animation-duration: 60s; }
 
@@ -106,7 +122,7 @@ conditions = [<span class="str">'dilate'</span>, <span class="str">'constrict'</
     .code-track { animation: none; }
   }
 
-  @media (max-width: 768px) {
-    .code-viz--backdrop { top: 0; width: 50vw; opacity: 1; }
+  @media (max-width: 900px) {
+    .code-viz--backdrop { display: none; }
   }
 </style>

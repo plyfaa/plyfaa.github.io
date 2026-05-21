@@ -10,13 +10,13 @@ const row1 = [
   { src: '/narcan.jpg', alt: 'Narcan', label: '' },
 ];
 
-const row2 = [
-  { src: '/Hawaii Pacific Neuroscience summer cohort.jpg', alt: 'Hawaii Pacific Neuroscience summer cohort', label: 'Hawaii Pacific Neuroscience summer cohort' },
-  { src: '/SFIM lab dinner.jpeg', alt: 'SFIM lab dinner', label: 'SFIM lab dinner' },
-  { src: '/Summer internship social in Oahu.jpg', alt: 'Summer internship social in Oahu', label: 'Summer internship social in Oahu' },
-  { src: '/Summer_internship_in_Oahu.jpg', alt: 'Summer internship in Oahu', label: 'Summer internship in Oahu' },
-  { src: '/graduation.jpeg', alt: 'Graduation', label: 'Graduation' },
-];
+// const row2 = [
+//   { src: '/Hawaii Pacific Neuroscience summer cohort.jpg', alt: 'Hawaii Pacific Neuroscience summer cohort', label: 'Hawaii Pacific Neuroscience summer cohort' },
+//   { src: '/SFIM lab dinner.jpeg', alt: 'SFIM lab dinner', label: 'SFIM lab dinner' },
+//   { src: '/Summer internship social in Oahu.jpg', alt: 'Summer internship social in Oahu', label: 'Summer internship social in Oahu' },
+//   { src: '/Summer_internship_in_Oahu.jpg', alt: 'Summer internship in Oahu', label: 'Summer internship in Oahu' },
+//   { src: '/graduation.jpeg', alt: 'Graduation', label: 'Graduation' },
+// ];
 ---
 
 <!-- Developed by Plyfaa Suwanamalik-Murphy. Last modified: 03/5/2026 -->
@@ -59,11 +59,15 @@ const row2 = [
       </ul> */}
     </nav>
 
+    <!-- ABOUT + CONTACT wrapper so the scrolling code backdrop spans both -->
+    <div class="code-backdrop-wrap">
+      <ScrollingCode variant="backdrop" side="right" />
+
     <!-- ABOUT: Bio + photo -->
     <section id="about">
 <div class="about-text-body">
           <p class="about-body">
-            I'm fascinated by the eyes and what they reveal about our perception.
+            I'm fascinated by the eyes and what they reveal about our perception!
           </p>
           <p class="about-body">
             I'm an incoming PhD student in
@@ -80,16 +84,16 @@ const row2 = [
           </p>
           <p class="about-body">
             I completed my Bachelor's in Cognitive Science from
-            <a href="https://ucdavis.edu" class="about-highlight" target="_blank">UC Davis</a> in 2 years. And spent most of that time learning as much as I could about eye-tracking,
-            EEG, and visual cognition, finding my way into as many research <a href="/cv.pdf" class="about-highlight" target="_blank">research opportunities</a> as I could.
+            <a href="https://ucdavis.edu" class="about-highlight" target="_blank">UC Davis</a> in 2 years. And spent most of that time in
+            <a href="/cv.pdf" class="about-highlight" target="_blank">research labs</a>, learning as much as I could about eye-tracking, EEG, and visual cognition.
           </p>
       </div>
       <div class="bio-stack">
         <div class="bio-photo-block">
           <div class="bio-photo-wrapper">
-            <img src="/hero_pic.jpeg" alt="Plyfaa Suwanamalik-Murphy" class="about-photo bio-photo"/>
+            <img src="/smithsonian.jpg" alt="Plyfaa Suwanamalik-Murphy" class="about-photo bio-photo"/>
           </div>
-          <span class="bio-photo-caption"><span class="bio-pin">📍</span>Crete, Greece</span>
+          <span class="bio-photo-caption">NIH/NIMH IRP Fellows’ Scientific Training Day 2025</span>
         </div>
       </div>
     </section>
@@ -404,10 +408,27 @@ const row2 = [
 
       /* ── RESPONSIVE: SMALL LAPTOPS / TABLETS ── */
       @media (max-width: 900px) {
-        /* Stack hero on tablets so photo + text box don't collide */
-        .about-text-body { position: static; transform: none; width: 100%; max-width: 600px; margin: 0 auto; }
-        .bio-stack { position: static; align-items: center; margin-top: clamp(24px, 4vw, 40px); }
-        .bio-photo-wrapper { width: clamp(220px, 60vw, 360px); aspect-ratio: auto; }
+        /* Hide the scrolling code backdrop on smaller devices */
+        .code-viz--backdrop { display: none; }
+
+        /* Pull in heavy side padding from the about section */
+        #about {
+          padding-left: clamp(24px, 5vw, 48px);
+          padding-right: clamp(24px, 5vw, 48px);
+          padding-top: clamp(32px, 6vw, 56px);
+          padding-bottom: clamp(32px, 6vw, 56px);
+          align-items: center;
+          min-height: auto;
+        }
+        /* Trim nav side padding so it doesn't crowd content */
+        nav { padding: clamp(12px, 2vw, 20px) clamp(20px, 4vw, 40px); }
+
+        /* Stack hero so photo + text don't collide */
+        .about-text-body { position: static; transform: none; width: 100%; max-width: 640px; margin: 0 auto; }
+        .bio-stack { position: static; align-items: center; margin-top: clamp(24px, 4vw, 40px); width: 100%; }
+        .bio-photo-block { align-items: center; width: clamp(220px, 60vw, 360px); }
+        .bio-photo-wrapper { width: 100%; aspect-ratio: auto; }
+        .bio-photo-caption { text-align: center; }
 
         .about-text-body::before, .about-text-body::after { display: none; }
 
@@ -433,16 +454,24 @@ const row2 = [
         .modal-body-grid { grid-template-columns: 1fr; }
         .modal-sidebar { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 24px; display: flex; flex-wrap: wrap; gap: 12px 24px; }
 
-        /* Nav: shrink gap and logo size to prevent overlap */
-        .nav-logo { font-size: 12px; }
-        /* Nav: right-align wrapped links */
-        .nav-links { gap: 8px 16px; flex-wrap: wrap; justify-content: flex-end; }
-        .nav-links a { font-size: 10px; letter-spacing: 1px; }
+        /* Nav: stack logo above links so a long name doesn't collide */
+        nav {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+          padding: 12px clamp(16px, 5vw, 24px);
+        }
+        .nav-logo { font-size: 13px; letter-spacing: 1.5px; white-space: normal; }
+        .nav-links { gap: 6px 12px; flex-wrap: wrap; justify-content: flex-start; width: 100%; }
+        .nav-links a { font-size: 11px; letter-spacing: 1px; }
+        .nav-links .dot { opacity: 0.5; }
       }
 
       /* ── RESPONSIVE: VERY SMALL PHONES ── */
       @media (max-width: 400px) {
-        .nav-links { flex-wrap: wrap; gap: 8px 12px; justify-content: flex-end; }
+        .nav-logo { font-size: 12px; letter-spacing: 1px; }
+        .nav-links a { font-size: 10px; letter-spacing: 0.5px; }
+        .nav-links { gap: 4px 8px; }
       }
     </style>
 
@@ -467,26 +496,12 @@ const row2 = [
         updateOrbit();
       }
 
-      // ── GALLERY + CONTACT TAGS: scroll-driven slide ─────────
-      const setupSlide = (selector, direction, opts = {}) => {
-        const { stopAtCenter = false, holdStart = 0.5, holdEnd = 0.5 } = opts;
-        const el = document.querySelector(selector);
-        if (!el) return;
-        const parentTag = el.parentElement;
-        const update = () => {
-          const rect = parentTag.getBoundingClientRect();
-          const vh = window.innerHeight;
-          const progress = (vh - rect.top) / (vh + rect.height);
-          const clamped = Math.max(0, Math.min(1, progress));
-          let tx;
-          if (stopAtCenter && clamped > 0.5) {
-            tx = 0;
-          } else if (clamped < holdStart) {
-            tx = (clamped / holdStart - 1) * 110 * direction;
-          } else if (clamped > holdEnd) {
-            tx = ((clamped - holdEnd) / (1 - holdEnd)) * 110 * direction;
-          } else {
-            tx = 0;
+      // ── GALLERY + CONTACT TAGS: one-time rise-up on enter ───
+      const riseObserver = new IntersectionObserver(entries => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (isIntersecting) {
+            target.classList.add('risen');
+            riseObserver.unobserve(target);
           }
           el.style.transform = `translateX(${tx}vw)`;
         };
