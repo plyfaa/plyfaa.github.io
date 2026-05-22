@@ -426,67 +426,77 @@ const row1 = [
         /* Hide the scrolling code backdrop on smaller devices */
         .code-viz--backdrop { display: none; }
 
-        /* Pull in heavy side padding from the about section */
+        /* Hero stacks vertically; padding pulled in so nothing hugs the edge */
         #about {
-          padding-left: clamp(24px, 5vw, 48px);
-          padding-right: clamp(24px, 5vw, 48px);
+          flex-direction: column;
+          align-items: stretch;
+          gap: clamp(20px, 4vw, 32px);
+          padding-left: clamp(20px, 5vw, 48px);
+          padding-right: clamp(20px, 5vw, 48px);
           padding-top: clamp(32px, 6vw, 56px);
           padding-bottom: clamp(32px, 6vw, 56px);
-          align-items: center;
           min-height: auto;
+          max-width: 100%;
         }
-        /* Trim nav side padding so it doesn't crowd content */
-        nav { padding: clamp(12px, 2vw, 20px) clamp(20px, 4vw, 40px); }
+        /* Trim nav side padding and let the long name+tagline wrap */
+        nav { padding: clamp(12px, 2.4vw, 20px) clamp(20px, 4vw, 40px); flex-wrap: wrap; row-gap: 12px; }
+        .nav-logo-name { font-size: clamp(22px, 4vw, 32px); white-space: normal; line-height: 1.2; }
 
-        /* Stack hero so photo + text don't collide */
-        .about-text-body { position: static; transform: none; width: 100%; max-width: 640px; margin: 0 auto; }
-        .bio-stack { position: static; align-items: center; margin-top: clamp(24px, 4vw, 40px); width: 100%; }
-        .bio-photo-block { align-items: center; width: clamp(220px, 60vw, 360px); }
+        .about-text-body { width: 100%; max-width: 100%; margin: 0; }
+        .bio-stack { width: 100%; align-items: flex-start; margin: 0; }
+        .bio-photo-block { width: 100%; align-items: flex-start; }
         .bio-photo-wrapper { width: 100%; aspect-ratio: auto; }
-        .bio-photo-caption { text-align: center; }
-
         .about-text-body::before, .about-text-body::after { display: none; }
 
         .modal-body-grid { grid-template-columns: 1fr; }
         .modal-sidebar { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; }
       }
 
-      /* ── RESPONSIVE: PHONES ── */
+      /* ── RESPONSIVE: PHONES (iPhone-friendly) ── */
       @media (max-width: 600px) {
-        /* Disable custom cursor on touch devices */
-        .cursor, .cursor-ring { display: none; }
-
-        /* Mobile: stack normally — text on top, photo at bottom */
-        .about-text-body { position: static; width: 100%; max-width: 100%; }
-        .bio-stack { position: static; align-items: center; margin-top: clamp(20px, 4vw, 40px); }
-        .bio-photo-wrapper { width: clamp(200px, 80vw, 320px); aspect-ratio: auto; }
-        .about-text-body .about-body { background: transparent; color: var(--text); padding: 0; border-radius: 0; }
-        .about-text-body .about-highlight { color: var(--link); }
-
-        .contact-links { padding-top: 0; }
-
-        /* Modal sidebar stacks */
-        .modal-body-grid { grid-template-columns: 1fr; }
-        .modal-sidebar { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 24px; display: flex; flex-wrap: wrap; gap: 12px 24px; }
-
-        /* Nav: stack logo above links so a long name doesn't collide */
+        #about {
+          padding: clamp(28px, 6vw, 44px) clamp(16px, 4.5vw, 24px) clamp(40px, 8vw, 64px);
+          gap: clamp(20px, 5vw, 28px);
+        }
+        /* Nav stacks: name+tagline on top, then icons */
         nav {
           flex-direction: column;
           align-items: flex-start;
-          gap: 8px;
-          padding: 12px clamp(16px, 5vw, 24px);
+          gap: 14px;
+          padding: 16px clamp(16px, 4.5vw, 24px);
         }
-        .nav-logo { font-size: 13px; letter-spacing: 1.5px; white-space: normal; }
-        .nav-links { gap: 6px 12px; flex-wrap: wrap; justify-content: flex-start; width: 100%; }
-        .nav-links a { font-size: 11px; letter-spacing: 1px; }
-        .nav-links .dot { opacity: 0.5; }
+        .nav-logo { width: 100%; gap: 4px; }
+        .nav-logo-name { font-size: clamp(20px, 5.5vw, 26px); white-space: normal; line-height: 1.2; }
+        .nav-logo-tagline { display: block; font-size: 0.72em; margin-top: 2px; white-space: normal; }
+        .nav-logo-thai-row { flex-wrap: wrap; gap: 8px; }
+        .nav-logo-thai, .nav-logo-phonetic { font-size: clamp(14px, 4.2vw, 18px); }
+        .nav-icons { width: 100%; justify-content: flex-start; flex-wrap: wrap; gap: 14px 18px; }
+        .nav-icon svg { width: 22px; height: 22px; }
+        .nav-icon--with-text span { font-size: 14px; }
+
+        /* Body text: keep readable but don't break the viewport */
+        .about-text-body { width: 100%; max-width: 100%; }
+        .about-body { font-size: 16px; line-height: 1.65; }
+        .about-name { font-size: clamp(26px, 7vw, 36px); }
+        .bio-photo-wrapper { width: 100%; max-width: 100%; }
+        .bio-photo-block { width: 100%; }
+
+        .pronunciation-btn svg { width: 20px; height: 20px; }
+
+        /* Footer: tighter side padding so the credit line breathes */
+        footer { padding: clamp(20px, 5vw, 32px) clamp(16px, 4.5vw, 24px); }
+        .footer-credit { font-size: 13px; line-height: 1.6; }
+
+        .modal-body-grid { grid-template-columns: 1fr; }
+        .modal-sidebar { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 24px; display: flex; flex-wrap: wrap; gap: 12px 24px; }
       }
 
-      /* ── RESPONSIVE: VERY SMALL PHONES ── */
+      /* ── RESPONSIVE: VERY SMALL PHONES (iPhone SE) ── */
       @media (max-width: 400px) {
-        .nav-logo { font-size: 12px; letter-spacing: 1px; }
-        .nav-links a { font-size: 10px; letter-spacing: 0.5px; }
-        .nav-links { gap: 4px 8px; }
+        .nav-logo-name { font-size: clamp(18px, 5.8vw, 22px); }
+        .nav-logo-tagline { font-size: 0.7em; }
+        .about-name { font-size: 22px; }
+        .about-body { font-size: 15px; }
       }
     </style>
 
