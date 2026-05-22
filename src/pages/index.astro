@@ -44,8 +44,7 @@ const row1 = [
           <button type="button" class="pronunciation-btn" id="pronunciation-btn" aria-label="Play pronunciation of Plyfaa">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
           </button>
-          {/* Expected audio file path: public/audio/plyfaa-pronunciation.mp3 */}
-          <audio id="thai-name-audio" src="/audio/plyfaa-pronunciation.mp3" preload="metadata"></audio>
+          <audio id="thai-name-audio" src="/name_pronunciation copy.m4a" preload="metadata"></audio>
         </span>
       </div>
       <div class="nav-icons" aria-label="Contact">
@@ -245,7 +244,7 @@ const row1 = [
       .nav-logo-tagline { font-style: italic; color: var(--muted); }
       .nav-logo-thai-row { display: inline-flex; align-items: center; gap: 6px; }
       .nav-logo-thai { font-family: var(--serif); font-style: italic; font-size: clamp(16px, 1.4vw, 22px); color: var(--accent); letter-spacing: 0; }
-      .nav-logo-phonetic { font-family: var(--serif-body); font-style: italic; font-size: clamp(16px, 1.4vw, 22px); color: var(--muted); letter-spacing: 0; }
+      .nav-logo-phonetic { font-family: var(--serif-body); font-style: normal; font-size: clamp(16px, 1.4vw, 22px); color: var(--muted); letter-spacing: 0; }
       .pronunciation-btn { background: none; border: 0; padding: 2px; margin: 0; cursor: pointer; color: var(--text); display: inline-flex; align-items: center; justify-content: center; line-height: 0; }
       .pronunciation-btn:hover { color: var(--accent); }
       .pronunciation-btn svg { width: clamp(18px, 1.4vw, 22px); height: clamp(18px, 1.4vw, 22px); display: block; }
