@@ -36,10 +36,17 @@ const row1 = [
 
     <!-- NAV: Fixed top bar, background present on scroll -->
     <nav id="nav">
-      <a href="#about" class="nav-logo">
-        <span class="nav-logo-name">Plyfaa Suwanamalik-Murphy</span>
-        <span class="nav-logo-thai">ปลายฟ้า</span>
-      </a>
+      <div class="nav-logo">
+        <a href="#about" class="nav-logo-name">Plyfaa Suwanamalik-Murphy</a>
+        <span class="nav-logo-thai-row">
+          <span class="nav-logo-thai">ปลายฟ้า</span>
+          <button type="button" class="pronunciation-btn" id="pronunciation-btn" aria-label="Play pronunciation of Plyfaa">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          </button>
+          {/* Expected audio file path: public/audio/plyfaa-pronunciation.mp3 */}
+          <audio id="thai-name-audio" src="/audio/plyfaa-pronunciation.mp3" preload="metadata"></audio>
+        </span>
+      </div>
       <div class="nav-icons" aria-label="Contact">
         <a href="mailto:plysuwana@gmail.com" aria-label="Email" class="nav-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
@@ -63,22 +70,21 @@ const row1 = [
       </ul> */}
     </nav>
 
-    <!-- ABOUT + CONTACT wrapper -->
     <div class="code-backdrop-wrap">
 
     <!-- ABOUT: Bio + photo -->
     <section id="about">
 <div class="about-text-body">
           <p class="about-body">
-            I'm fascinated by the eyes and what they reveal about our perception!
+            I'm fascinated by the eyes and what they reveal about our perception.
           </p>
           <p class="about-body">
             I'm an incoming PhD student in
             <a href="https://bradylab.ucsd.edu" class="about-highlight" target="_blank">Dr. Timothy Brady's Visual and Memory Lab</a> at
             <a href="https://ucsd.edu" class="about-highlight" target="_blank">UC San Diego</a>. Currently, I'm a Research Fellow at the
             <a href="https://www.nih.gov" class="about-highlight" target="_blank">National Institutes of Health</a> in
-            <a href="https://fim.nimh.nih.gov/" class="about-highlight" target="_blank">Dr. Peter Bandettini's lab</a>, where I'm investigating how we can control
-            pupil size in real time to improve our perception. Previously, I built
+            <a href="https://fim.nimh.nih.gov/" class="about-highlight" target="_blank">Dr. Peter Bandettini's lab</a>, where I'm investigating how we can modulate
+            our pupil size in real-time to regulate our perception and neural activity. Previously, I built
             decoding pipelines for BCIs as a
             <a href="https://www.simonsfoundation.org" class="about-highlight" target="_blank">Simons Foundation Fellow</a> under
             <a href="https://neuroprosthetics.science/" class="about-highlight" target="_blank">Dr. Sergey Stavisky</a>, and investigated visual perception at the
@@ -143,7 +149,7 @@ const row1 = [
       </div>
     </section>
     */}
-
+    </div>
 
     <footer>
       <p class="footer-credit">
@@ -230,12 +236,17 @@ const row1 = [
         position: static; z-index: 100;
         display: flex; flex-direction: row; justify-content: space-between; align-items: baseline;
         gap: clamp(16px, 3vw, 48px);
-        padding: clamp(12px, 2vw, 24px) clamp(20px, 5vw, 64px); border-bottom: none;
+        padding: clamp(12px, 2vw, 24px) clamp(20px, 5vw, 64px); border-bottom: 1px solid var(--border);
         background: transparent;
       }
       .nav-logo { display: inline-flex; flex-direction: column; gap: 2px; color: var(--text); text-decoration: none; line-height: 1.05; }
-      .nav-logo-name { font-family: var(--serif); font-size: clamp(28px, 2.8vw, 42px); font-weight: 400; letter-spacing: 0; white-space: nowrap; }
+      .nav-logo-name { font-family: var(--serif); font-size: clamp(28px, 2.8vw, 42px); font-weight: 400; letter-spacing: 0; white-space: nowrap; color: var(--text); text-decoration: none; }
+      .nav-logo-thai-row { display: inline-flex; align-items: center; gap: 6px; }
       .nav-logo-thai { font-family: var(--serif); font-style: italic; font-size: clamp(16px, 1.4vw, 22px); color: var(--muted); letter-spacing: 0; }
+      .pronunciation-btn { background: none; border: 0; padding: 2px; margin: 0; cursor: pointer; color: var(--muted); display: inline-flex; align-items: center; justify-content: center; line-height: 0; }
+      .pronunciation-btn:hover { color: var(--accent); }
+      .pronunciation-btn svg { width: clamp(13px, 1vw, 16px); height: clamp(13px, 1vw, 16px); display: block; }
+      #thai-name-audio { display: none; }
       .nav-icons { display: flex; align-items: center; gap: clamp(10px, 1.2vw, 18px); margin-top: 2px; }
       .nav-icon { display: inline-flex; align-items: center; justify-content: center; gap: 6px; color: var(--muted); line-height: 0; text-decoration: none; }
       .nav-icon:hover { color: var(--accent); }
@@ -255,9 +266,11 @@ const row1 = [
       #about {
         padding-top: var(--space-6); padding-bottom: var(--space-7);
         padding-left: clamp(12px, 2.5vw, 32px); padding-right: clamp(12px, 2.5vw, 32px);
-        border-bottom: 1px solid var(--border); min-height: auto; position: relative; color: var(--text);
+        border-bottom: 1px solid var(--border); position: relative; color: var(--text);
+        /* hero fills the viewport (minus nav) so the bottom border + footer sit at the fold, not a quarter up */
+        min-height: calc(100svh - 5rem);
         display: flex; flex-direction: row; align-items: center; gap: var(--space-5);
-        max-width: 1200px; margin-left: auto; margin-right: auto;
+        max-width: min(1600px, 92vw); margin-left: auto; margin-right: auto;
       }
       #about::before {
         content: ''; position: absolute; z-index: -2; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw;
@@ -275,15 +288,16 @@ const row1 = [
       .about-body { font-family: var(--serif-body); font-size: var(--text-base); font-weight: 400; color: var(--text); line-height: var(--leading-body); letter-spacing: 0; margin-bottom: var(--space-3); max-width: var(--maxw); }
       .bio-photo-wrapper {
         position: relative; flex-shrink: 0;
-        width: clamp(340px, 42vw, 560px);
+        /* fluid: scales with viewport; min for small laptops, max for ultrawide so it doesn't dominate */
+        width: clamp(340px, 38vw, 820px);
         overflow: hidden;
         border-radius: 10px;
       }
       .about-photo { position: relative; z-index: 1; width: 100%; height: auto; object-fit: unset; object-position: center; border-radius: 0; display: block; transform: none; transition: transform 0.5s; }
-      .bio-photo-block { display: flex; flex-direction: column; align-items: flex-start; width: clamp(340px, 42vw, 560px); }
+      .bio-photo-block { display: flex; flex-direction: column; align-items: flex-start; width: clamp(340px, 38vw, 820px); }
       .hero-separator { order: -1; font-family: var(--mono); font-size: clamp(14px, 1.6vw, 22px); color: rgba(26,26,24,0.55); letter-spacing: 8px; margin: clamp(6px, 0.9vw, 12px) 0; text-align: center; line-height: 1; }
       .section-separator { font-family: var(--mono); font-size: clamp(14px, 1.6vw, 22px); color: rgba(255,255,255,0.6); letter-spacing: 8px; text-align: center; padding: clamp(24px, 4vw, 48px) 0; }
-      .bio-photo-caption { display: inline-flex; align-items: center; gap: 6px; font-family: var(--serif-body); font-style: italic; font-size: clamp(13px, 1vw, 16px); letter-spacing: 0; color: var(--muted); margin-top: 8px; }
+      .bio-photo-caption { display: inline-flex; align-items: center; gap: 6px; font-family: var(--serif-body); font-style: normal; font-size: clamp(13px, 1vw, 16px); letter-spacing: 0; color: var(--muted); margin-top: 8px; }
       .bio-pin { font-size: 1.1em; line-height: 1; }
       .about-photo-label { font-family: var(--mono); font-size: clamp(8px, 0.8vw, 10px); letter-spacing: 2px; color: rgba(255,255,255,0.6); text-align: right; margin-top: 10px; }
       .about-highlight { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: var(--accent); }
@@ -475,7 +489,17 @@ const row1 = [
     </style>
 
     <script>
-// ── EXPERIENCES ORBIT: scroll-driven rotation + tilt ─────
+      // ── PRONUNCIATION BUTTON ─────────────────────────────────
+      const pronunciationBtn = document.getElementById('pronunciation-btn');
+      const thaiAudio = document.getElementById('thai-name-audio');
+      if (pronunciationBtn && thaiAudio) {
+        pronunciationBtn.addEventListener('click', () => {
+          thaiAudio.currentTime = 0;
+          thaiAudio.play().catch(() => { /* file may not be present yet */ });
+        });
+      }
+
+      // ── EXPERIENCES ORBIT: scroll-driven rotation + tilt ─────
       const orbit = document.getElementById('orbit');
       if (orbit) {
         const orbitContainer = orbit.parentElement;
