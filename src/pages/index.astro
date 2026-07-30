@@ -139,8 +139,8 @@ const recommendations = [
             <img src="/picnic.jpeg" alt="Plyfaa Suwanamalik-Murphy" class="about-photo bio-photo"/>
             {/* Hover easter egg: cartoon eyes pinned to her actual eyes (measured off the source
                 frame as percentages, so they track the photo at any size) and a little message. */}
-            <span class="eye eye--l" aria-hidden="true"><span class="eye-lid"><span class="eye-pupil"></span></span></span>
-            <span class="eye eye--r" aria-hidden="true"><span class="eye-lid"><span class="eye-pupil"></span></span></span>
+            <span class="eye eye--l" aria-hidden="true"><span class="eye-lid"><svg class="eye-shape" viewBox="0 0 100 70" preserveAspectRatio="none"><path d="M1,35 C20,5 80,5 99,35 C80,65 20,65 1,35 Z"/></svg><span class="eye-pupil"></span></span></span>
+            <span class="eye eye--r" aria-hidden="true"><span class="eye-lid"><svg class="eye-shape" viewBox="0 0 100 70" preserveAspectRatio="none"><path d="M1,35 C20,5 80,5 99,35 C80,65 20,65 1,35 Z"/></svg><span class="eye-pupil"></span></span></span>
             <span class="photo-msgs" aria-hidden="true">
               <span class="photo-message">caught you looking hehe</span>
               <span class="photo-affirm">this is your reminder that you are unstoppable</span>
@@ -472,20 +472,20 @@ const recommendations = [
          locked to her eyes at every width. .eye owns position + head tilt, .eye-lid owns the blink
          (they'd fight over `transform` on one element). */
       .eye {
-        position: absolute; z-index: 3; width: 6.6%; aspect-ratio: 1 / 0.78;
+        position: absolute; z-index: 3; width: 6.6%; aspect-ratio: 1 / 0.70;
         opacity: 0; transform: translate(-50%, -50%) rotate(22deg) scale(0.6);
         transition: opacity 0.14s ease, transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
         pointer-events: none;
       }
       .eye--l { left: 29.6%; top: 34.5%; }
       .eye--r { left: 37.5%; top: 37.0%; }
-      .eye-lid {
-        display: block; width: 100%; height: 100%;
-        background: #FFFDF8; border: 1.5px solid #1A1A1A;
-        border-radius: 50%; position: relative;
-      }
+      .eye-lid { display: block; width: 100%; height: 100%; position: relative; }
+      /* almond needs real points where the two curves meet — border-radius can only make
+         ellipses or flat-edged rounded rects, so the lid outline is an SVG path */
+      .eye-shape { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+      .eye-shape path { fill: #FFFDF8; stroke: #1A1A1A; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
       .eye-pupil {
-        position: absolute; left: 50%; top: 52%; width: 46%; aspect-ratio: 1;
+        position: absolute; z-index: 2; left: 50%; top: 52%; width: 44%; aspect-ratio: 1;
         background: #1A1A1A; border-radius: 50%; transform: translate(-50%, -50%);
       }
       .eye-pupil::after {
