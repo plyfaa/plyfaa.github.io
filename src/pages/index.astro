@@ -10,6 +10,42 @@ const row1 = [
   { src: '/narcan.jpg', alt: 'Narcan', label: '' },
 ];
 
+// Dates confirmed against Plyfaa's records, 2026-07-29. Ordered by amount, descending.
+const funding = [
+  { name: 'NIH Postbaccalaureate IRTA',            year: 'Jun 2024 – Jun 2026', amount: '$94,300' },
+  { name: 'NIH MARC Traineeship',                  year: 'Apr 2023',            amount: '$22,338' },
+  { name: 'Simons Foundation Shenoy Fellowship',   year: 'Aug 2023',            amount: '$11,598' },
+  { name: 'UK Rank Prize Vacation Grant',          year: 'May 2023',            amount: '$5,500'  },
+  { name: 'UC Davis Experiential Learning Grant',  year: 'Jun 2023',            amount: '$3,600'  },
+  { name: 'NIMH Trainee Travel Award',             year: 'Sep 2025',            amount: '$1,000'  },
+  { name: "UC Davis Provost's Undergraduate Fellowship", year: 'Jun 2023',      amount: '$808'    },
+  { name: 'ASSC Early Career Travel Award',        year: 'May 2025',            amount: '$500'    },
+  { name: 'UC Davis Undergraduate Travel Award',   year: 'Jan 2024',            amount: '$500'    },
+];
+
+// Hero recommendations — add more entries and they stack; `quote` and `note` are both optional.
+const recommendations = [
+  {
+    title:  'Talking to Strangers',
+    author: 'Malcolm Gladwell',
+    href:   'https://www.goodreads.com/en/book/show/43848929-talking-to-strangers',
+    note:   'This book has had so much influence over how I communicate. Trusting people is not a flaw.',
+    quote:  'To assume the best about another is the trait that has created modern society. Those ' +
+            'occasions when our trusting nature gets violated are tragic. But the alternative — to ' +
+            'abandon trust as a defense against predation and deception — is worse.',
+  },
+  {
+    title:  'The Danger of a Single Story',
+    author: 'Chimamanda Ngozi Adichie',
+    href:   'https://youtu.be/D9Ihs241zeg',
+    note:   'I was 14 when I first watched this, and it has stayed with me ever since. I hope to meet ' +
+            'Adichie in person one day. She has shaped so much of how I listen and how much I trust ' +
+            'anything that describes a person in a single sentence.',
+    quote:  'I would like to end with this thought: that when we reject the single story, when we ' +
+            'realize that there is never a single story about any place, we regain a kind of paradise.',
+  },
+];
+
 // const row2 = [
 //   { src: '/Hawaii Pacific Neuroscience summer cohort.jpg', alt: 'Hawaii Pacific Neuroscience summer cohort', label: 'Hawaii Pacific Neuroscience summer cohort' },
 //   { src: '/SFIM lab dinner.jpeg', alt: 'SFIM lab dinner', label: 'SFIM lab dinner' },
@@ -36,7 +72,7 @@ const row1 = [
     <!-- NAV -->
     <nav id="nav">
       <div class="nav-logo">
-        <a href="#about" class="nav-logo-name">Plyfaa Suwanamalik-Murphy <span class="nav-logo-tagline">~ Visual Perception &amp; Attention</span></a>
+        <a href="#about" class="nav-logo-name">Plyfaa Suwanamalik-Murphy <span class="nav-logo-tagline">~ Eye Signals &amp; Fatigue Detection</span></a>
         <span class="nav-logo-thai-row">
           <span class="nav-logo-thai">ปลายฟ้า</span>
           <span class="nav-logo-phonetic">/ˈplaɪfɑː/</span>
@@ -45,8 +81,7 @@ const row1 = [
           </button>
           <audio id="thai-name-audio" src="/name_pronunciation.m4a" preload="metadata"></audio>
         </span>
-      </div>
-      <div class="nav-icons" aria-label="Contact">
+        <div class="nav-icons" aria-label="Contact">
         <a href="mailto:plysuwana@gmail.com" aria-label="Email" class="nav-icon nav-icon--email">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
         </a>
@@ -63,43 +98,54 @@ const row1 = [
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
           <span>CV</span>
         </a>
+        </div>
       </div>
-      {/* <ul class="nav-links">
-        <li><a href="#gallery">From the Lab</a></li>
-      </ul> */}
+      <ul class="nav-links">
+        <li><a href="#shipped">Shipped</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#funding">Funding</a></li>
+      </ul>
     </nav>
 
     <!-- ABOUT: Bio + photo -->
     <section id="about">
 <div class="about-text-body">
-          <p class="about-body">
-            I'm fascinated by the eyes and what they reveal about our perception.
+          <p class="about-lede">I'm fascinated by the eyes and what they reveal about our perception.</p>
+          <p class="about-deck">
+            I spent four years measuring it at NIH, Oxford, and UC Davis (+ a lot of other places).
+            Now I'm building
+            <a href="https://www.thisisnoddr.com/" class="about-highlight" target="_blank" rel="noopener noreferrer">Noddr</a>
+            into the safety glasses industrial crews already wear.
           </p>
-          <p class="about-body">
-            I'm an incoming PhD student in
-            <a href="https://bradylab.ucsd.edu" class="about-highlight" target="_blank" rel="noopener noreferrer">Dr. Timothy Brady's Visual and Memory Lab</a> at
-            <a href="https://ucsd.edu" class="about-highlight" target="_blank" rel="noopener noreferrer">UC San Diego</a>. Previously, I was a Research Fellow at the
-            <a href="https://www.nih.gov" class="about-highlight" target="_blank" rel="noopener noreferrer">National Institutes of Health</a> in
-            <a href="https://fim.nimh.nih.gov/" class="about-highlight" target="_blank" rel="noopener noreferrer">Dr. Peter Bandettini's lab</a>, where I investigated how we can modulate
-            our pupil size in real-time to regulate our perception and neural activity. I also built
-            decoding pipelines for BCIs as a
-            <a href="https://www.simonsfoundation.org" class="about-highlight" target="_blank" rel="noopener noreferrer">Simons Foundation Fellow</a> under
-            <a href="https://neuroprosthetics.science/" class="about-highlight" target="_blank" rel="noopener noreferrer">Dr. Sergey Stavisky</a>, and investigated visual perception at the
-            <a href="https://www.psy.ox.ac.uk/" class="about-highlight" target="_blank" rel="noopener noreferrer">University of Oxford</a> advised by
-            <a href="https://www.psy.ox.ac.uk/people/hannah-smithson" class="about-highlight" target="_blank" rel="noopener noreferrer">Dr. Hannah Smithson</a>.
-          </p>
-          <p class="about-body">
-            I completed my Bachelor's in Cognitive Science from
-            <a href="https://ucdavis.edu" class="about-highlight" target="_blank" rel="noopener noreferrer">UC Davis</a> in 2 years. And spent most of that time in
-            research labs, learning as much as I could about eye-tracking, EEG, and visual cognition.
-          </p>
+
+          <div class="hero-rec">
+            <p class="hero-rec-label">Things I always highly highly highly recommend dedicating time to</p>
+            {recommendations.map(r => (
+              <div class="rec-item">
+                <p class="rec-title">
+                  <a href={r.href} class="about-highlight" target="_blank" rel="noopener noreferrer">{r.title}</a>
+                  <span class="rec-author">{r.author}</span>
+                </p>
+                {r.note && <p class="rec-note">{r.note}</p>}
+                {r.quote && <blockquote class="rec-quote">{r.quote}</blockquote>}
+              </div>
+            ))}
+          </div>
       </div>
       <div class="bio-stack">
         <div class="bio-photo-block">
+          <span class="bio-photo-hint" aria-hidden="true">pssst! bring your cursor over the picture <span class="hint-eyes">&#128064;</span></span>
           <div class="bio-photo-wrapper">
-            <img src="/hero_pic.jpeg" alt="Plyfaa Suwanamalik-Murphy" class="about-photo bio-photo"/>
+            <img src="/picnic.jpeg" alt="Plyfaa Suwanamalik-Murphy" class="about-photo bio-photo"/>
+            {/* Hover easter egg: cartoon eyes pinned to her actual eyes (measured off the source
+                frame as percentages, so they track the photo at any size) and a little message. */}
+            <span class="eye eye--l" aria-hidden="true"><span class="eye-lid"><span class="eye-pupil"></span></span></span>
+            <span class="eye eye--r" aria-hidden="true"><span class="eye-lid"><span class="eye-pupil"></span></span></span>
+            <span class="photo-msgs" aria-hidden="true">
+              <span class="photo-message">caught you looking hehe</span>
+              <span class="photo-affirm">this is your reminder that you are unstoppable</span>
+            </span>
           </div>
-          <span class="bio-photo-caption"><span class="bio-pin">📍</span>Crete, Greece</span>
         </div>
       </div>
     </section>
@@ -131,6 +177,125 @@ const row1 = [
       </div>
     </section>
     */}
+
+    <!-- SHIPPED -->
+    <section id="shipped">
+      <p class="section-tag reveal">Shipped</p>
+
+      <ol class="shipped-list">
+        <li class="shipped-item reveal">
+          <div class="shipped-head">
+            <h3 class="shipped-name">Nudge</h3>
+            <a href="https://try-nudge.com" class="shipped-link" target="_blank" rel="noopener noreferrer">try-nudge.com <span class="shipped-arrow" aria-hidden="true">&#8599;</span></a>
+          </div>
+          <p class="shipped-body">
+            Browser focus tool. MediaPipe FaceMesh gaze tracking, three-step calibration, 10-second
+            distraction threshold. React, Vite, TypeScript, no server.
+          </p>
+        </li>
+
+        <li class="shipped-item reveal">
+          <div class="shipped-head">
+            <h3 class="shipped-name">Lasso</h3>
+            <a href="https://apps.apple.com/us/app/lasso-price-drop-tracker/id6761538243" class="shipped-link" target="_blank" rel="noopener noreferrer">App Store <span class="shipped-arrow" aria-hidden="true">&#8599;</span></a>
+          </div>
+          <p class="shipped-body">Price-drop tracker. Live on the iOS App Store.</p>
+        </li>
+
+        <li class="shipped-item reveal">
+          <div class="shipped-head">
+            <h3 class="shipped-name">3rdi</h3>
+          </div>
+          <p class="shipped-body">
+            Meditation app, full build. React Native, Expo. Freelance designer-engineer.
+          </p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research">
+      <p class="section-tag reveal">Research</p>
+
+      <ol class="research-list">
+        <li class="research-item reveal">
+          <div class="research-head">
+            <h3 class="research-org"><a href="https://www.nih.gov" class="research-org-link" target="_blank" rel="noopener noreferrer">NIH / NIMH</a>, Laboratory of Brain and Cognition</h3>
+            <span class="research-when">2024&ndash;2026</span>
+          </div>
+          <p class="research-body">
+            Built ocular analysis pipeline in MATLAB: pupil and gaze extraction, blink interpolation,
+            microsaccade detection, event epoching. MEG preprocessing with ICA and artifact rejection,
+            automated on Slurm HPC.
+            <span class="research-pi">With <a href="https://fim.nimh.nih.gov/" class="about-highlight" target="_blank" rel="noopener noreferrer">Dr. Peter Bandettini</a>.</span>
+          </p>
+        </li>
+
+        <li class="research-item reveal">
+          <div class="research-head">
+            <h3 class="research-org"><a href="https://ucdavis.edu" class="research-org-link" target="_blank" rel="noopener noreferrer">UC Davis</a> Neuroprosthetics Lab, <a href="https://www.simonsfoundation.org" class="research-org-link" target="_blank" rel="noopener noreferrer">Simons Foundation</a> Fellow</h3>
+            <span class="research-when">2023&ndash;2024</span>
+          </div>
+          <p class="research-body">
+            Spike-sorting pipeline in Python isolating single neurons from four 64-channel arrays
+            implanted in a participant with ALS.
+            <span class="research-pi">With <a href="https://neuroprosthetics.science/" class="about-highlight" target="_blank" rel="noopener noreferrer">Dr. Sergey Stavisky</a>.</span>
+          </p>
+        </li>
+
+        <li class="research-item reveal">
+          <div class="research-head">
+            <h3 class="research-org"><a href="https://www.psy.ox.ac.uk/" class="research-org-link" target="_blank" rel="noopener noreferrer">University of Oxford</a>, Perception Lab</h3>
+            <span class="research-when">2023</span>
+          </div>
+          <p class="research-body">
+            Perception paradigms in PsychToolbox, MATLAB visualization pipelines for iridescent stimuli.
+            <span class="research-pi">With <a href="https://www.psy.ox.ac.uk/people/hannah-smithson" class="about-highlight" target="_blank" rel="noopener noreferrer">Dr. Hannah Smithson</a>.</span>
+          </p>
+        </li>
+
+        <li class="research-item reveal">
+          <div class="research-head">
+            <h3 class="research-org"><a href="https://ucdavis.edu" class="research-org-link" target="_blank" rel="noopener noreferrer">UC Davis</a>, Bachelor's Cognitive Science</h3>
+            <span class="research-when">Completed in two years</span>
+          </div>
+          <p class="research-body">Published abstract in <a href="https://www.neurology.org/doi/abs/10.1212/WNL.0000000000202503" class="about-highlight" target="_blank" rel="noopener noreferrer"><em>Neurology</em></a> as an undergraduate.</p>
+        </li>
+
+        <li class="research-item reveal">
+          <div class="research-head">
+            <h3 class="research-org"><a href="https://ucsd.edu" class="research-org-link" target="_blank" rel="noopener noreferrer">UC San Diego</a></h3>
+            <span class="research-when">Incoming PhD</span>
+          </div>
+          <p class="research-body">
+            Admitted to <a href="https://bradylab.ucsd.edu" class="about-highlight" target="_blank" rel="noopener noreferrer">Dr. Timothy Brady's Vision and Memory Lab</a>.
+          </p>
+        </li>
+      </ol>
+
+      <p class="research-note reveal">
+        11 conference presentations, 2023&ndash;2026, several as spoken talks. First-author talks at the
+        Vision Sciences Society and the Smithsonian Institution, slots that usually go to PhD students,
+        postdocs, and PIs. $140K in competitive research funding across nine awards.
+      </p>
+    </section>
+
+    <!-- FUNDING -->
+    <section id="funding">
+      <p class="section-tag reveal">Funding</p>
+      <ul class="funding-list">
+        {funding.map(f => (
+          <li class="funding-item reveal">
+            <span class="funding-name">{f.name}</span>
+            <span class="funding-leader" aria-hidden="true"></span>
+            <span class="funding-meta">
+              <span class="funding-year">{f.year}</span>
+              <span class="funding-amount">{f.amount}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
 
     <footer>
       <p class="footer-credit">
@@ -181,7 +346,7 @@ const row1 = [
         --text-sm:      14px;
         --leading-body: 1.7;
         --leading-tight:1.2;
-        --heading-section: clamp(22px, 2.6vw, 30px);
+        --heading-section: clamp(28px, 3.4vw, 40px);
         --heading-display: clamp(32px, 4vw, 48px);
       }
 
@@ -208,14 +373,16 @@ const row1 = [
       .pronunciation-btn:hover { color: var(--accent); }
       .pronunciation-btn svg { width: clamp(18px, 1.4vw, 22px); height: clamp(18px, 1.4vw, 22px); display: block; }
       #thai-name-audio { display: none; }
-      .nav-icons { display: flex; align-items: center; gap: clamp(10px, 1.2vw, 18px); margin-top: 2px; }
+      /* contact icons live inside .nav-logo, stacked under the Thai row */
+      .nav-icons { display: flex; align-items: center; gap: clamp(10px, 1.2vw, 18px); margin-top: 8px; }
       .nav-icon { display: inline-flex; align-items: center; justify-content: center; gap: 6px; color: var(--accent); line-height: 0; text-decoration: none; }
       .nav-icon:hover { opacity: 0.75; }
       .nav-icon svg { width: clamp(20px, 1.8vw, 26px); height: clamp(20px, 1.8vw, 26px); display: block; }
       .nav-icon--with-text { line-height: 1; }
       .nav-icon--with-text span { font-family: var(--serif-body); font-style: normal; font-size: clamp(15px, 1.2vw, 18px); letter-spacing: 0; }
-      .nav-links { display: flex; gap: clamp(16px, 2.4vw, 32px); list-style: none; }
-      .nav-links a { font-family: var(--serif-body); font-size: clamp(14px, 1.05vw, 17px); letter-spacing: 0; color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: var(--border); white-space: nowrap; }
+      .nav-links { display: flex; gap: clamp(18px, 2.4vw, 34px); list-style: none; }
+      .nav-links a { font-family: var(--serif-body); font-size: clamp(18px, 1.7vw, 26px); letter-spacing: 0; color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; text-decoration-color: var(--border); white-space: nowrap; }
+      .nav-links a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 
       /* ── SECTION BASE ── */
       section { max-width: var(--section-maxw); margin-left: auto; margin-right: auto; padding: var(--space-7) clamp(20px, 5vw, 64px) var(--space-6); border-bottom: 1px solid var(--border); }
@@ -228,36 +395,199 @@ const row1 = [
         padding-top: var(--space-6); padding-bottom: var(--space-7);
         padding-left: clamp(12px, 2.5vw, 32px); padding-right: clamp(12px, 2.5vw, 32px);
         border-bottom: 1px solid var(--border); position: relative; color: var(--text);
-        /* hero fills the viewport (minus nav) so the bottom border + footer sit at the fold, not a quarter up */
-        min-height: calc(100svh - 5rem);
-        display: flex; flex-direction: row; align-items: center; gap: var(--space-5);
+        /* no forced viewport height — the hero is exactly as tall as its content, and the two
+           columns share a top edge so they read as one composition rather than two objects */
+        display: flex; flex-direction: row; align-items: flex-start; gap: clamp(32px, 4.5vw, 76px);
         max-width: min(1600px, 92vw); margin-left: auto; margin-right: auto;
       }
       #about::before {
         content: ''; position: absolute; z-index: -2; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw;
         background: var(--bg);
       }
-      #experiences, #gallery { border-bottom: none; }
+      #experiences, #gallery, #funding { border-bottom: none; }
       #gallery { padding-bottom: clamp(8px, 1vw, 16px); }
       .about-text-body { position: relative; flex: 1 1 0; min-width: 0; max-width: var(--maxw); margin: 0; border: none; padding: 0; background: transparent; z-index: 2; }
       .bio-stack { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: clamp(8px, 1.2vw, 14px); z-index: 2; order: -1; flex-shrink: 0; }
-      .about-text-body .about-body:last-child { margin-bottom: 0; }
       .about-name { font-family: var(--serif); font-size: var(--heading-display); font-weight: 400; line-height: var(--leading-tight); letter-spacing: 0; color: var(--text); margin-bottom: var(--space-4); }
       .about-name em { font-style: italic; color: var(--accent); }
-      .about-body { font-family: var(--serif-body); font-size: var(--text-base); font-weight: 400; color: var(--text); line-height: var(--leading-body); letter-spacing: 0; margin-bottom: var(--space-3); max-width: var(--maxw); }
+      /* lede carries the hook at display size; deck supports it at reading size */
+      .about-lede {
+        font-family: var(--serif); font-size: clamp(30px, 3.7vw, 50px); font-weight: 400;
+        line-height: 1.12; letter-spacing: -0.005em; color: var(--text);
+        margin-bottom: var(--space-3); max-width: 15em; text-wrap: balance;
+      }
+      .about-deck {
+        font-family: var(--serif-body); font-size: clamp(17px, 1.5vw, 21px); font-weight: 400;
+        line-height: 1.62; letter-spacing: 0; color: var(--text); max-width: 34em;
+      }
+      /* ── HERO RECOMMENDATIONS ──
+         Third tier under lede/deck, and it fills the space beside the photo's lower half. */
+      .hero-rec {
+        margin-top: var(--space-4); padding-top: var(--space-3);
+        border-top: 1px solid var(--border); max-width: 34em;
+      }
+      .hero-rec-label {
+        font-family: var(--serif-body); font-style: italic; font-size: clamp(17px, 1.45vw, 20px);
+        line-height: 1.4; color: var(--text); margin-bottom: 14px;
+      }
+      .rec-item + .rec-item { margin-top: var(--space-3); }
+      .rec-title { font-family: var(--serif); font-size: clamp(19px, 1.7vw, 24px); line-height: 1.25; color: var(--text); }
+      .rec-author { color: var(--muted); }
+      .rec-author::before { content: '\2002\2014\2002'; }
+      .rec-note { font-family: var(--serif-body); font-size: clamp(15px, 1.25vw, 17px); line-height: 1.55; color: var(--text); margin-top: 3px; }
+      .rec-quote {
+        margin-top: 12px; padding-left: 16px; border-left: 2px solid var(--accent);
+        font-family: var(--serif-body); font-style: italic; font-size: clamp(15px, 1.25vw, 17px);
+        line-height: 1.6; color: var(--text);
+      }
+
       .bio-photo-wrapper {
         position: relative; flex-shrink: 0;
-        /* fluid: scales with viewport; min for small laptops, max for ultrawide so it doesn't dominate */
-        width: clamp(380px, 46vw, 1000px);
+        /* portrait 3:4 source — narrower than a landscape hero would be, or it towers over the copy */
+        width: clamp(260px, 31vw, 460px);
         overflow: hidden;
         border-radius: 10px;
       }
       .about-photo { position: relative; z-index: 1; width: 100%; height: auto; object-fit: unset; object-position: center; border-radius: 0; display: block; transform: none; transition: transform 0.5s; }
-      .bio-photo-block { display: flex; flex-direction: column; align-items: flex-start; width: clamp(380px, 46vw, 1000px); }
-      .bio-photo-caption { display: inline-flex; align-items: center; gap: 6px; font-family: var(--serif-body); font-style: normal; font-size: var(--text-base); font-weight: 400; line-height: var(--leading-body); letter-spacing: 0; color: var(--text); margin-top: 8px; }
-      .bio-pin { font-size: 1.1em; line-height: 1; }
+      .bio-photo-block { display: flex; flex-direction: column; align-items: flex-start; width: clamp(260px, 31vw, 460px); }
+      /* nudge to discover the hover egg; sits above the photo and retires once you've found it */
+      .bio-photo-hint {
+        /* full-width banner matching the photo, not a left-hugging shrink-wrapped label */
+        display: block; width: 100%; text-align: center;
+        padding: 9px 14px; margin-bottom: 12px;
+        background: rgba(214, 130, 110, 0.15); border-radius: 8px;
+        font-family: var(--serif-body); font-style: italic; font-size: clamp(17px, 1.7vw, 23px);
+        line-height: 1.4; color: var(--accent); letter-spacing: 0;
+        opacity: 1; transition: opacity 0.35s ease;
+        animation: hint-bob 2.2s ease-in-out infinite;
+      }
+      .hint-eyes { font-style: normal; font-size: 1.15em; line-height: 1; }
+      @keyframes hint-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+      /* hint precedes the photo in the DOM, so reach it from the parent rather than a sibling combinator */
+      .bio-photo-block:has(.bio-photo-wrapper:hover) .bio-photo-hint { opacity: 0; animation-play-state: paused; }
+      @media (prefers-reduced-motion: reduce) { .bio-photo-hint { animation: none; } }
+      @media (hover: none) { .bio-photo-hint { display: none; } }
+      /* ── HOVER EASTER EGG: BLINKING EYES ──
+         Anchors are percentages of the photo frame, measured off the source image, so they stay
+         locked to her eyes at every width. .eye owns position + head tilt, .eye-lid owns the blink
+         (they'd fight over `transform` on one element). */
+      .eye {
+        position: absolute; z-index: 3; width: 6.6%; aspect-ratio: 1 / 0.78;
+        opacity: 0; transform: translate(-50%, -50%) rotate(22deg) scale(0.6);
+        transition: opacity 0.14s ease, transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+        pointer-events: none;
+      }
+      .eye--l { left: 29.6%; top: 34.5%; }
+      .eye--r { left: 37.5%; top: 37.0%; }
+      .eye-lid {
+        display: block; width: 100%; height: 100%;
+        background: #FFFDF8; border: 1.5px solid #1A1A1A;
+        border-radius: 50%; position: relative;
+      }
+      .eye-pupil {
+        position: absolute; left: 50%; top: 52%; width: 46%; aspect-ratio: 1;
+        background: #1A1A1A; border-radius: 50%; transform: translate(-50%, -50%);
+      }
+      .eye-pupil::after {
+        content: ''; position: absolute; left: 20%; top: 16%; width: 34%; aspect-ratio: 1;
+        background: #FFFDF8; border-radius: 50%;
+      }
+      .bio-photo-wrapper:hover .eye { opacity: 1; transform: translate(-50%, -50%) rotate(22deg) scale(1); }
+      /* blink only while hovered, so the animation isn't running invisibly the whole time */
+      /* two quick blinks the moment the eyes land, then settle into a slow spaced-out rhythm.
+         Both animate transform; the second is listed last so it wins once its delay elapses. */
+      .bio-photo-wrapper:hover .eye-lid {
+        animation:
+          blink-double 0.7s ease-in-out 0s 1 both,
+          blink-idle   3.2s ease-in-out 0.7s infinite;
+      }
+      @keyframes blink-double {
+        0%, 6%    { transform: scaleY(1); }
+        14%, 20%  { transform: scaleY(0.06); }
+        28%, 36%  { transform: scaleY(1); }
+        44%, 50%  { transform: scaleY(0.06); }
+        58%, 100% { transform: scaleY(1); }
+      }
+      @keyframes blink-idle {
+        0%, 90%, 100% { transform: scaleY(1); }
+        94%, 96%      { transform: scaleY(0.06); }
+      }
+
+      /* both chips stack beside her head. `right` bounds the column against the frame so neither
+         line can run past the wrapper's overflow at narrow photo widths. */
+      .photo-msgs {
+        position: absolute; z-index: 4; left: 47%; right: 3%; top: 27%;
+        display: flex; flex-direction: column; align-items: flex-start; gap: 7px;
+        pointer-events: none;
+      }
+      .photo-message, .photo-affirm {
+        opacity: 0; background: rgba(26,26,26,0.88); color: var(--light-accent);
+        font-family: var(--serif-body); font-style: italic; font-size: clamp(12.5px, 1.1vw, 15px);
+        line-height: 1.45; transform: translateY(6px) scale(0.94); transform-origin: left center;
+        transition: opacity 0.3s ease 0.12s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.12s;
+      }
+      .photo-message { padding: 5px 12px; border-radius: 999px; }
+      .photo-affirm { padding: 8px 13px; border-radius: 12px; color: var(--accent); transition-delay: 0.22s; }
+      .bio-photo-wrapper:hover .photo-message,
+      .bio-photo-wrapper:hover .photo-affirm { opacity: 1; transform: translateY(0) scale(1); }
+
+      @media (prefers-reduced-motion: reduce) {
+        .bio-photo-wrapper:hover .eye-lid { animation: none; }
+        .eye, .photo-message { transition-duration: 0.01ms; }
+      }
+      /* touch devices never fire :hover — don't leave a half-triggered state behind */
+      @media (hover: none) {
+        .eye, .photo-message { display: none; }
+      }
+
       .about-highlight { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: var(--accent); }
       .about-highlight:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+      /* ── SHIPPED ── */
+      #shipped { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+      #shipped .section-tag { margin-bottom: var(--space-4); }
+      .shipped-list { list-style: none; margin: 0; padding: 0; max-width: var(--maxw); }
+      .shipped-item { margin-bottom: var(--space-4); }
+      .shipped-item:last-child { margin-bottom: 0; }
+      .shipped-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 4px; }
+      .shipped-name { font-family: var(--serif); font-size: clamp(19px, 1.7vw, 24px); font-weight: 400; line-height: var(--leading-tight); letter-spacing: 0; color: var(--text); }
+      .shipped-link { flex: 0 0 auto; font-family: var(--serif-body); font-size: var(--text-sm); color: var(--accent); white-space: nowrap; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: var(--blue-dim); }
+      .shipped-link:hover { text-decoration-color: var(--accent); }
+      .shipped-arrow { font-style: normal; }
+      .shipped-body { font-family: var(--serif-body); font-size: var(--text-base); line-height: var(--leading-body); color: var(--text); }
+
+      /* ── RESEARCH ── */
+      #research { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+      #research .section-tag { margin-bottom: var(--space-4); }
+      .research-list { list-style: none; margin: 0; padding: 0; max-width: var(--maxw); }
+      .research-item { margin-bottom: var(--space-4); }
+      .research-item:last-child { margin-bottom: 0; }
+      /* org left, dates pinned right — CV rail, no leader (that motif belongs to Funding) */
+      .research-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 4px; }
+      .research-org { font-family: var(--serif); font-size: clamp(19px, 1.7vw, 24px); font-weight: 400; line-height: var(--leading-tight); letter-spacing: 0; color: var(--text); }
+      .research-org-link { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: var(--border); }
+      .research-org-link:hover { color: var(--accent); text-decoration-color: var(--accent); }
+      .research-when { flex: 0 0 auto; font-family: var(--serif-body); font-style: italic; font-size: var(--text-sm); color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+      .research-body { font-family: var(--serif-body); font-size: var(--text-base); line-height: var(--leading-body); color: var(--text); }
+      .research-pi { color: var(--muted); font-style: italic; }
+      .research-note { max-width: var(--maxw); margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--border); font-family: var(--serif-body); font-size: var(--text-base); line-height: var(--leading-body); color: var(--text); }
+
+      /* ── FUNDING ── */
+      #funding { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+      #funding .section-tag { margin-bottom: var(--space-4); }
+      .funding-list { list-style: none; margin: 0; padding: 0; }
+      .funding-item {
+        display: flex; align-items: baseline; gap: 0;
+        font-family: var(--serif-body); font-size: var(--text-base); line-height: 1.9;
+        color: var(--text);
+      }
+      .funding-name { flex: 0 1 auto; }
+      /* dot leader bridging name to amount, as in a printed programme */
+      .funding-leader { flex: 1 1 auto; min-width: 24px; margin: 0 10px; border-bottom: 1px dotted var(--border); transform: translateY(-0.3em); }
+      /* year and amount ride in a fixed-width rail so both columns stay flush right */
+      .funding-meta { flex: 0 0 auto; display: flex; align-items: baseline; gap: 18px; }
+      .funding-year { min-width: 9.2em; text-align: right; font-size: var(--text-sm); font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; }
+      .funding-amount { min-width: 4.2em; text-align: right; font-variant-numeric: tabular-nums; color: var(--accent); white-space: nowrap; }
 
       /* ── GALLERY ── */
       #gallery .section-tag { font-family: var(--serif); justify-content: center; text-align: center; font-size: var(--heading-section); font-weight: 400; letter-spacing: 0; color: var(--text); }
@@ -280,7 +610,7 @@ const row1 = [
 
       /* ── FOOTER ── */
       footer { max-width: none; margin: 0; padding: var(--space-4) clamp(20px, 5vw, 64px); display: flex; justify-content: flex-start; align-items: flex-start; border-top: 1px solid var(--border); }
-      .footer-credit { font-family: var(--serif-body); font-style: italic; font-size: clamp(13px, 1vw, 16px); letter-spacing: 0; color: var(--muted); line-height: 1.8; max-width: 800px; }
+      .footer-credit { font-family: var(--serif-body); font-style: italic; font-size: var(--text-base); letter-spacing: 0; color: var(--muted); line-height: 1.8; max-width: 800px; }
       .footer-highlight { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--border); }
       .footer-highlight:hover { color: var(--accent); text-decoration-color: var(--accent); }
       a.footer-highlight:hover { color: var(--text); }
@@ -309,8 +639,9 @@ const row1 = [
 
         .about-text-body { width: 100%; max-width: 100%; margin: 0; }
         .bio-stack { width: 100%; align-items: flex-start; margin: 0; }
-        .bio-photo-block { width: 100%; align-items: flex-start; }
-        .bio-photo-wrapper { width: 100%; aspect-ratio: auto; }
+        /* cap the portrait so a full-bleed 3:4 doesn't run a screen and a half tall */
+        .bio-photo-block { width: min(100%, 380px); align-items: flex-start; }
+        .bio-photo-wrapper { width: min(100%, 380px); aspect-ratio: auto; }
         .about-text-body::before, .about-text-body::after { display: none; }
       }
 
@@ -338,17 +669,41 @@ const row1 = [
 
         /* Body text: keep readable but don't break the viewport */
         .about-text-body { width: 100%; max-width: 100%; }
-        .about-body { font-size: 16px; line-height: 1.65; }
-        .bio-photo-caption { font-size: 16px; }
+        .about-lede { font-size: clamp(26px, 7.2vw, 34px); max-width: 100%; }
+        .about-deck { font-size: 16px; line-height: 1.6; }
+        .hero-rec { max-width: 100%; margin-top: var(--space-3); }
+        .rec-title { font-size: clamp(18px, 5vw, 21px); }
+        .rec-note, .rec-quote { font-size: 15px; }
+        .bio-photo-hint { font-size: 14px; }
         .about-name { font-size: clamp(26px, 7vw, 36px); }
-        .bio-photo-wrapper { width: 100%; max-width: 100%; }
-        .bio-photo-block { width: 100%; }
+        .bio-photo-wrapper { width: min(100%, 320px); }
+        .bio-photo-block { width: min(100%, 320px); }
 
         .pronunciation-btn svg { width: 20px; height: 20px; }
 
+        /* Shipped: link drops under the project name rather than fighting it for the same line */
+        #shipped { padding: clamp(32px, 7vw, 48px) clamp(16px, 4.5vw, 24px); }
+        .shipped-head { flex-direction: column; align-items: flex-start; gap: 2px; margin-bottom: 6px; }
+        .shipped-name { font-size: clamp(18px, 5vw, 22px); }
+        .shipped-body { font-size: 16px; line-height: 1.65; }
+
+        /* Research: date drops under the org rather than fighting it for the same line */
+        #research { padding: clamp(32px, 7vw, 48px) clamp(16px, 4.5vw, 24px); }
+        .research-head { flex-direction: column; align-items: flex-start; gap: 2px; margin-bottom: 6px; }
+        .research-org { font-size: clamp(18px, 5vw, 22px); }
+        .research-body, .research-note { font-size: 16px; line-height: 1.65; }
+
+        /* Funding: stack each award over its amount; dot leaders don't survive narrow columns */
+        #funding { padding: clamp(32px, 7vw, 48px) clamp(16px, 4.5vw, 24px); }
+        .funding-item { flex-wrap: wrap; font-size: 16px; line-height: 1.6; margin-bottom: 12px; }
+        .funding-name { flex: 1 1 100%; }
+        .funding-leader { display: none; }
+        .funding-meta { gap: 12px; }
+        .funding-year, .funding-amount { min-width: 0; text-align: left; }
+
         /* Footer: tighter side padding so the credit line breathes */
         footer { padding: clamp(20px, 5vw, 32px) clamp(16px, 4.5vw, 24px); }
-        .footer-credit { font-size: 13px; line-height: 1.6; }
+        .footer-credit { font-size: 16px; line-height: 1.7; }
       }
 
       /* ── RESPONSIVE: VERY SMALL PHONES (iPhone SE) ── */
@@ -356,8 +711,14 @@ const row1 = [
         .nav-logo-name { font-size: clamp(18px, 5.8vw, 22px); }
         .nav-logo-tagline { font-size: 0.7em; }
         .about-name { font-size: 22px; }
-        .about-body { font-size: 15px; }
-        .bio-photo-caption { font-size: 15px; }
+        .about-lede { font-size: 24px; }
+        .about-deck { font-size: 15px; }
+        .bio-photo-hint { font-size: 13px; }
+        .funding-item { font-size: 15px; }
+        .research-org { font-size: 18px; }
+        .research-body, .research-note { font-size: 15px; }
+        .shipped-name { font-size: 18px; }
+        .shipped-body { font-size: 15px; }
       }
     </style>
 
