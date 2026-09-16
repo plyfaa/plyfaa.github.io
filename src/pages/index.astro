@@ -110,10 +110,10 @@ const recommendations = [
     <!-- ABOUT: Bio + photo -->
     <section id="about">
 <div class="about-text-body">
-          <p class="about-lede">I'm fascinated by the eyes and what they give away.</p>
+          <p class="about-lede">I'm fascinated by the eyes and what they reveal about our cognitive state.</p>
           <p class="about-deck">
-            Four years measuring it at NIH, Oxford, and UC Davis. Now building
-            <a href="https://www.getnoddr.com/" class="about-highlight" target="_blank" rel="noopener noreferrer">Noddr</a>.
+            Four years investigating this at NIH, Oxford, and UC Davis. Now building
+            <a href="https://www.avelistechnologies.com/" class="about-highlight" target="_blank" rel="noopener noreferrer">Avelis, Inc.</a>
           </p>
 
           <div class="hero-rec">
@@ -140,7 +140,6 @@ const recommendations = [
             <span class="eye eye--l" aria-hidden="true"><span class="eye-lid"><svg class="eye-shape" viewBox="0 0 100 70" preserveAspectRatio="none"><path d="M1,35 C20,5 80,5 99,35 C80,65 20,65 1,35 Z"/></svg><span class="eye-pupil"></span></span></span>
             <span class="eye eye--r" aria-hidden="true"><span class="eye-lid"><svg class="eye-shape" viewBox="0 0 100 70" preserveAspectRatio="none"><path d="M1,35 C20,5 80,5 99,35 C80,65 20,65 1,35 Z"/></svg><span class="eye-pupil"></span></span></span>
             <span class="photo-msgs" aria-hidden="true">
-              <span class="photo-message">caught you looking hehe</span>
               <span class="photo-affirm">this is your reminder that you are unstoppable</span>
             </span>
           </div>
@@ -263,10 +262,10 @@ const recommendations = [
         <li class="research-item reveal">
           <div class="research-head">
             <h3 class="research-org"><a href="https://ucsd.edu" class="research-org-link" target="_blank" rel="noopener noreferrer">UC San Diego</a></h3>
-            <span class="research-when">Incoming PhD</span>
+            <span class="research-when">September 2026&ndash;present</span>
           </div>
           <p class="research-body">
-            Admitted to <a href="https://bradylab.ucsd.edu" class="about-highlight" target="_blank" rel="noopener noreferrer">Dr. Timothy Brady's Vision and Memory Lab</a>.
+            PhD student in <a href="https://bradylab.ucsd.edu" class="about-highlight" target="_blank" rel="noopener noreferrer">Dr. Timothy Brady's Vision and Memory Lab</a>.
           </p>
         </li>
       </ol>
@@ -511,31 +510,29 @@ const recommendations = [
         94%, 96%      { transform: scaleY(0.06); }
       }
 
-      /* both chips stack beside her head. `right` bounds the column against the frame so neither
-         line can run past the wrapper's overflow at narrow photo widths. */
+      /* the chip sits beside her head. `right` bounds the column against the frame so the
+         line can't run past the wrapper's overflow at narrow photo widths. */
       .photo-msgs {
         position: absolute; z-index: 4; left: 47%; right: 3%; top: 27%;
         display: flex; flex-direction: column; align-items: flex-start; gap: 7px;
         pointer-events: none;
       }
-      .photo-message, .photo-affirm {
+      .photo-affirm {
         opacity: 0; background: rgba(26,26,26,0.88); color: var(--light-accent);
         font-family: var(--serif-body); font-style: italic; font-size: clamp(12.5px, 1.1vw, 15px);
         line-height: 1.45; transform: translateY(6px) scale(0.94); transform-origin: left center;
         transition: opacity 0.3s ease 0.12s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.12s;
       }
-      .photo-message { padding: 5px 12px; border-radius: 999px; }
       .photo-affirm { padding: 8px 13px; border-radius: 12px; color: var(--accent); transition-delay: 0.22s; }
-      .bio-photo-wrapper:hover .photo-message,
       .bio-photo-wrapper:hover .photo-affirm { opacity: 1; transform: translateY(0) scale(1); }
 
       @media (prefers-reduced-motion: reduce) {
         .bio-photo-wrapper:hover .eye-lid { animation: none; }
-        .eye, .photo-message { transition-duration: 0.01ms; }
+        .eye, .photo-affirm { transition-duration: 0.01ms; }
       }
       /* touch devices never fire :hover — don't leave a half-triggered state behind */
       @media (hover: none) {
-        .eye, .photo-message { display: none; }
+        .eye, .photo-affirm { display: none; }
       }
 
       .about-highlight { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: var(--accent); }
