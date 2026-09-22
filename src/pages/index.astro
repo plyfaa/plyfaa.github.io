@@ -25,16 +25,16 @@ const funding = [
 
 // Hero recommendations — add more entries and they stack; `quote` and `note` are both optional.
 const recommendations = [
-  {
-    title:  'Talking to Strangers',
-    author: 'Malcolm Gladwell',
-    href:   'https://www.goodreads.com/en/book/show/43848929-talking-to-strangers',
-    note:   "Changed how I communicate. Reading someone you don't know is a far harder " +
-            "problem than most people treat it as.",
-    quote:  'To assume the best about another is the trait that has created modern society. Those ' +
-            'occasions when our trusting nature gets violated are tragic. But the alternative — to ' +
-            'abandon trust as a defense against predation and deception — is worse.',
-  },
+  // {
+  //   title:  'Talking to Strangers',
+  //   author: 'Malcolm Gladwell',
+  //   href:   'https://www.goodreads.com/en/book/show/43848929-talking-to-strangers',
+  //   note:   "Changed how I communicate. Reading someone you don't know is a far harder " +
+  //           "problem than most people treat it as.",
+  //   quote:  'To assume the best about another is the trait that has created modern society. Those ' +
+  //           'occasions when our trusting nature gets violated are tragic. But the alternative — to ' +
+  //           'abandon trust as a defense against predation and deception — is worse.',
+  // },
   {
     title:  'The Danger of a Single Story',
     author: 'Chimamanda Ngozi Adichie',
@@ -82,7 +82,7 @@ const recommendations = [
       </div>
       <div class="nav-right">
         <ul class="nav-links">
-          <li><a href="#shipped">Shipped</a></li>
+          <li><a href="#shipped">Outside the Lab</a></li>
           <li><a href="#research">Research</a></li>
           <li><a href="#funding">Funding</a></li>
         </ul>
@@ -117,7 +117,9 @@ const recommendations = [
           </p>
 
           <div class="hero-rec">
+            {/*
             <p class="hero-rec-label">Things I always highly highly highly recommend dedicating time to</p>
+            */}
             {recommendations.map(r => (
               <div class="rec-item">
                 <p class="rec-title">
@@ -132,16 +134,23 @@ const recommendations = [
       </div>
       <div class="bio-stack">
         <div class="bio-photo-block">
+          {/* Hint line, disabled along with the rest of the hover easter egg below. */}
+          {/*
           <span class="bio-photo-hint" aria-hidden="true">pssst! bring your cursor over the picture for a fun fact <span class="hint-eyes">&#128064;</span></span>
+          */}
           <div class="bio-photo-wrapper">
             <img src="/picnic.jpeg" alt="Plyfaa Suwanamalik-Murphy" class="about-photo bio-photo"/>
-            {/* Hover easter egg: cartoon eyes pinned to her actual eyes (measured off the source
-                frame as percentages, so they track the photo at any size) and a little message. */}
+            {/* Hover easter egg, disabled in full: the cartoon eyes and the fun-fact chip.
+                The eye anchors were percentages of the photo frame, so they stayed pinned to
+                her actual eyes at any size. To restore: uncomment the spans below, the hint
+                line above, and the matching rules in the style block. */}
+            {/*
             <span class="eye eye--l" aria-hidden="true"><span class="eye-lid"><svg class="eye-shape" viewBox="0 0 100 70" preserveAspectRatio="none"><path d="M1,35 C20,5 80,5 99,35 C80,65 20,65 1,35 Z"/></svg><span class="eye-pupil"></span></span></span>
             <span class="eye eye--r" aria-hidden="true"><span class="eye-lid"><svg class="eye-shape" viewBox="0 0 100 70" preserveAspectRatio="none"><path d="M1,35 C20,5 80,5 99,35 C80,65 20,65 1,35 Z"/></svg><span class="eye-pupil"></span></span></span>
             <span class="photo-msgs" aria-hidden="true">
               <span class="photo-affirm">Fixation isn’t stillness. Your eyes make tiny, rapid movements that continually refresh what you see.</span>
             </span>
+            */}
           </div>
         </div>
       </div>
@@ -177,7 +186,7 @@ const recommendations = [
 
     <!-- SHIPPED -->
     <section id="shipped">
-      <p class="section-tag reveal">Shipped</p>
+      <p class="section-tag reveal">Outside the Lab</p>
 
       <ol class="shipped-list">
         <li class="shipped-item reveal">
@@ -477,10 +486,12 @@ const recommendations = [
         margin-top: var(--space-4); padding-top: var(--space-3);
         border-top: 1px solid var(--border); max-width: 34em;
       }
+      /*
       .hero-rec-label {
         font-family: var(--serif-body); font-style: italic; font-size: clamp(17px, 1.45vw, 20px);
         line-height: 1.4; color: var(--text); margin-bottom: 14px;
       }
+      */
       .rec-item + .rec-item { margin-top: var(--space-3); }
       .rec-title { font-family: var(--serif); font-size: clamp(19px, 1.7vw, 24px); line-height: 1.25; color: var(--text); }
       .rec-author { color: var(--muted); }
@@ -501,9 +512,12 @@ const recommendations = [
       }
       .about-photo { position: relative; z-index: 1; width: 100%; height: auto; object-fit: unset; object-position: center; border-radius: 0; display: block; transform: none; transition: transform 0.5s; }
       .bio-photo-block { display: flex; flex-direction: column; align-items: flex-start; width: clamp(260px, 31vw, 460px); }
-      /* nudge to discover the hover egg; sits above the photo and retires once you've found it */
+      /* Hint nudge, disabled with the easter egg. Notes for whoever restores it: the hint
+         spanned the photo width and centered on the page background with no fill; it precedes
+         the photo in the DOM, so the hover rule reaches it from the parent rather than a
+         sibling combinator. */
+      /*
       .bio-photo-hint {
-        /* spans the photo width and centers, but sits on the page background — no fill */
         display: block; width: 100%; text-align: center;
         padding: 0 4px; margin-bottom: 12px;
         font-family: var(--serif-body); font-style: italic; font-size: clamp(17px, 1.7vw, 23px);
@@ -513,14 +527,15 @@ const recommendations = [
       }
       .hint-eyes { font-style: normal; font-size: 1.15em; line-height: 1; }
       @keyframes hint-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-      /* hint precedes the photo in the DOM, so reach it from the parent rather than a sibling combinator */
       .bio-photo-block:has(.bio-photo-wrapper:hover) .bio-photo-hint { opacity: 0; animation-play-state: paused; }
       @media (prefers-reduced-motion: reduce) { .bio-photo-hint { animation: none; } }
       @media (hover: none) { .bio-photo-hint { display: none; } }
+      */
       /* ── HOVER EASTER EGG: BLINKING EYES ──
          Anchors are percentages of the photo frame, measured off the source image, so they stay
          locked to her eyes at every width. .eye owns position + head tilt, .eye-lid owns the blink
          (they'd fight over `transform` on one element). */
+      /*
       .eye {
         position: absolute; z-index: 3; width: 6.6%; aspect-ratio: 1 / 0.70;
         opacity: 0; transform: translate(-50%, -50%) rotate(22deg) scale(0.6);
@@ -530,8 +545,10 @@ const recommendations = [
       .eye--l { left: 29.6%; top: 34.5%; }
       .eye--r { left: 37.5%; top: 37.0%; }
       .eye-lid { display: block; width: 100%; height: 100%; position: relative; }
+      */
       /* almond needs real points where the two curves meet — border-radius can only make
          ellipses or flat-edged rounded rects, so the lid outline is an SVG path */
+      /*
       .eye-shape { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
       .eye-shape path { fill: #FFFDF8; stroke: #1A1A1A; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
       .eye-pupil {
@@ -543,9 +560,11 @@ const recommendations = [
         background: #FFFDF8; border-radius: 50%;
       }
       .bio-photo-wrapper:hover .eye { opacity: 1; transform: translate(-50%, -50%) rotate(22deg) scale(1); }
+      */
       /* blink only while hovered, so the animation isn't running invisibly the whole time */
       /* two quick blinks the moment the eyes land, then settle into a slow spaced-out rhythm.
          Both animate transform; the second is listed last so it wins once its delay elapses. */
+      /*
       .bio-photo-wrapper:hover .eye-lid {
         animation:
           blink-double 0.7s ease-in-out 0s 1 both,
@@ -562,9 +581,11 @@ const recommendations = [
         0%, 90%, 100% { transform: scaleY(1); }
         94%, 96%      { transform: scaleY(0.06); }
       }
+      */
 
       /* the chip sits beside her head. `right` bounds the column against the frame so the
          line can't run past the wrapper's overflow at narrow photo widths. */
+      /*
       .photo-msgs {
         position: absolute; z-index: 4; left: 47%; right: 3%; top: 27%;
         display: flex; flex-direction: column; align-items: flex-start; gap: 7px;
@@ -578,15 +599,19 @@ const recommendations = [
       }
       .photo-affirm { padding: 8px 13px; border-radius: 12px; color: var(--accent); transition-delay: 0.22s; }
       .bio-photo-wrapper:hover .photo-affirm { opacity: 1; transform: translateY(0) scale(1); }
+      */
 
+      /* touch devices never fire :hover, so these kept the egg from leaving a half-triggered
+         state behind. Disabled with it. */
+      /*
       @media (prefers-reduced-motion: reduce) {
         .bio-photo-wrapper:hover .eye-lid { animation: none; }
         .eye, .photo-affirm { transition-duration: 0.01ms; }
       }
-      /* touch devices never fire :hover — don't leave a half-triggered state behind */
       @media (hover: none) {
         .eye, .photo-affirm { display: none; }
       }
+      */
 
       .about-highlight { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: var(--accent); }
       .about-highlight:hover { color: var(--accent); text-decoration-color: var(--accent); }
@@ -723,7 +748,7 @@ const recommendations = [
         .hero-rec { max-width: 100%; margin-top: var(--space-3); }
         .rec-title { font-size: clamp(18px, 5vw, 21px); }
         .rec-note, .rec-quote { font-size: 15px; }
-        .bio-photo-hint { font-size: 14px; }
+        /* .bio-photo-hint { font-size: 14px; } */
         .about-name { font-size: clamp(26px, 7vw, 36px); }
         .bio-photo-wrapper { width: min(100%, 320px); }
         .bio-photo-block { width: min(100%, 320px); }
@@ -762,7 +787,7 @@ const recommendations = [
         .about-name { font-size: 22px; }
         .about-lede { font-size: 24px; }
         .about-deck { font-size: 15px; }
-        .bio-photo-hint { font-size: 13px; }
+        /* .bio-photo-hint { font-size: 13px; } */
         .funding-item { font-size: 15px; }
         .research-org { font-size: 18px; }
         .research-body, .research-note { font-size: 15px; }
