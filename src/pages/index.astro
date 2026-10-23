@@ -1,56 +1,185 @@
 ---
 import '../styles/global.css';
 
-const row1 = [
-  { src: '/smithsonian.jpg', alt: 'NIMH Oral Presentation', label: 'NIMH/NIH Selected Lightning Talk Speaker' },
-  { src: '/art.jpg', alt: 'Art and Science', label: '3rd Place Art Winner! "Waves of Consciousness"' },
-  { src: '/poster.jpg', alt: 'ASSC Presentation', label: 'Oral presentation at NIMH/NIH' },
-  { src: '/talk.jpg', alt: 'Poster Presentation', label: 'Advocating for environmentally friendly infrastructure' },
-  { src: '/oxford.jpg', alt: 'Oxford', label: 'Perception of iridescence at the University of Oxford' },
-  { src: '/narcan.jpg', alt: 'Narcan', label: '' },
+// Content sourced from cv.pdf and the previous version of this page. Each section renders
+// from one of the arrays below, so most edits are data-only.
+
+const contact = [
+  { label: 'LinkedIn',       href: 'https://www.linkedin.com/in/plyfaa-murphy/' },
+  { label: 'GitHub',         href: 'https://github.com/plyfaa' },
+  { label: 'Google Scholar', href: 'https://scholar.google.com/citations?user=TCRiqYcAAAAJ&hl=en' },
+  { label: 'CV (PDF)',       href: '/cv.pdf' },
 ];
 
-// Dates confirmed against Plyfaa's records, 2026-07-29. Ordered by amount, descending.
-const funding = [
-  { name: 'NIH Postbaccalaureate IRTA',            year: 'Jun 2024 – Jun 2026', amount: '$94,300' },
-  { name: 'NIH MARC Traineeship',                  year: 'Apr 2023',            amount: '$22,338' },
-  { name: 'Simons Foundation Shenoy Fellowship',   year: 'Aug 2023',            amount: '$11,598' },
-  { name: 'UK Rank Prize Vacation Grant',          year: 'May 2023',            amount: '$5,500'  },
-  { name: 'UC Davis Experiential Learning Grant',  year: 'Jun 2023',            amount: '$3,600'  },
-  { name: 'NIMH Trainee Travel Award',             year: 'Sep 2025',            amount: '$1,000'  },
-  { name: "UC Davis Provost's Undergraduate Fellowship", year: 'Jun 2023',      amount: '$808'    },
-  { name: 'ASSC Early Career Travel Award',        year: 'May 2025',            amount: '$500'    },
-  { name: 'UC Davis Undergraduate Travel Award',   year: 'Jan 2024',            amount: '$500'    },
-];
-
-// Hero recommendations — add more entries and they stack; `quote` and `note` are both optional.
-const recommendations = [
-  // {
-  //   title:  'Talking to Strangers',
-  //   author: 'Malcolm Gladwell',
-  //   href:   'https://www.goodreads.com/en/book/show/43848929-talking-to-strangers',
-  //   note:   "Changed how I communicate. Reading someone you don't know is a far harder " +
-  //           "problem than most people treat it as.",
-  //   quote:  'To assume the best about another is the trait that has created modern society. Those ' +
-  //           'occasions when our trusting nature gets violated are tragic. But the alternative — to ' +
-  //           'abandon trust as a defense against predation and deception — is worse.',
-  // },
+const research = [
   {
-    title:  'The Danger of a Single Story',
-    author: 'Chimamanda Ngozi Adichie',
-    href:   'https://youtu.be/D9Ihs241zeg',
-    quote:  'I would like to end with this thought: that when we reject the single story, when we ' +
-            'realize that there is never a single story about any place, we regain a kind of paradise.',
+    when: '2024 – 2026',
+    org: 'National Institutes of Health (NIMH)',
+    orgHref: 'https://www.nih.gov',
+    unit: 'Laboratory of Brain and Cognition, Section on Functional Imaging Methods',
+    role: 'Postbaccalaureate Research Fellow (IRTA)',
+    body: 'Built an ocular analysis pipeline in MATLAB: pupil and gaze extraction, blink interpolation, ' +
+          'microsaccade detection, and event epoching. MEG preprocessing with ICA and artifact rejection, ' +
+          'automated on Slurm HPC. Recruited 30+ participants; collected fMRI and behavioral data.',
+    pi: [{ name: 'Dr. Peter Bandettini', href: 'https://fim.nimh.nih.gov/' }],
+  },
+  {
+    when: '2023 – 2024',
+    org: 'UC Davis, Department of Neurological Surgery',
+    orgHref: 'https://ucdavis.edu',
+    unit: 'Neuroprosthetics Lab',
+    role: 'Simons Foundation Shenoy Fellow',
+    body: 'Developed a spike-sorting pipeline in Python isolating single neurons from four 64-channel ' +
+          'microelectrode arrays implanted in a participant with ALS, as part of a speech BCI study.',
+    pi: [{ name: 'Dr. Sergey Stavisky', href: 'https://neuroprosthetics.science/' }],
+  },
+  {
+    when: '2023',
+    org: 'University of Oxford, Department of Experimental Psychology',
+    orgHref: 'https://www.psy.ox.ac.uk/',
+    unit: 'Oxford Perception Lab',
+    role: 'Visiting Research Scholar',
+    body: 'Piloted perception paradigms in PsychToolbox and built MATLAB visualization pipelines for ' +
+          'iridescent stimuli.',
+    pi: [{ name: 'Dr. Hannah Smithson', href: 'https://www.psy.ox.ac.uk/people/hannah-smithson' }],
+  },
+  {
+    when: '2022 – 2023',
+    org: 'UC Davis, Center for Mind & Brain',
+    orgHref: 'https://ucdavis.edu',
+    unit: 'Visual Cognition Lab',
+    role: 'Research Assistant',
+    body: 'Built a 40+ scene image dataset for studying how scene context shapes visual attention; ran ' +
+          'eye-tracking experiments and annotated 200+ stimuli for object depth.',
+    pi: [{ name: 'Dr. John Henderson', href: 'https://viscoglab.ucdavis.edu/' }],
+  },
+  {
+    when: '2022 – 2023',
+    org: 'UC Davis, Center for Mind & Brain',
+    orgHref: 'https://ucdavis.edu',
+    unit: 'Neural Mechanisms of Attention + Cognitive Neurolinguistics Labs',
+    role: 'Research Assistant',
+    body: 'Collected and analyzed 64-channel EEG investigating audiovisual speech processing, including ' +
+          'ERP analyses of N400 responses.',
+    pi: [
+      { name: 'Dr. George Mangun', href: 'https://mangunlab.ucdavis.edu/' },
+      { name: 'Dr. David Corina',  href: 'https://dpcorina.faculty.ucdavis.edu/' },
+    ],
+  },
+  {
+    when: '2022',
+    org: 'Hawaiʻi Pacific Neuroscience',
+    orgHref: 'https://hawaiineuroscience.com/',
+    role: 'Summer Intern',
+    body: 'Analyzed clinical records and psychiatric outcomes in multiple sclerosis using nonparametric ' +
+          'and categorical statistics. Published as an abstract in Neurology.',
+    pi: [{ name: 'Drs. Jason Viereck, Kore Liow & Shin Chang' }],
+  },
+  {
+    when: '2022',
+    org: 'University of Hawaiʻi at Mānoa',
+    unit: 'Brain & Behavior Lab + Intergroup Social Perception Lab',
+    role: 'Summer Research Assistant',
+    body: 'Assembled EEG acquisition systems for neurological rehabilitation research and analyzed ' +
+          'demographic effects on face recognition with mixed-design models.',
+    pi: [
+      { name: 'Dr. Jonas Vibell',    href: 'https://brainandbehaviorlab.com/' },
+      { name: 'Dr. Kristin Pauker',  href: 'https://manoa.hawaii.edu/isplab/' },
+    ],
   },
 ];
 
-// const row2 = [
-//   { src: '/Hawaii Pacific Neuroscience summer cohort.jpg', alt: 'Hawaii Pacific Neuroscience summer cohort', label: 'Hawaii Pacific Neuroscience summer cohort' },
-//   { src: '/SFIM lab dinner.jpeg', alt: 'SFIM lab dinner', label: 'SFIM lab dinner' },
-//   { src: '/Summer internship social in Oahu.jpg', alt: 'Summer internship social in Oahu', label: 'Summer internship social in Oahu' },
-//   { src: '/Summer_internship_in_Oahu.jpg', alt: 'Summer internship in Oahu', label: 'Summer internship in Oahu' },
-//   { src: '/graduation.jpeg', alt: 'Graduation', label: 'Graduation' },
-// ];
+const ME = 'Suwanamalik-Murphy, P.';
+const publications = [
+  {
+    authors: 'Chang, S., Suwanamalik-Murphy, P., Okazaki, J., Roy, D., Matsunaga, M., Goo, C., Carrazana, E., Viereck, J., & Liow, K.',
+    year: '2023',
+    title: 'Investigating the prevalence of psychiatric disorders in multiple sclerosis with autoimmune comorbidities (P5-3.008).',
+    venue: 'Neurology, 100(17 Suppl 2).',
+    href: 'https://doi.org/10.1212/WNL.0000000000202503',
+  },
+];
+
+const talks = [
+  { authors: 'Suwanamalik-Murphy, P., et al.',
+    date: '2026', title: 'The physiological correlates of conscious and unconscious visual and auditory processing: An MEG and eye-tracking study.',
+    venue: 'Vision Sciences Society Annual Meeting, St. Pete Beach, FL.',
+    href: 'https://fim.nimh.nih.gov/presentations/physiological_correlates_of_conscious_and_unconscious_visual_and_auditory_processing/', linkText: 'SFIM' },
+  { authors: 'Suwanamalik-Murphy, P., Gobo, V., Gonzalez-Castillo, J., Benitez-Andonegui, A., Bandettini, P., & Kronemer, S.',
+    date: '2025', title: 'Neural dynamics of visual consciousness and awareness.',
+    venue: 'Society for Neuroscience Annual Meeting, San Diego, CA. Accepted oral presentation; not presented due to the government shutdown.' },
+  { authors: 'Suwanamalik-Murphy, P.',
+    date: '2025', title: 'The eyes know what the brain hears.',
+    venue: 'NIMH IRP Fellows’ Scientific Training Day, Washington, D.C. Selected lightning talk, one of two postbacs chosen.' },
+  { authors: 'Suwanamalik-Murphy, P., Gobo, V., Gonzalez-Castillo, J., Benitez-Andonegui, A., Bandettini, P., & Kronemer, S.',
+    date: '2025', title: 'Examining how spontaneous eye measures indicate conscious and unconscious sensory neural processing.',
+    venue: 'NIMH IRP Fellows’ Scientific Training Day, Washington, D.C.' },
+  { authors: 'Suwanamalik-Murphy, P.',
+    date: '2025', title: 'What the eyes reveal about the brain.',
+    venue: 'NIMH Three Minute Talk Competition, Bethesda, MD.' },
+  { authors: 'Suwanamalik-Murphy, P., Gobo, V., Gonzalez-Castillo, J., Benitez-Andonegui, A., Bandettini, P., & Kronemer, S.',
+    date: '2025', title: 'Investigating eye metrics as an indicator of sensory neural processing, behavior, and conscious perception.',
+    venue: 'Association for the Scientific Study of Consciousness, Heraklion, Crete, Greece.' },
+  { authors: 'Suwanamalik-Murphy, P., Gobo, V., Gonzalez-Castillo, J., Benitez-Andonegui, A., Bandettini, P., & Kronemer, S.',
+    date: '2025', title: 'How brain states associated with spontaneous pupillary fluctuations alter conscious and unconscious sensory neural processing.',
+    venue: 'NIH Postbac Poster Day, Bethesda, MD.' },
+  { authors: 'Suwanamalik-Murphy, P., Shehabi, S., Laurie, N., Pierotti, E., & Corina, D.',
+    date: '2023', title: 'The impact of audiovisual cues on speech recognition: An ERP study.',
+    venue: 'UC Davis Undergraduate Research Conference, Davis, CA.' },
+  { authors: 'Chang, S., Suwanamalik-Murphy, P., Okazaki, J., Roy, D., Goo, C., Liow, K., Viereck, J., & Carrazana, E.',
+    date: '2023', title: 'Investigating the prevalence of psychiatric disorders in multiple sclerosis with autoimmune comorbidities.',
+    venue: 'American Academy of Neurology Annual Meeting, Boston, MA.' },
+  { authors: 'Shehabi, S., Suwanamalik-Murphy, P., Pierotti, E., & Corina, D.',
+    date: '2023', title: 'An ERP study investigating the influence of audiovisual cues on speech recognition.',
+    venue: 'Stanford University, Stanford, CA.' },
+  { authors: 'Mason, T., Suwanamalik-Murphy, P., Tenorio, K., Diaz, S., Pauker, K., Gaither, S., Halim, M., Dunham, Y., & Olson, K.',
+    date: '2023', title: 'Variability in the cross-race effect among geographically diverse White children.',
+    venue: 'Society for Personality and Social Psychology Annual Convention, Atlanta, GA.' },
+];
+
+// `href`/`linkText` are optional; entries without them render the name only.
+const projects = [
+  { name: 'Nudge', href: 'https://try-nudge.com', linkText: 'try-nudge.com',
+    body: 'Browser-based focus tool using webcam gaze tracking (MediaPipe FaceMesh) with three-step ' +
+          'calibration and a 10-second distraction threshold. React, Vite, TypeScript; runs entirely client-side.' },
+  { name: 'Lasso', href: 'https://apps.apple.com/us/app/lasso-price-drop-tracker/id6761538243', linkText: 'App Store',
+    body: 'Price-drop tracker, live on the iOS App Store.' },
+  { name: 'Matches pls', href: 'https://matchespls.com/', linkText: 'matchespls.com',
+    body: 'Directory and map of free matchbooks in San Francisco, built in response to community demand on TikTok.' },
+  { name: 'Rodeo Growth Fellow', href: 'https://rodeorodeorodeo.com/', linkText: 'rodeorodeorodeo.com',
+    body: 'Created UGC content for Rodeo, founded by former Hinge executives. Drove 150K+ TikTok views in ' +
+          'two weeks, starting with no prior social media experience.' },
+  { name: 'Meditation app',
+    body: 'Led visual design in Krea for a fairy-themed meditation app for a paid client.' },
+];
+
+const education = [
+  { org: 'University of California, San Diego', detail: 'PhD student, Psychology (Cognitive and Vision Science emphasis)' },
+  { org: 'University of California, Davis', detail: "Bachelor's, Cognitive Science · GPA 3.83" },
+];
+
+// Ordered by amount, descending.
+const funding = [
+  { name: 'NIH Postbaccalaureate Intramural Research Training Award', year: '2024 – 2026', amount: '$94,300' },
+  { name: 'NIH Maximizing Access to Research Careers (MARC) Traineeship', year: '2023', amount: '$22,338' },
+  { name: 'Simons Foundation Shenoy Undergraduate Research Fellowship', year: '2023', amount: '$11,598' },
+  { name: 'UK Rank Prize Undergraduate Vacation Grant',                 year: '2023', amount: '$5,500'  },
+  { name: 'UC Davis Experiential Learning Opportunity Grant',           year: '2023', amount: '$3,600'  },
+  { name: 'NIMH Trainee Travel Award',                                  year: '2025', amount: '$1,000'  },
+  { name: "UC Davis Provost's Undergraduate Fellowship",                year: '2023', amount: '$808'    },
+  { name: 'ASSC Early Career Researcher Travel Award',                  year: '2025', amount: '$500'    },
+  { name: 'UC Davis Undergraduate Travel Award',                        year: '2024', amount: '$500'    },
+];
+
+const service = [
+  { when: '2025 – present', org: 'Naloxone Network', role: 'Community Health Outreach Volunteer', place: 'Washington, D.C.' },
+  { when: '2023 – 2024',    org: 'Cognitive Science Student Association, UC Davis', role: 'Project Manager' },
+  { when: '2023 – 2024',    org: 'The Aggie Transcript: Psychology', role: 'Treasurer & Senior Editor' },
+  { when: '2020 – 2021',    org: 'San Francisco Youth Commission', role: 'Vice-Chair' },
+];
+
+// Splits an author string so the site owner's name can be bolded.
+const splitAuthors = (s: string) => s.split(ME);
 ---
 
 <!-- Plyfaa Suwanamalik-Murphy -->
@@ -59,777 +188,303 @@ const recommendations = [
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Plyfaa Suwanamalik-Murphy</title>
+    <title>Plyfaa Suwanamalik-Murphy · Cognitive Scientist</title>
+    <meta name="description" content="Plyfaa Suwanamalik-Murphy: cognitive scientist studying what eye signals reveal about attention, alertness, and conscious perception. PhD student in Psychology at UC San Diego; former NIH postbaccalaureate fellow; building Avelis, Inc."/>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet"/>
   </head>
 
   <body>
+    <div class="page">
 
-    <!-- NAV -->
-    <nav id="nav">
-      <div class="nav-logo">
-        <a href="#about" class="nav-logo-name">Plyfaa Suwanamalik-Murphy <span class="nav-logo-tagline">~ Eye Signals &amp; Human State</span></a>
-        <span class="nav-logo-thai-row">
-          <span class="nav-logo-thai">ปลายฟ้า</span>
-          <span class="nav-logo-phonetic">/ˈplaɪfɑː/</span>
-          <button type="button" class="pronunciation-btn" id="pronunciation-btn" aria-label="Play pronunciation of Plyfaa">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-          </button>
-          <audio id="thai-name-audio" src="/name_pronunciation.m4a" preload="metadata"></audio>
-        </span>
-      </div>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="#shipped">Outside the Lab</a></li>
-          <li><a href="#research">Research</a></li>
-          <li><a href="#funding">Funding</a></li>
-        </ul>
-        <div class="nav-icons" aria-label="Contact">
-          <a href="mailto:plysuwana@gmail.com" aria-label="Email" class="nav-icon nav-icon--email">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/plyfaa-murphy/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="nav-icon nav-icon--linkedin">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 3H3.55A.55.55 0 0 0 3 3.55v16.9c0 .3.25.55.55.55h16.9a.55.55 0 0 0 .55-.55V3.55A.55.55 0 0 0 20.45 3zM8.34 18.34H5.67V9.67h2.67v8.67zM7 8.5a1.55 1.55 0 1 1 0-3.1 1.55 1.55 0 0 1 0 3.1zm11.34 9.84h-2.67v-4.42c0-1.05-.02-2.4-1.46-2.4-1.46 0-1.69 1.14-1.69 2.32v4.5H9.86V9.67h2.56v1.18h.04c.36-.67 1.22-1.38 2.52-1.38 2.7 0 3.2 1.78 3.2 4.08v4.79z"/></svg>
-          </a>
-          <a href="https://github.com/plyfaa" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="nav-icon nav-icon--github">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1-.02-1.95-3.2.69-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.04 11.04 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.25 5.7.41.35.78 1.05.78 2.12 0 1.53-.01 2.77-.01 3.14 0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
-          </a>
-          <a href="https://scholar.google.com/citations?user=TCRiqYcAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" class="nav-icon nav-icon--scholar">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.749-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
-          </a>
-          <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" aria-label="Curriculum Vitae" class="nav-icon nav-icon--with-text">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
-            <span>CV</span>
-          </a>
+      <!-- HEADER -->
+      <header class="masthead">
+        <div class="identity">
+          <h1 class="name">Plyfaa Suwanamalik-Murphy</h1>
+          <p class="name-thai"><span lang="th">ปลายฟ้า</span> <span class="phonetic">/ˈplaɪfɑː/</span></p>
+          <p class="title">Cognitive scientist · Eye signals &amp; human state</p>
         </div>
-      </div>
-    </nav>
-
-    <!-- ABOUT: Bio + photo -->
-    <section id="about">
-<div class="about-text-body">
-          <p class="about-lede">I'm fascinated by the eyes and what they reveal about our cognitive state.</p>
-          <p class="about-deck">
-            Four years investigating this at NIH, Oxford, and UC Davis. Now building
-            <a href="https://www.avelistechnologies.com/" class="about-highlight" target="_blank" rel="noopener noreferrer">Avelis, Inc.</a>
-          </p>
-
-          <div class="hero-rec">
-            {/*
-            <p class="hero-rec-label">Things I always highly highly highly recommend dedicating time to</p>
-            */}
-            {recommendations.map(r => (
-              <div class="rec-item">
-                <p class="rec-title">
-                  <a href={r.href} class="about-highlight" target="_blank" rel="noopener noreferrer">{r.title}</a>
-                  <span class="rec-author">{r.author}</span>
-                </p>
-                {r.note && <p class="rec-note">{r.note}</p>}
-                {r.quote && <blockquote class="rec-quote">{r.quote}</blockquote>}
-              </div>
+        <div class="reach">
+          <ul class="contact">
+            {contact.map(c => (
+              <li><a href={c.href} target="_blank" rel="noopener noreferrer">{c.label}</a></li>
             ))}
-          </div>
-      </div>
-      <div class="bio-stack">
-        <div class="bio-photo-block">
-          {/* Hint line, disabled along with the rest of the hover easter egg below. */}
-          {/*
-          <span class="bio-photo-hint" aria-hidden="true">pssst! bring your cursor over the picture for a fun fact <span class="hint-eyes">&#128064;</span></span>
-          */}
-          <div class="bio-photo-wrapper">
-            <img src="/picnic.jpeg" alt="Plyfaa Suwanamalik-Murphy" class="about-photo bio-photo"/>
-            {/* Hover easter egg, disabled in full: the cartoon eyes and the fun-fact chip.
-                The eye anchors were percentages of the photo frame, so they stayed pinned to
-                her actual eyes at any size. To restore: uncomment the spans below, the hint
-                line above, and the matching rules in the style block. */}
-            {/*
-            <span class="eye eye--l" aria-hidden="true"><span class="eye-lid"><svg class="eye-shape" viewBox="0 0 100 70" preserveAspectRatio="none"><path d="M1,35 C20,5 80,5 99,35 C80,65 20,65 1,35 Z"/></svg><span class="eye-pupil"></span></span></span>
-            <span class="eye eye--r" aria-hidden="true"><span class="eye-lid"><svg class="eye-shape" viewBox="0 0 100 70" preserveAspectRatio="none"><path d="M1,35 C20,5 80,5 99,35 C80,65 20,65 1,35 Z"/></svg><span class="eye-pupil"></span></span></span>
-            <span class="photo-msgs" aria-hidden="true">
-              <span class="photo-affirm">Fixation isn’t stillness. Your eyes make tiny, rapid movements that continually refresh what you see.</span>
-            </span>
-            */}
+          </ul>
+          {/* written out rather than linked, to keep the address away from scrapers */}
+          <p class="emails">plysuwana [at] gmail [dot] com</p>
+        </div>
+      </header>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <h2 class="section-title">About</h2>
+        <div class="about">
+          <img src="/picnic.jpeg" alt="Portrait of Plyfaa Suwanamalik-Murphy" class="about-photo"/>
+          <div class="about-text">
+            <p>
+              I study what the eyes reveal about cognitive state: attention, alertness, and conscious
+              perception. Over four years of research at the National Institutes of Health, the University
+              of Oxford, and UC Davis, I've built analysis pipelines for eye-tracking, MEG, EEG, and
+              intracortical brain-computer interface (BCI) recordings.
+            </p>
+            <p>
+              I'm a PhD student in Psychology at UC San Diego, in Dr. Timothy Brady's
+              <a href="https://bradylab.ucsd.edu/" target="_blank" rel="noopener noreferrer">Vision and Memory Lab</a>.
+              I'm also building <a href="https://www.avelistechnologies.com/" target="_blank" rel="noopener noreferrer">Avelis, Inc.</a>,
+              which translates ocular physiology into machine-readable measures of human state.
+            </p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-{/* GALLERY: two scrolling rows. commented out for now
-    <section id="gallery">
-      <p class="section-tag reveal gallery-tag">From the Lab</p>
-      <div class="gallery-marquee reveal">
-        <div class="gallery-row">
-          <div class="gallery-track scroll-left">
-            {[...row1, ...row1].map(p => (
-              <figure class="gallery-item">
-                <img src={p.src} alt={p.alt} />
-                {p.label && <figcaption class="gallery-item-label">{p.label}</figcaption>}
-              </figure>
-            ))}
+      <!-- CURRENT -->
+      <section id="current">
+        <h2 class="section-title">Current</h2>
+        <div class="entry">
+          <p class="entry-when">2026 – present</p>
+          <div class="entry-main">
+            <h3 class="entry-org"><a href="https://ucsd.edu" target="_blank" rel="noopener noreferrer">University of California, San Diego</a></h3>
+            <p class="entry-unit">Department of Psychology, <a href="https://bradylab.ucsd.edu/" target="_blank" rel="noopener noreferrer">UCSD Vision and Memory Lab</a></p>
+            <p class="entry-role">PhD Student</p>
+            <p class="entry-pi">PI: <a href="https://bradylab.ucsd.edu/" target="_blank" rel="noopener noreferrer">Dr. Timothy Brady</a></p>
           </div>
         </div>
-        <div class="gallery-row">
-          <div class="gallery-track scroll-right">
-            {[...row2, ...row2].map(p => (
-              <figure class="gallery-item">
-                <img src={p.src} alt={p.alt} />
-                {p.label && <figcaption class="gallery-item-label">{p.label}</figcaption>}
-              </figure>
-            ))}
+        <div class="entry">
+          <p class="entry-when">Present</p>
+          <div class="entry-main">
+            <h3 class="entry-org"><a href="https://www.avelistechnologies.com/" target="_blank" rel="noopener noreferrer">Avelis, Inc.</a></h3>
+            <p class="entry-unit">Human-state sensing</p>
+            <p class="entry-body">
+              Early warning for declining alertness and performance in safety-critical settings through
+              eye-based sensing.
+            </p>
           </div>
         </div>
-      </div>
-    </section>
-    */}
+      </section>
 
-    <!-- SHIPPED -->
-    <section id="shipped">
-      <p class="section-tag reveal">Outside the Lab</p>
-
-      <ol class="shipped-list">
-        <li class="shipped-item reveal">
-          <div class="shipped-head">
-            <h3 class="shipped-name">Nudge</h3>
-            <a href="https://try-nudge.com" class="shipped-link" target="_blank" rel="noopener noreferrer">try-nudge.com <span class="shipped-arrow" aria-hidden="true">&#8599;</span></a>
+      <!-- RESEARCH -->
+      <section id="research">
+        <h2 class="section-title">Research Experience</h2>
+        {research.map(r => (
+          <div class="entry">
+            <p class="entry-when">{r.when}</p>
+            <div class="entry-main">
+              <h3 class="entry-org">
+                {r.orgHref ? <a href={r.orgHref} target="_blank" rel="noopener noreferrer">{r.org}</a> : r.org}
+              </h3>
+              {r.unit && <p class="entry-unit">{r.unit}</p>}
+              <p class="entry-role">{r.role}</p>
+              <p class="entry-body">{r.body}</p>
+              <p class="entry-pi">
+                PI: {r.pi.map((p, i) => (
+                  <>{i > 0 && ', '}{p.href ? <a href={p.href} target="_blank" rel="noopener noreferrer">{p.name}</a> : p.name}</>
+                ))}
+              </p>
+            </div>
           </div>
-          <p class="shipped-body">
-            Browser focus tool. MediaPipe FaceMesh gaze tracking, three-step calibration, 10-second
-            distraction threshold. React, Vite, TypeScript, no server.
-          </p>
-        </li>
-
-        <li class="shipped-item reveal">
-          <div class="shipped-head">
-            <h3 class="shipped-name">Rodeo Growth Fellow</h3>
-            <a href="https://rodeorodeorodeo.com/" class="shipped-link" target="_blank" rel="noopener noreferrer">rodeorodeorodeo.com <span class="shipped-arrow" aria-hidden="true">&#8599;</span></a>
-          </div>
-          <p class="shipped-body">
-            UGC content for Rodeo, founded by former Hinge execs. Drove 150K+ TikTok views in
-            2 weeks, starting with no prior social media experience.
-          </p>
-        </li>
-
-        <li class="shipped-item reveal">
-          <div class="shipped-head">
-            <h3 class="shipped-name">Matches pls</h3>
-            <a href="https://matchespls.com/" class="shipped-link" target="_blank" rel="noopener noreferrer">matchespls.com <span class="shipped-arrow" aria-hidden="true">&#8599;</span></a>
-          </div>
-          <p class="shipped-body">
-            Directory and map for free matchbooks in San Francisco. Built because people on TikTok
-            kept asking for one.
-          </p>
-        </li>
-
-        <li class="shipped-item reveal">
-          <div class="shipped-head">
-            <h3 class="shipped-name">Lasso</h3>
-            <a href="https://apps.apple.com/us/app/lasso-price-drop-tracker/id6761538243" class="shipped-link" target="_blank" rel="noopener noreferrer">App Store <span class="shipped-arrow" aria-hidden="true">&#8599;</span></a>
-          </div>
-          <p class="shipped-body">Price-drop tracker. Live on the iOS App Store.</p>
-        </li>
-
-        <li class="shipped-item reveal">
-          <div class="shipped-head">
-            <h3 class="shipped-name">Meditation app</h3>
-          </div>
-          <p class="shipped-body">
-            Led visual design in Krea for a fairy-themed meditation app for a paid client.
-          </p>
-        </li>
-      </ol>
-    </section>
-
-    <!-- RESEARCH -->
-    <section id="research">
-      <p class="section-tag reveal">Research</p>
-
-      <ol class="research-list">
-        <li class="research-item reveal">
-          <div class="research-head">
-            <h3 class="research-org"><a href="https://www.nih.gov" class="research-org-link" target="_blank" rel="noopener noreferrer">NIH / NIMH</a>, Laboratory of Brain and Cognition</h3>
-            <span class="research-when">2024&ndash;2026</span>
-          </div>
-          <p class="research-body">
-            Built ocular analysis pipeline in MATLAB: pupil and gaze extraction, blink interpolation,
-            microsaccade detection, event epoching. MEG preprocessing with ICA and artifact rejection,
-            automated on Slurm HPC.
-            <span class="research-pi">With <a href="https://fim.nimh.nih.gov/" class="about-highlight" target="_blank" rel="noopener noreferrer">Dr. Peter Bandettini</a>.</span>
-          </p>
-        </li>
-
-        <li class="research-item reveal">
-          <div class="research-head">
-            <h3 class="research-org"><a href="https://ucdavis.edu" class="research-org-link" target="_blank" rel="noopener noreferrer">UC Davis</a> Neuroprosthetics Lab, <a href="https://www.simonsfoundation.org" class="research-org-link" target="_blank" rel="noopener noreferrer">Simons Foundation</a> Fellow</h3>
-            <span class="research-when">2023&ndash;2024</span>
-          </div>
-          <p class="research-body">
-            Spike-sorting pipeline in Python isolating single neurons from four 64-channel arrays
-            implanted in a participant with ALS.
-            <span class="research-pi">With <a href="https://neuroprosthetics.science/" class="about-highlight" target="_blank" rel="noopener noreferrer">Dr. Sergey Stavisky</a>.</span>
-          </p>
-        </li>
-
-        <li class="research-item reveal">
-          <div class="research-head">
-            <h3 class="research-org"><a href="https://www.psy.ox.ac.uk/" class="research-org-link" target="_blank" rel="noopener noreferrer">University of Oxford</a>, Perception Lab</h3>
-            <span class="research-when">2023</span>
-          </div>
-          <p class="research-body">
-            Perception paradigms in PsychToolbox, MATLAB visualization pipelines for iridescent stimuli.
-            <span class="research-pi">With <a href="https://www.psy.ox.ac.uk/people/hannah-smithson" class="about-highlight" target="_blank" rel="noopener noreferrer">Dr. Hannah Smithson</a>.</span>
-          </p>
-        </li>
-
-        <li class="research-item reveal">
-          <div class="research-head">
-            <h3 class="research-org"><a href="https://ucdavis.edu" class="research-org-link" target="_blank" rel="noopener noreferrer">UC Davis</a>, Center for Mind &amp; Brain &middot; Visual Cognition Lab</h3>
-            <span class="research-when">2022&ndash;2023</span>
-          </div>
-          <p class="research-body">
-            Built a 40+ scene image dataset for studying how scene context shapes visual attention;
-            ran eye-tracking experiments and annotated 200+ stimuli for object depth.
-            <span class="research-pi">With <a href="https://viscoglab.ucdavis.edu/" class="about-highlight" target="_blank" rel="noopener noreferrer">Dr. John Henderson</a>.</span>
-          </p>
-        </li>
-
-        <li class="research-item reveal">
-          <div class="research-head">
-            <h3 class="research-org"><a href="https://ucdavis.edu" class="research-org-link" target="_blank" rel="noopener noreferrer">UC Davis</a>, Center for Mind &amp; Brain &middot; Neural Mechanisms of Attention + Cognitive Neurolinguistics</h3>
-            <span class="research-when">2022&ndash;2023</span>
-          </div>
-          <p class="research-body">
-            Collected and analyzed 64-channel EEG data investigating audiovisual speech processing,
-            including ERP analyses of N400 responses.
-            <span class="research-pi">With Drs. <a href="https://mangunlab.ucdavis.edu/" class="about-highlight" target="_blank" rel="noopener noreferrer">George Mangun</a> &amp; <a href="https://dpcorina.faculty.ucdavis.edu/" class="about-highlight" target="_blank" rel="noopener noreferrer">David Corina</a>.</span>
-          </p>
-        </li>
-
-        <li class="research-item reveal">
-          <div class="research-head">
-            <h3 class="research-org"><a href="https://hawaiineuroscience.com/" class="research-org-link" target="_blank" rel="noopener noreferrer">Hawaiʻi Pacific Neuroscience</a></h3>
-            <span class="research-when">2022</span>
-          </div>
-          <p class="research-body">
-            Analyzed clinical records and psychiatric outcomes in multiple sclerosis, using
-            nonparametric and categorical statistical analyses. Work published in
-            <a href="https://doi.org/10.1212/WNL.0000000000202503" class="about-highlight" target="_blank" rel="noopener noreferrer"><em>Neurology</em></a>.
-            <span class="research-pi">With Drs. Jason Viereck, Kore Liow &amp; Shin Chang.</span>
-          </p>
-        </li>
-
-        <li class="research-item reveal">
-          <div class="research-head">
-            <h3 class="research-org">University of Hawaiʻi at Mānoa &middot; Brain &amp; Behavior + Intergroup Social Perception Labs</h3>
-            <span class="research-when">2022</span>
-          </div>
-          <p class="research-body">
-            Contributed to assembling EEG acquisition systems for neurological rehabilitation
-            research and analyzed demographic effects on face recognition using mixed-design models.
-            <span class="research-pi">With Drs. <a href="https://brainandbehaviorlab.com/" class="about-highlight" target="_blank" rel="noopener noreferrer">Jonas Vibell</a> &amp; <a href="https://manoa.hawaii.edu/isplab/" class="about-highlight" target="_blank" rel="noopener noreferrer">Kristin Pauker</a>.</span>
-          </p>
-        </li>
-      </ol>
-
-      <p class="research-note reveal">
-        11 conference presentations, 2023&ndash;2026, including first-author talks at the Vision
-        Sciences Society and the Smithsonian Institution. $140K+ in competitive fellowships,
-        research support, and awards across nine programs.
-      </p>
-    </section>
-
-    <!-- FUNDING -->
-    <section id="funding">
-      <p class="section-tag reveal">Funding</p>
-      <ul class="funding-list">
-        {funding.map(f => (
-          <li class="funding-item reveal">
-            <span class="funding-name">{f.name}</span>
-            <span class="funding-leader" aria-hidden="true"></span>
-            <span class="funding-meta">
-              <span class="funding-year">{f.year}</span>
-              <span class="funding-amount">{f.amount}</span>
-            </span>
-          </li>
         ))}
-      </ul>
-    </section>
+      </section>
 
-    <footer>
-      <p class="footer-credit">
-        Designed in <a href="https://figma.com" class="footer-highlight" target="_blank" rel="noopener noreferrer">Figma</a>, built with
-        <a href="https://astro.build" class="footer-highlight" target="_blank" rel="noopener noreferrer">Astro</a>, set in
-        <a href="https://fonts.google.com/specimen/Cormorant+Garamond" class="footer-highlight" target="_blank" rel="noopener noreferrer">Cormorant Garamond</a> &amp;
-        <a href="https://fonts.google.com/specimen/EB+Garamond" class="footer-highlight" target="_blank" rel="noopener noreferrer">EB Garamond</a>,
-        and deployed on <a href="https://pages.github.com" class="footer-highlight" target="_blank" rel="noopener noreferrer">GitHub Pages</a>.
-      </p>
-    </footer>
+      <!-- PUBLICATIONS & PRESENTATIONS -->
+      <section id="publications">
+        <h2 class="section-title">Publications &amp; Presentations</h2>
+
+        <h3 class="subsection-title">Published Abstracts</h3>
+        <ol class="refs">
+          {publications.map(p => (
+            <li>
+              {splitAuthors(p.authors).map((part, i) => <>{i > 0 && <strong>{ME}</strong>}{part}</>)}
+              {' '}({p.year}). {p.title} <em>{p.venue}</em>{' '}
+              <a href={p.href} target="_blank" rel="noopener noreferrer">DOI</a>
+            </li>
+          ))}
+        </ol>
+
+        <h3 class="subsection-title">Oral Presentations</h3>
+        <ol class="refs">
+          {talks.map(t => (
+            <li>
+              {splitAuthors(t.authors).map((part, i) => <>{i > 0 && <strong>{ME}</strong>}{part}</>)}
+              {' '}({t.date}). <em>{t.title}</em> {t.venue}
+              {t.href && <>{' '}<a href={t.href} target="_blank" rel="noopener noreferrer">{t.linkText}</a></>}
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects">
+        <h2 class="section-title">Selected Projects (Outside the Lab)</h2>
+        {projects.map(p => (
+          <div class="project">
+            <h3 class="entry-org">
+              {p.name}
+              {p.href && <a href={p.href} class="project-link" target="_blank" rel="noopener noreferrer">{p.linkText}</a>}
+            </h3>
+            <p class="entry-body">{p.body}</p>
+          </div>
+        ))}
+      </section>
+
+      <!-- EDUCATION -->
+      <section id="education">
+        <h2 class="section-title">Education</h2>
+        {education.map(e => (
+          <div class="edu">
+            <h3 class="entry-org">{e.org}</h3>
+            <p class="entry-unit">{e.detail}</p>
+          </div>
+        ))}
+      </section>
+
+      <!-- FUNDING -->
+      <section id="funding">
+        <h2 class="section-title">Fellowships &amp; Awards</h2>
+        <table class="funding">
+          <tbody>
+            {funding.map(f => (
+              <tr>
+                <td class="funding-name">{f.name}</td>
+                <td class="funding-year">{f.year}</td>
+                <td class="funding-amount">{f.amount}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <!-- SERVICE -->
+      <section id="service">
+        <h2 class="section-title">Service &amp; Leadership</h2>
+        {service.map(s => (
+          <div class="entry entry--compact">
+            <p class="entry-when">{s.when}</p>
+            <div class="entry-main">
+              <p><span class="entry-org-inline">{s.org}</span>, {s.role}{s.place && <span class="muted"> · {s.place}</span>}</p>
+            </div>
+          </div>
+        ))}
+      </section>
+
+    </div>
 
 <style is:global>
-      /* ── DESIGN TOKENS ("this is my color") ── */
       :root {
-        /* ── fonts ───────────────────────────────────────── */
-        --serif:        'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
-        --serif-body:   'EB Garamond', Georgia, 'Times New Roman', serif;
-        --sans:         'EB Garamond', Georgia, 'Times New Roman', serif;
-        --mono:         'EB Garamond', Georgia, 'Times New Roman', serif;
+        --font:      'Source Serif 4', Georgia, 'Times New Roman', serif;
 
-        /* ── colors (warm editorial neutral colors) ───────────── */
-        --bg:           #FFFFFF;
-        --surface:      #FCEEE2;
-        --text:         #1A1A1A;
-        --muted:        rgba(26,26,26,0.55);
-        --border:       rgba(26,26,26,0.12);
-        --link:         #1A1A1A;
-        --accent:       #D6826E;
-        --dark-accent:  #0B125F;
-        --light-accent: #FCEEE2;
-        --blue:         #D6826E;
-        --blue-dim:     rgba(214,130,110,0.5);
+        --bg:        #FFFFFF;
+        --text:      #1F2328;
+        --muted:     #5F6670;
+        --rule:      #E3E5E8;
+        --accent:    #9B1C1F;   /* deep crimson: links, headings */
+        --accent-2:  #9B1C1F;   /* header rule */
+        --accent-underline: rgba(155,28,31,0.35);
 
-        /* ── layout & rhythm ────────────────────────────── */
-        --maxw:         680px;            /* readable measure for body */
-        --section-maxw: 900px;            /* slightly wider container for sections */
-        --space-1:      8px;
-        --space-2:      16px;
-        --space-3:      24px;
-        --space-4:      40px;
-        --space-5:      64px;
-        --space-6:      96px;
-        --space-7:      128px;            /* generous breathing room above sections */
-        --radius:       0;
-
-        /* ── type sizes (editorial scale) ───────────────── */
-        --text-base:    18px;
-        --text-sm:      14px;
-        --leading-body: 1.7;
-        --leading-tight:1.2;
-        --heading-section: clamp(28px, 3.4vw, 40px);
-        --heading-display: clamp(32px, 4vw, 48px);
+        --maxw:      880px;
+        --when-col:  9.5rem;    /* date column in CV-style entries */
       }
 
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      html { scroll-behavior: smooth; }
-      body { font-family: var(--serif-body); background: var(--bg); color: var(--text); font-size: var(--text-base); line-height: var(--leading-body); font-weight: 400; letter-spacing: 0; overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-      @media (min-width: 1024px) { html { zoom: 0.85; } }
-
-      /* ── NAV ── */
-      nav {
-        position: static; z-index: 100;
-        display: flex; flex-direction: row; justify-content: space-between; align-items: baseline;
-        gap: clamp(16px, 3vw, 48px);
-        padding: clamp(12px, 2vw, 24px) clamp(20px, 5vw, 64px); border-bottom: 1px solid var(--border);
-        background: transparent;
+      body {
+        font-family: var(--font); font-size: 18px; line-height: 1.65; font-weight: 400;
+        color: var(--text); background: var(--bg);
+        -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
       }
-      .nav-logo { display: inline-flex; flex-direction: column; gap: 2px; color: var(--text); text-decoration: none; line-height: 1.05; }
-      .nav-logo-name { font-family: var(--serif); font-size: clamp(28px, 2.8vw, 42px); font-weight: 400; letter-spacing: 0; white-space: nowrap; color: var(--text); text-decoration: none; }
-      .nav-logo-tagline { font-style: italic; color: var(--muted); }
-      .nav-logo-thai-row { display: inline-flex; align-items: center; gap: 6px; }
-      .nav-logo-thai { font-family: var(--serif); font-style: italic; font-size: clamp(16px, 1.4vw, 22px); color: var(--accent); letter-spacing: 0; }
-      .nav-logo-phonetic { font-family: var(--serif-body); font-style: normal; font-size: clamp(16px, 1.4vw, 22px); color: var(--muted); letter-spacing: 0; }
-      .pronunciation-btn { background: none; border: 0; padding: 2px; margin: 0; cursor: pointer; color: var(--text); display: inline-flex; align-items: center; justify-content: center; line-height: 0; }
-      .pronunciation-btn:hover { color: var(--accent); }
-      .pronunciation-btn svg { width: clamp(18px, 1.4vw, 22px); height: clamp(18px, 1.4vw, 22px); display: block; }
-      #thai-name-audio { display: none; }
-      /* right-hand nav column: section links on top, contact icons beneath them */
-      .nav-right { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
-      .nav-icons { display: flex; align-items: center; gap: clamp(10px, 1.2vw, 18px); }
-      .nav-icon { display: inline-flex; align-items: center; justify-content: center; gap: 6px; color: var(--accent); line-height: 0; text-decoration: none; }
-      .nav-icon:hover { opacity: 0.75; }
-      .nav-icon svg { width: clamp(20px, 1.8vw, 26px); height: clamp(20px, 1.8vw, 26px); display: block; }
-      .nav-icon--with-text { line-height: 1; }
-      .nav-icon--with-text span { font-family: var(--serif-body); font-style: normal; font-size: clamp(15px, 1.2vw, 18px); letter-spacing: 0; }
-      .nav-links { display: flex; gap: clamp(18px, 2.4vw, 34px); list-style: none; justify-content: flex-end; }
-      .nav-links a { font-family: var(--serif-body); font-size: clamp(18px, 1.7vw, 26px); letter-spacing: 0; color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; text-decoration-color: var(--border); white-space: nowrap; }
-      .nav-links a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+      a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--accent-underline); }
+      a:hover { text-decoration-color: var(--accent); }
+      strong { font-weight: 600; }
+      .muted { color: var(--muted); }
 
-      /* ── SECTION BASE ── */
-      section { max-width: var(--section-maxw); margin-left: auto; margin-right: auto; padding: var(--space-7) clamp(20px, 5vw, 64px) var(--space-6); border-bottom: 1px solid var(--border); }
-      .section-tag { font-family: var(--serif); font-size: var(--heading-section); font-weight: 400; letter-spacing: 0; color: var(--text); margin-bottom: var(--space-5); display: flex; align-items: center; gap: 16px; }
-      /* removed the decorative blue line next to section headers */
-      .section-tag::after { display: none; }
+      .page { max-width: var(--maxw); margin: 0 auto; padding: 72px 32px 48px; }
+
+      /* ── HEADER ── */
+      /* identity on the left, contact column on the right, bottoms aligned */
+      .masthead {
+        display: flex; justify-content: space-between; align-items: flex-end; gap: 32px;
+        padding-bottom: 28px; border-bottom: 3px solid var(--accent-2);
+      }
+      .name { font-size: 44px; font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; }
+      .name-thai { margin-top: 6px; font-size: 18px; color: var(--muted); }
+      .name-thai [lang="th"] { color: var(--accent); }
+      .title { margin-top: 12px; font-size: 20px; }
+      .reach { text-align: right; font-size: 16px; line-height: 1.6; flex-shrink: 0; }
+      .contact { list-style: none; }
+      .emails { margin-top: 4px; color: var(--muted); }
 
       /* ── ABOUT ── */
-      #about {
-        padding-top: var(--space-6); padding-bottom: var(--space-7);
-        padding-left: clamp(12px, 2.5vw, 32px); padding-right: clamp(12px, 2.5vw, 32px);
-        border-bottom: 1px solid var(--border); position: relative; color: var(--text);
-        /* no forced viewport height — the hero is exactly as tall as its content, and the two
-           columns share a top edge so they read as one composition rather than two objects */
-        display: flex; flex-direction: row; align-items: flex-start; gap: clamp(32px, 4.5vw, 76px);
-        max-width: min(1600px, 92vw); margin-left: auto; margin-right: auto;
-      }
-      #about::before {
-        content: ''; position: absolute; z-index: -2; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw;
-        background: var(--bg);
-      }
-      #experiences, #gallery, #funding { border-bottom: none; }
-      #gallery { padding-bottom: clamp(8px, 1vw, 16px); }
-      .about-text-body { position: relative; flex: 1 1 0; min-width: 0; max-width: var(--maxw); margin: 0; border: none; padding: 0; background: transparent; z-index: 2; }
-      .bio-stack { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: clamp(8px, 1.2vw, 14px); z-index: 2; order: -1; flex-shrink: 0; }
-      .about-name { font-family: var(--serif); font-size: var(--heading-display); font-weight: 400; line-height: var(--leading-tight); letter-spacing: 0; color: var(--text); margin-bottom: var(--space-4); }
-      .about-name em { font-style: italic; color: var(--accent); }
-      /* lede carries the hook at display size; deck supports it at reading size */
-      .about-lede {
-        font-family: var(--serif); font-size: clamp(30px, 3.7vw, 50px); font-weight: 400;
-        line-height: 1.12; letter-spacing: -0.005em; color: var(--text);
-        margin-bottom: var(--space-3); max-width: 15em; text-wrap: balance;
-      }
-      .about-deck {
-        font-family: var(--serif-body); font-size: clamp(17px, 1.5vw, 21px); font-weight: 400;
-        line-height: 1.62; letter-spacing: 0; color: var(--text); max-width: 34em;
-      }
-      /* ── HERO RECOMMENDATIONS ──
-         Third tier under lede/deck, and it fills the space beside the photo's lower half. */
-      .hero-rec {
-        margin-top: var(--space-4); padding-top: var(--space-3);
-        border-top: 1px solid var(--border); max-width: 34em;
-      }
-      /*
-      .hero-rec-label {
-        font-family: var(--serif-body); font-style: italic; font-size: clamp(17px, 1.45vw, 20px);
-        line-height: 1.4; color: var(--text); margin-bottom: 14px;
-      }
-      */
-      .rec-item + .rec-item { margin-top: var(--space-3); }
-      .rec-title { font-family: var(--serif); font-size: clamp(19px, 1.7vw, 24px); line-height: 1.25; color: var(--text); }
-      .rec-author { color: var(--muted); }
-      .rec-author::before { content: '\2002\2014\2002'; }
-      .rec-note { font-family: var(--serif-body); font-size: clamp(15px, 1.25vw, 17px); line-height: 1.55; color: var(--text); margin-top: 3px; }
-      .rec-quote {
-        margin-top: 12px; padding-left: 16px; border-left: 2px solid var(--accent);
-        font-family: var(--serif-body); font-style: italic; font-size: clamp(15px, 1.25vw, 17px);
-        line-height: 1.6; color: var(--text);
-      }
+      .about { display: flex; gap: 36px; align-items: flex-start; }
+      .about-photo { width: 200px; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 25%; border-radius: 4px; flex-shrink: 0; display: block; }
+      .about-text p + p { margin-top: 14px; }
 
-      .bio-photo-wrapper {
-        position: relative; flex-shrink: 0;
-        /* portrait 3:4 source — narrower than a landscape hero would be, or it towers over the copy */
-        width: clamp(260px, 31vw, 460px);
-        overflow: hidden;
-        border-radius: 10px;
+      /* ── SECTIONS ── */
+      section { padding-top: 48px; }
+      .section-title {
+        font-size: 26px; font-weight: 600; line-height: 1.25; letter-spacing: -0.005em;
+        color: var(--accent); padding-bottom: 10px; margin-bottom: 24px; border-bottom: 1px solid var(--rule);
       }
-      .about-photo { position: relative; z-index: 1; width: 100%; height: auto; object-fit: unset; object-position: center; border-radius: 0; display: block; transform: none; transition: transform 0.5s; }
-      .bio-photo-block { display: flex; flex-direction: column; align-items: flex-start; width: clamp(260px, 31vw, 460px); }
-      /* Hint nudge, disabled with the easter egg. Notes for whoever restores it: the hint
-         spanned the photo width and centered on the page background with no fill; it precedes
-         the photo in the DOM, so the hover rule reaches it from the parent rather than a
-         sibling combinator. */
-      /*
-      .bio-photo-hint {
-        display: block; width: 100%; text-align: center;
-        padding: 0 4px; margin-bottom: 12px;
-        font-family: var(--serif-body); font-style: italic; font-size: clamp(17px, 1.7vw, 23px);
-        line-height: 1.4; color: var(--accent); letter-spacing: 0;
-        opacity: 1; transition: opacity 0.35s ease;
-        animation: hint-bob 2.2s ease-in-out infinite;
-      }
-      .hint-eyes { font-style: normal; font-size: 1.15em; line-height: 1; }
-      @keyframes hint-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-      .bio-photo-block:has(.bio-photo-wrapper:hover) .bio-photo-hint { opacity: 0; animation-play-state: paused; }
-      @media (prefers-reduced-motion: reduce) { .bio-photo-hint { animation: none; } }
-      @media (hover: none) { .bio-photo-hint { display: none; } }
-      */
-      /* ── HOVER EASTER EGG: BLINKING EYES ──
-         Anchors are percentages of the photo frame, measured off the source image, so they stay
-         locked to her eyes at every width. .eye owns position + head tilt, .eye-lid owns the blink
-         (they'd fight over `transform` on one element). */
-      /*
-      .eye {
-        position: absolute; z-index: 3; width: 6.6%; aspect-ratio: 1 / 0.70;
-        opacity: 0; transform: translate(-50%, -50%) rotate(22deg) scale(0.6);
-        transition: opacity 0.14s ease, transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
-        pointer-events: none;
-      }
-      .eye--l { left: 29.6%; top: 34.5%; }
-      .eye--r { left: 37.5%; top: 37.0%; }
-      .eye-lid { display: block; width: 100%; height: 100%; position: relative; }
-      */
-      /* almond needs real points where the two curves meet — border-radius can only make
-         ellipses or flat-edged rounded rects, so the lid outline is an SVG path */
-      /*
-      .eye-shape { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-      .eye-shape path { fill: #FFFDF8; stroke: #1A1A1A; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
-      .eye-pupil {
-        position: absolute; z-index: 2; left: 50%; top: 52%; width: 44%; aspect-ratio: 1;
-        background: #1A1A1A; border-radius: 50%; transform: translate(-50%, -50%);
-      }
-      .eye-pupil::after {
-        content: ''; position: absolute; left: 20%; top: 16%; width: 34%; aspect-ratio: 1;
-        background: #FFFDF8; border-radius: 50%;
-      }
-      .bio-photo-wrapper:hover .eye { opacity: 1; transform: translate(-50%, -50%) rotate(22deg) scale(1); }
-      */
-      /* blink only while hovered, so the animation isn't running invisibly the whole time */
-      /* two quick blinks the moment the eyes land, then settle into a slow spaced-out rhythm.
-         Both animate transform; the second is listed last so it wins once its delay elapses. */
-      /*
-      .bio-photo-wrapper:hover .eye-lid {
-        animation:
-          blink-double 0.7s ease-in-out 0s 1 both,
-          blink-idle   3.2s ease-in-out 0.7s infinite;
-      }
-      @keyframes blink-double {
-        0%, 6%    { transform: scaleY(1); }
-        14%, 20%  { transform: scaleY(0.06); }
-        28%, 36%  { transform: scaleY(1); }
-        44%, 50%  { transform: scaleY(0.06); }
-        58%, 100% { transform: scaleY(1); }
-      }
-      @keyframes blink-idle {
-        0%, 90%, 100% { transform: scaleY(1); }
-        94%, 96%      { transform: scaleY(0.06); }
-      }
-      */
+      .subsection-title { font-size: 17px; font-weight: 600; margin: 28px 0 12px; }
+      .subsection-title:first-of-type { margin-top: 0; }
 
-      /* the chip sits beside her head. `right` bounds the column against the frame so the
-         line can't run past the wrapper's overflow at narrow photo widths. */
-      /*
-      .photo-msgs {
-        position: absolute; z-index: 4; left: 47%; right: 3%; top: 27%;
-        display: flex; flex-direction: column; align-items: flex-start; gap: 7px;
-        pointer-events: none;
-      }
-      .photo-affirm {
-        opacity: 0; background: rgba(26,26,26,0.88); color: var(--light-accent);
-        font-family: var(--serif-body); font-style: italic; font-size: clamp(12.5px, 1.1vw, 15px);
-        line-height: 1.45; transform: translateY(6px) scale(0.94); transform-origin: left center;
-        transition: opacity 0.3s ease 0.12s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.12s;
-      }
-      .photo-affirm { padding: 8px 13px; border-radius: 12px; color: var(--accent); transition-delay: 0.22s; }
-      .bio-photo-wrapper:hover .photo-affirm { opacity: 1; transform: translateY(0) scale(1); }
-      */
+      /* CV-style entry: date column on the left, details on the right */
+      .entry { display: grid; grid-template-columns: var(--when-col) 1fr; gap: 0 24px; margin-bottom: 28px; }
+      .entry:last-child { margin-bottom: 0; }
+      .entry--compact { margin-bottom: 10px; }
+      .entry-when { color: var(--muted); font-size: 16px; font-variant-numeric: tabular-nums; padding-top: 2px; }
+      .entry-org { font-size: 19px; font-weight: 600; line-height: 1.35; }
+      .entry-org a { color: inherit; text-decoration-color: var(--rule); }
+      .entry-org a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+      .entry-org-inline { font-weight: 600; }
+      .entry-unit { color: var(--text); }
+      .entry-role { font-style: italic; color: var(--muted); }
+      .entry-body { margin-top: 6px; }
+      .entry-pi { margin-top: 4px; font-size: 16px; color: var(--muted); }
 
-      /* touch devices never fire :hover, so these kept the egg from leaving a half-triggered
-         state behind. Disabled with it. */
-      /*
-      @media (prefers-reduced-motion: reduce) {
-        .bio-photo-wrapper:hover .eye-lid { animation: none; }
-        .eye, .photo-affirm { transition-duration: 0.01ms; }
-      }
-      @media (hover: none) {
-        .eye, .photo-affirm { display: none; }
-      }
-      */
+      /* ── REFERENCES ── */
+      .refs { padding-left: 1.6em; }
+      .refs li { margin-bottom: 12px; padding-left: 4px; font-size: 17px; }
+      .refs li::marker { color: var(--muted); }
 
-      .about-highlight { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: var(--accent); }
-      .about-highlight:hover { color: var(--accent); text-decoration-color: var(--accent); }
+      /* ── PROJECTS ── */
+      .project { margin-bottom: 22px; }
+      .project:last-child { margin-bottom: 0; }
+      .project-link { margin-left: 12px; font-size: 15px; font-weight: 400; color: var(--accent); text-decoration-color: var(--accent-underline); white-space: nowrap; }
+      .project .entry-body { margin-top: 2px; }
 
-      /* ── SHIPPED ── */
-      #shipped { padding-top: var(--space-6); padding-bottom: var(--space-6); }
-      #shipped .section-tag { margin-bottom: var(--space-4); }
-      .shipped-list { list-style: none; margin: 0; padding: 0; max-width: var(--maxw); }
-      .shipped-item { margin-bottom: var(--space-4); }
-      .shipped-item:last-child { margin-bottom: 0; }
-      .shipped-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 4px; }
-      .shipped-name { font-family: var(--serif); font-size: clamp(19px, 1.7vw, 24px); font-weight: 400; line-height: var(--leading-tight); letter-spacing: 0; color: var(--text); }
-      .shipped-link { flex: 0 0 auto; font-family: var(--serif-body); font-size: var(--text-sm); color: var(--accent); white-space: nowrap; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: var(--blue-dim); }
-      .shipped-link:hover { text-decoration-color: var(--accent); }
-      .shipped-arrow { font-style: normal; }
-      .shipped-body { font-family: var(--serif-body); font-size: var(--text-base); line-height: var(--leading-body); color: var(--text); }
-
-      /* ── RESEARCH ── */
-      #research { padding-top: var(--space-6); padding-bottom: var(--space-6); }
-      #research .section-tag { margin-bottom: var(--space-4); }
-      .research-list { list-style: none; margin: 0; padding: 0; max-width: var(--maxw); }
-      .research-item { margin-bottom: var(--space-4); }
-      .research-item:last-child { margin-bottom: 0; }
-      /* org left, dates pinned right — CV rail, no leader (that motif belongs to Funding) */
-      .research-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 4px; }
-      .research-org { font-family: var(--serif); font-size: clamp(19px, 1.7vw, 24px); font-weight: 400; line-height: var(--leading-tight); letter-spacing: 0; color: var(--text); }
-      .research-org-link { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: var(--border); }
-      .research-org-link:hover { color: var(--accent); text-decoration-color: var(--accent); }
-      .research-when { flex: 0 0 auto; font-family: var(--serif-body); font-style: italic; font-size: var(--text-sm); color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
-      .research-body { font-family: var(--serif-body); font-size: var(--text-base); line-height: var(--leading-body); color: var(--text); }
-      .research-pi { color: var(--muted); font-style: italic; }
-      .research-note { max-width: var(--maxw); margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--border); font-family: var(--serif-body); font-size: var(--text-base); line-height: var(--leading-body); color: var(--text); }
+      .edu + .edu { margin-top: 18px; }
 
       /* ── FUNDING ── */
-      #funding { padding-top: var(--space-6); padding-bottom: var(--space-6); }
-      #funding .section-tag { margin-bottom: var(--space-4); }
-      .funding-list { list-style: none; margin: 0; padding: 0; }
-      .funding-item {
-        display: flex; align-items: baseline; gap: 0;
-        font-family: var(--serif-body); font-size: var(--text-base); line-height: 1.9;
-        color: var(--text);
-      }
-      .funding-name { flex: 0 1 auto; }
-      /* dot leader bridging name to amount, as in a printed programme */
-      .funding-leader { flex: 1 1 auto; min-width: 24px; margin: 0 10px; border-bottom: 1px dotted var(--border); transform: translateY(-0.3em); }
-      /* year and amount ride in a fixed-width rail so both columns stay flush right */
-      .funding-meta { flex: 0 0 auto; display: flex; align-items: baseline; gap: 18px; }
-      .funding-year { min-width: 9.2em; text-align: right; font-size: var(--text-sm); font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; }
-      .funding-amount { min-width: 4.2em; text-align: right; font-variant-numeric: tabular-nums; color: var(--accent); white-space: nowrap; }
+      .funding { width: 100%; border-collapse: collapse; }
+      .funding td { padding: 9px 0; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
+      .funding tr:last-child td { border-bottom: none; }
+      .funding-year { color: var(--muted); font-size: 16px; white-space: nowrap; padding-left: 24px !important; text-align: right; font-variant-numeric: tabular-nums; }
+      .funding-amount { white-space: nowrap; padding-left: 24px !important; text-align: right; font-variant-numeric: tabular-nums; }
 
-      /* ── GALLERY ── */
-      #gallery .section-tag { font-family: var(--serif); justify-content: center; text-align: center; font-size: var(--heading-section); font-weight: 400; letter-spacing: 0; color: var(--text); }
-      #gallery .section-tag.reveal { opacity: 1; transform: none; }
-      #gallery .section-tag .slide-from-left { display: inline-block; will-change: transform; }
-      .gallery-marquee { display: flex; flex-direction: column; gap: clamp(12px, 1.5vw, 20px); width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
-      .gallery-row { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; }
-      .gallery-row::-webkit-scrollbar { display: none; }
-      .gallery-track { display: flex; align-items: center; gap: clamp(12px, 1.5vw, 20px); width: max-content; }
-      .gallery-track.scroll-left  { animation: gallery-scroll-left 90s linear infinite; }
-      .gallery-track.scroll-right { animation: gallery-scroll-right 90s linear infinite; }
-      .gallery-row:hover .gallery-track { animation-play-state: paused; }
-      .gallery-item { margin: 0; flex-shrink: 0; width: clamp(220px, 24vw, 320px); aspect-ratio: 4/3; background: var(--surface); overflow: hidden; position: relative; }
-      .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-      .gallery-item-label { position: absolute; bottom: 12px; left: 12px; font-family: var(--serif-body); font-style: italic; font-size: clamp(11px, 0.85vw, 13px); letter-spacing: 0; color: #FFFFFF; background: rgba(0,0,0,0.5); padding: 3px 8px; }
-      @keyframes gallery-scroll-left  { from { transform: translateX(0); }     to { transform: translateX(-50%); } }
-      @keyframes gallery-scroll-right { from { transform: translateX(-50%); }  to { transform: translateX(0); }    }
-      @media (prefers-reduced-motion: reduce) { .gallery-track { animation: none; } }
-
-
-      /* ── FOOTER ── */
-      footer { max-width: none; margin: 0; padding: var(--space-4) clamp(20px, 5vw, 64px); display: flex; justify-content: flex-start; align-items: flex-start; border-top: 1px solid var(--border); }
-      .footer-credit { font-family: var(--serif-body); font-style: italic; font-size: var(--text-base); letter-spacing: 0; color: var(--muted); line-height: 1.8; max-width: 800px; }
-      .footer-highlight { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--border); }
-      .footer-highlight:hover { color: var(--accent); text-decoration-color: var(--accent); }
-      a.footer-highlight:hover { color: var(--text); }
-
-      /* ── ANIMATIONS ── */
-      .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-      .reveal.visible { opacity: 1; transform: none; }
-
-      /* ── RESPONSIVE: SMALL LAPTOPS / TABLETS ── */
-      @media (max-width: 900px) {
-        /* Hero stacks vertically; padding pulled in so nothing hugs the edge */
-        #about {
-          flex-direction: column;
-          align-items: stretch;
-          gap: clamp(20px, 4vw, 32px);
-          padding-left: clamp(20px, 5vw, 48px);
-          padding-right: clamp(20px, 5vw, 48px);
-          padding-top: clamp(32px, 6vw, 56px);
-          padding-bottom: clamp(32px, 6vw, 56px);
-          min-height: auto;
-          max-width: 100%;
-        }
-        /* Trim nav side padding and let the long name+tagline wrap */
-        nav { padding: clamp(12px, 2.4vw, 20px) clamp(20px, 4vw, 40px); flex-wrap: wrap; row-gap: 12px; }
-        .nav-logo-name { font-size: clamp(22px, 4vw, 32px); white-space: normal; line-height: 1.2; }
-
-        .about-text-body { width: 100%; max-width: 100%; margin: 0; }
-        .bio-stack { width: 100%; align-items: flex-start; margin: 0; }
-        /* cap the portrait so a full-bleed 3:4 doesn't run a screen and a half tall */
-        .bio-photo-block { width: min(100%, 380px); align-items: flex-start; }
-        .bio-photo-wrapper { width: min(100%, 380px); aspect-ratio: auto; }
-        .about-text-body::before, .about-text-body::after { display: none; }
-      }
-
-      /* ── RESPONSIVE: PHONES (iPhone-friendly) ── */
-      @media (max-width: 600px) {
-        #about {
-          padding: clamp(28px, 6vw, 44px) clamp(16px, 4.5vw, 24px) clamp(40px, 8vw, 64px);
-          gap: clamp(20px, 5vw, 28px);
-        }
-        /* Nav stacks: name+tagline on top, then icons */
-        nav {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 14px;
-          padding: 16px clamp(16px, 4.5vw, 24px);
-        }
-        .nav-logo { width: 100%; gap: 4px; }
-        .nav-logo-name { font-size: clamp(20px, 5.5vw, 26px); white-space: normal; line-height: 1.2; }
-        .nav-logo-tagline { display: block; font-size: 0.72em; margin-top: 2px; white-space: normal; }
-        .nav-logo-thai-row { flex-wrap: wrap; gap: 8px; }
-        .nav-logo-thai, .nav-logo-phonetic { font-size: clamp(14px, 4.2vw, 18px); }
-        .nav-right { width: 100%; align-items: flex-start; gap: 12px; }
-        .nav-icons { width: 100%; justify-content: flex-start; flex-wrap: wrap; gap: 14px 18px; }
-        .nav-icon svg { width: 22px; height: 22px; }
-        .nav-icon--with-text span { font-size: 14px; }
-
-        /* Body text: keep readable but don't break the viewport */
-        .about-text-body { width: 100%; max-width: 100%; }
-        .about-lede { font-size: clamp(26px, 7.2vw, 34px); max-width: 100%; }
-        .about-deck { font-size: 16px; line-height: 1.6; }
-        .hero-rec { max-width: 100%; margin-top: var(--space-3); }
-        .rec-title { font-size: clamp(18px, 5vw, 21px); }
-        .rec-note, .rec-quote { font-size: 15px; }
-        /* .bio-photo-hint { font-size: 14px; } */
-        .about-name { font-size: clamp(26px, 7vw, 36px); }
-        .bio-photo-wrapper { width: min(100%, 320px); }
-        .bio-photo-block { width: min(100%, 320px); }
-
-        .pronunciation-btn svg { width: 20px; height: 20px; }
-
-        /* Shipped: link drops under the project name rather than fighting it for the same line */
-        #shipped { padding: clamp(32px, 7vw, 48px) clamp(16px, 4.5vw, 24px); }
-        .shipped-head { flex-direction: column; align-items: flex-start; gap: 2px; margin-bottom: 6px; }
-        .shipped-name { font-size: clamp(18px, 5vw, 22px); }
-        .shipped-body { font-size: 16px; line-height: 1.65; }
-
-        /* Research: date drops under the org rather than fighting it for the same line */
-        #research { padding: clamp(32px, 7vw, 48px) clamp(16px, 4.5vw, 24px); }
-        .research-head { flex-direction: column; align-items: flex-start; gap: 2px; margin-bottom: 6px; }
-        .research-org { font-size: clamp(18px, 5vw, 22px); }
-        .research-body, .research-note { font-size: 16px; line-height: 1.65; }
-
-        /* Funding: stack each award over its amount; dot leaders don't survive narrow columns */
-        #funding { padding: clamp(32px, 7vw, 48px) clamp(16px, 4.5vw, 24px); }
-        .funding-item { flex-wrap: wrap; font-size: 16px; line-height: 1.6; margin-bottom: 12px; }
-        .funding-name { flex: 1 1 100%; }
-        .funding-leader { display: none; }
-        .funding-meta { gap: 12px; }
-        .funding-year, .funding-amount { min-width: 0; text-align: left; }
-
-        /* Footer: tighter side padding so the credit line breathes */
-        footer { padding: clamp(20px, 5vw, 32px) clamp(16px, 4.5vw, 24px); }
-        .footer-credit { font-size: 16px; line-height: 1.7; }
-      }
-
-      /* ── RESPONSIVE: VERY SMALL PHONES (iPhone SE) ── */
-      @media (max-width: 400px) {
-        .nav-logo-name { font-size: clamp(18px, 5.8vw, 22px); }
-        .nav-logo-tagline { font-size: 0.7em; }
-        .about-name { font-size: 22px; }
-        .about-lede { font-size: 24px; }
-        .about-deck { font-size: 15px; }
-        /* .bio-photo-hint { font-size: 13px; } */
-        .funding-item { font-size: 15px; }
-        .research-org { font-size: 18px; }
-        .research-body, .research-note { font-size: 15px; }
-        .shipped-name { font-size: 18px; }
-        .shipped-body { font-size: 15px; }
+      /* ── RESPONSIVE ── */
+      @media (max-width: 700px) {
+        body { font-size: 17px; }
+        .page { padding: 40px 20px 32px; }
+        .name { font-size: 32px; }
+        .title { font-size: 18px; }
+        /* contact block drops under the name; links go back to one wrapping row */
+        .masthead { flex-direction: column; align-items: flex-start; gap: 18px; }
+        .reach { text-align: left; }
+        .contact { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+        .about { flex-direction: column; gap: 24px; }
+        .about-photo { width: 160px; }
+        section { padding-top: 40px; }
+        /* date moves above the entry instead of taking a column */
+        .entry { grid-template-columns: 1fr; }
+        .entry-when { padding-top: 0; font-size: 15px; }
+        .refs { padding-left: 1.1em; }
+        .refs li { font-size: 16px; }
+        /* project link drops under the name instead of wrapping mid-line */
+        .project-link { display: block; margin-left: 0; }
+        .funding td { font-size: 15px; }
+        .funding-year, .funding-amount { padding-left: 12px !important; }
       }
     </style>
 
-    <script>
-      // ── PRONUNCIATION BUTTON ─────────────────────────────────
-      const pronunciationBtn = document.getElementById('pronunciation-btn');
-      const thaiAudio = document.getElementById('thai-name-audio');
-      if (pronunciationBtn && thaiAudio) {
-        pronunciationBtn.addEventListener('click', () => {
-          thaiAudio.currentTime = 0;
-          thaiAudio.play().catch(() => { /* file may not be present yet */ });
-        });
-      }
-
-      // ── GALLERY TAG: one-time rise-up on enter ───
-      const riseObserver = new IntersectionObserver(entries => {
-        entries.forEach(({ target, isIntersecting }) => {
-          if (isIntersecting) {
-            target.classList.add('risen');
-            riseObserver.unobserve(target);
-          }
-        });
-      }, { threshold: 0.2 });
-      document.querySelectorAll('.gallery-tag').forEach(el => riseObserver.observe(el));
-
-// ── SCROLL REVEAL ─────────────────────────────────────────
-      const revealObserver = new IntersectionObserver(entries => {
-        entries.forEach(({ target, isIntersecting }) => {
-          if (isIntersecting) {
-            target.classList.add('visible');
-            revealObserver.unobserve(target);
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-    </script>
-
-  </body> 
+  </body>
 </html>
