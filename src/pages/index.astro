@@ -8,7 +8,7 @@ const contact = [
   { label: 'LinkedIn',       href: 'https://www.linkedin.com/in/plyfaa-murphy/' },
   { label: 'GitHub',         href: 'https://github.com/plyfaa' },
   { label: 'Google Scholar', href: 'https://scholar.google.com/citations?user=TCRiqYcAAAAJ&hl=en' },
-  { label: 'CV (PDF)',       href: '/cv.pdf' },
+  // { label: 'CV (PDF)',       href: '/cv.pdf' },
 ];
 
 const research = [
@@ -38,7 +38,7 @@ const research = [
     org: 'University of Oxford, Department of Experimental Psychology',
     orgHref: 'https://www.psy.ox.ac.uk/',
     unit: 'Oxford Perception Lab',
-    role: 'Visiting Research Scholar',
+    role: 'Visiting Researcher',
     body: 'Piloted perception paradigms in PsychToolbox and built MATLAB visualization pipelines for ' +
           'iridescent stimuli.',
     pi: [{ name: 'Dr. Hannah Smithson', href: 'https://www.psy.ox.ac.uk/people/hannah-smithson' }],
@@ -147,7 +147,7 @@ const projects = [
   { name: 'Matches pls',
     body: 'Directory and map of free matchbooks in San Francisco, built in response to community demand on TikTok.' },
   { name: 'Rodeo Growth Fellow', href: 'https://rodeorodeorodeo.com/', linkText: 'rodeorodeorodeo.com',
-    body: 'Created UGC content for Rodeo, founded by former Hinge executives. Drove 150K+ views in two weeks.' },
+    body: 'Created UGC content for Rodeo, founded by former Hinge executives.' },
   { name: 'Meditation app',
     body: 'Led visual design in Krea for a fairy-themed meditation app for a paid client.' },
 ];
@@ -223,16 +223,11 @@ const splitAuthors = (s: string) => s.split(ME);
           <img src="/picnic.jpeg" alt="Portrait of Plyfaa Suwanamalik-Murphy" class="about-photo"/>
           <div class="about-text">
             <p>
-              I study what the eyes reveal about cognitive state: attention, alertness, and conscious
-              perception. Over four years of research at the National Institutes of Health, the University
-              of Oxford, and UC Davis, I've built analysis pipelines for eye-tracking, MEG, EEG, and
-              intracortical brain-computer interface (BCI) recordings.
-            </p>
-            <p>
-              I'm a PhD student in Psychology at UC San Diego, in Dr. Timothy Brady's
-              <a href="https://bradylab.ucsd.edu/" target="_blank" rel="noopener noreferrer">Vision and Memory Lab</a>.
-              I'm also building <a href="https://www.avelistechnologies.com/" target="_blank" rel="noopener noreferrer">Avelis, Inc.</a>,
-              which translates ocular physiology into machine-readable measures of human state.
+              I’m a PhD student in Timothy Brady’s lab at UC San Diego. I study what the eyes reveal
+              about cognitive state, including attention, alertness, and conscious perception. Before
+              UCSD, I spent four years conducting research at the National Institutes of Health, the
+              University of Oxford, and UC Davis. During that time I built analysis pipelines for
+              eye-tracking, MEG, EEG, and intracortical brain-computer interface (BCI) recordings.
             </p>
           </div>
         </div>
@@ -246,7 +241,6 @@ const splitAuthors = (s: string) => s.split(ME);
           <div class="entry-main">
             <h3 class="entry-org"><a href="https://ucsd.edu" target="_blank" rel="noopener noreferrer">University of California, San Diego</a></h3>
             <p class="entry-unit">Department of Psychology, <a href="https://bradylab.ucsd.edu/" target="_blank" rel="noopener noreferrer">UCSD Vision and Memory Lab</a></p>
-            <p class="entry-role">PhD Student</p>
             <p class="entry-pi">PI: <a href="https://bradylab.ucsd.edu/" target="_blank" rel="noopener noreferrer">Dr. Timothy Brady</a></p>
           </div>
         </div>
@@ -274,7 +268,6 @@ const splitAuthors = (s: string) => s.split(ME);
                 {r.orgHref ? <a href={r.orgHref} target="_blank" rel="noopener noreferrer">{r.org}</a> : r.org}
               </h3>
               {r.unit && <p class="entry-unit">{r.unit}</p>}
-              <p class="entry-role">{r.role}</p>
               <p class="entry-body">{r.body}</p>
               <p class="entry-pi">
                 PI: {r.pi.map((p, i) => (
