@@ -89,6 +89,10 @@ const research = [
   },
 ];
 
+// A single pi entry can name several people ("Drs. A, B & C"), so the count alone
+// doesn't settle the plural.
+const advisorLabel = pi => (pi.length > 1 || pi[0].name.startsWith('Drs.')) ? 'Advisors' : 'Advisor';
+
 const ME = 'Suwanamalik-Murphy, P.';
 const publications = [
   {
@@ -242,7 +246,7 @@ const splitAuthors = (s: string) => s.split(ME);
             <h3 class="entry-org"><a href="https://ucsd.edu" target="_blank" rel="noopener noreferrer">University of California, San Diego</a></h3>
             <p class="entry-unit">Department of Psychology, <a href="https://bradylab.ucsd.edu/" target="_blank" rel="noopener noreferrer">UCSD Vision and Memory Lab</a></p>
             <p class="entry-role">PhD Student</p>
-            <p class="entry-pi">PI: <a href="https://bradylab.ucsd.edu/" target="_blank" rel="noopener noreferrer">Dr. Timothy Brady</a></p>
+            <p class="entry-pi">Advisor: <a href="https://bradylab.ucsd.edu/" target="_blank" rel="noopener noreferrer">Dr. Timothy Brady</a></p>
           </div>
         </div>
         <div class="entry">
@@ -272,7 +276,7 @@ const splitAuthors = (s: string) => s.split(ME);
               <p class="entry-role">{r.role}</p>
               <p class="entry-body">{r.body}</p>
               <p class="entry-pi">
-                PI: {r.pi.map((p, i) => (
+                {advisorLabel(r.pi)}: {r.pi.map((p, i) => (
                   <>{i > 0 && ', '}{p.href ? <a href={p.href} target="_blank" rel="noopener noreferrer">{p.name}</a> : p.name}</>
                 ))}
               </p>
