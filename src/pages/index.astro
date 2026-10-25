@@ -241,6 +241,7 @@ const splitAuthors = (s: string) => s.split(ME);
           <div class="entry-main">
             <h3 class="entry-org"><a href="https://ucsd.edu" target="_blank" rel="noopener noreferrer">University of California, San Diego</a></h3>
             <p class="entry-unit">Department of Psychology, <a href="https://bradylab.ucsd.edu/" target="_blank" rel="noopener noreferrer">UCSD Vision and Memory Lab</a></p>
+            <p class="entry-role">PhD Student</p>
             <p class="entry-pi">PI: <a href="https://bradylab.ucsd.edu/" target="_blank" rel="noopener noreferrer">Dr. Timothy Brady</a></p>
           </div>
         </div>
@@ -268,6 +269,7 @@ const splitAuthors = (s: string) => s.split(ME);
                 {r.orgHref ? <a href={r.orgHref} target="_blank" rel="noopener noreferrer">{r.org}</a> : r.org}
               </h3>
               {r.unit && <p class="entry-unit">{r.unit}</p>}
+              <p class="entry-role">{r.role}</p>
               <p class="entry-body">{r.body}</p>
               <p class="entry-pi">
                 PI: {r.pi.map((p, i) => (
